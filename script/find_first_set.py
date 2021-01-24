@@ -1,0 +1,4 @@
+
+for i in range(1, 64):
+	print("            else if (LS1B_comb[{}]) i <= 6'd{};".format(i, i))
+
