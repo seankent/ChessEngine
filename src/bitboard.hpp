@@ -9,25 +9,56 @@
 //==============================================
 // define
 //==============================================
-//#define PROMOTION_PIECES {'q', 'n', 'r', 'b'};
-#define WHITE_ROOK 0b0000
-#define WHITE_KNIGHT 0b0001
-#define WHITE_BISHOP 0b0010
-#define WHITE_QUEEN 0b0011
-#define WHITE_KING 0b0100
-#define WHITE_PAWN 0b0101
-#define BLACK_ROOK 0b0110
-#define BLACK_KNIGHT 0b0111
-#define BLACK_BISHOP 0b1000
-#define BLACK_QUEEN 0b1001
-#define BLACK_KING 0b1010
-#define BLACK_PAWN 0b1011
-
-
-//==============================================
-// const
-//==============================================
-
+#define WHITE 0
+#define BLACK 1
+#define FILE_A 0x0101010101010101UL 		// bitboard for the a-file
+#define FILE_B 0x0202020202020202UL 		// bitboard for the b-file
+#define FILE_C 0x0404040404040404UL		// bitboard for the c-file
+#define FILE_D 0x0808080808080808UL		// bitboard for the d-file
+#define FILE_E 0x1010101010101010UL 		// bitboard for the e-file
+#define FILE_F 0x2020202020202020UL 		// bitboard for the f-file
+#define FILE_G 0x4040404040404040UL 		// bitboard for the g-file
+#define FILE_H 0x8080808080808080UL		// bitboard for the h-file
+#define RANK_1 0x00000000000000ffUL 		// bitboard for the 1st rank
+#define RANK_2 0x000000000000ff00UL 		// bitboard for the 2nd rank
+#define RANK_3 0x0000000000ff0000UL 		// bitboard for the 3rd rank
+#define RANK_4 0x00000000ff000000UL 		// bitboard for the 4th rank
+#define RANK_5 0x000000ff00000000UL 		// bitboard for the 5th rank
+#define RANK_6 0x0000ff0000000000UL 		// bitboard for the 6th rank
+#define RANK_7 0x00ff000000000000UL 		// bitboard for the 7th rank
+#define RANK_8 0xff00000000000000UL		// bitboard for the 8th rank
+#define DIAGONAL_A8A8 0x0100000000000000UL	// bitboard for the a8-a8 diagonal
+#define DIAGONAL_A7B8 0x0201000000000000UL // bitboard for the a7-b8 diagonal
+#define DIAGONAL_A6C8 0x0402010000000000UL	// bitboard for the a6-c8 diagonal
+#define DIAGONAL_A5D8 0x0804020100000000UL	// bitboard for the a5-d8 diagonal
+#define DIAGONAL_A4E8 0x1008040201000000UL	// bitboard for the a4-e8 diagonal
+#define DIAGONAL_A3F8 0x2010080402010000UL	// bitboard for the a3-f8 diagonal
+#define DIAGONAL_A2G8 0x4020100804020100UL	// bitboard for the a2-g8 diagonal
+#define DIAGONAL_A1H8 0x8040201008040201UL	// bitboard for the a1-h8 diagonal
+#define DIAGONAL_B1H7 0x0080402010080402UL	// bitboard for the b1-h8 diagonal
+#define DIAGONAL_C1H6 0x0000804020100804UL	// bitboard for the c1-h8 diagonal
+#define DIAGONAL_D1H5 0x0000008040201008UL	// bitboard for the d1-h8 diagonal
+#define DIAGONAL_E1H4 0x0000000080402010UL	// bitboard for the e1-h8 diagonal
+#define DIAGONAL_F1H3 0x0000000000804020UL	// bitboard for the f1-h8 diagonal
+#define DIAGONAL_G1H2 0x0000000000008040UL	// bitboard for the g1-h8 diagonal
+#define DIAGONAL_H1H1 0x0000000000000080UL	// bitboard for the h1-h8 diagonal
+#define DIAGONAL_A1A1 0x0000000000000001UL	// bitboard for the a1-a1 diagonal
+#define DIAGONAL_A2B1 0x0000000000000102UL // bitboard for the a2-b1 diagonal
+#define DIAGONAL_A3C1 0x0000000000010204UL	// bitboard for the a3-c1 diagonal
+#define DIAGONAL_A4D1 0x0000000001020408UL	// bitboard for the a4-d1 diagonal
+#define DIAGONAL_A5E1 0x0000000102040810UL	// bitboard for the a5-e1 diagonal
+#define DIAGONAL_A6F1 0x0000010204081020UL	// bitboard for the a6-f1 diagonal
+#define DIAGONAL_A7G1 0x0001020408102040UL	// bitboard for the a7-g1 diagonal
+#define DIAGONAL_A8H1 0x0102040810204080UL	// bitboard for the a8-h1 diagonal
+#define DIAGONAL_B8H2 0x0204081020408000UL	// bitboard for the b8-h2 diagonal
+#define DIAGONAL_C8H3 0x0408102040800000UL	// bitboard for the c8-h3 diagonal
+#define DIAGONAL_D8H4 0x0810204080000000UL	// bitboard for the d8-h4 diagonal
+#define DIAGONAL_E8H5 0x1020408000000000UL	// bitboard for the e8-h5 diagonal
+#define DIAGONAL_F8H6 0x2040800000000000UL	// bitboard for the f8-h6 diagonal
+#define DIAGONAL_G8H7 0x4080000000000000UL	// bitboard for the g8-h7 diagonal
+#define DIAGONAL_H8H8 0x8000000000000000UL	// bitboard for the h8-h8 diagonal
+#define MOVES_N 0x0000142200221400UL
+#define MOVES_K 0x0000001C141C0000UL
 
 //==============================================
 // Bitboard
@@ -35,7 +66,6 @@
 class Bitboard
 {
 public:
-
 	uint64_t WR;			// bitboard for the white rooks
 	uint64_t WN; 			// bitboard for the white knights
 	uint64_t WB; 			// bitboard for the white bishops
@@ -48,53 +78,6 @@ public:
 	uint64_t BQ; 			// bitboard for the black queens
 	uint64_t BK; 			// bitboard for the black king
 	uint64_t BP;			// bitboard for the black pawns			
-	uint64_t FILE_A; 		// bitboard for the a-file
-	uint64_t FILE_B; 		// bitboard for the b-file
-	uint64_t FILE_C;		// bitboard for the c-file
-	uint64_t FILE_D; 		// bitboard for the d-file
-	uint64_t FILE_E; 		// bitboard for the e-file
-	uint64_t FILE_F; 		// bitboard for the f-file
-	uint64_t FILE_G; 		// bitboard for the g-file
-	uint64_t FILE_H;		// bitboard for the h-file
-	uint64_t RANK_1; 		// bitboard for the 1st rank
-	uint64_t RANK_2; 		// bitboard for the 2nd rank
-	uint64_t RANK_3; 		// bitboard for the 3rd rank
-	uint64_t RANK_4; 		// bitboard for the 4th rank
-	uint64_t RANK_5; 		// bitboard for the 5th rank
-	uint64_t RANK_6; 		// bitboard for the 6th rank
-	uint64_t RANK_7; 		// bitboard for the 7th rank
-	uint64_t RANK_8;		// bitboard for the 8th rank
-	uint64_t DIAGONAL_A8A8;	// bitboard for the a8-a8 diagonal
-	uint64_t DIAGONAL_A7B8; // bitboard for the a7-b8 diagonal
-	uint64_t DIAGONAL_A6C8;	// bitboard for the a6-c8 diagonal
-	uint64_t DIAGONAL_A5D8;	// bitboard for the a5-d8 diagonal
-	uint64_t DIAGONAL_A4E8;	// bitboard for the a4-e8 diagonal
-	uint64_t DIAGONAL_A3F8;	// bitboard for the a3-f8 diagonal
-	uint64_t DIAGONAL_A2G8;	// bitboard for the a2-g8 diagonal
-	uint64_t DIAGONAL_A1H8;	// bitboard for the a1-h8 diagonal
-	uint64_t DIAGONAL_B1H7;	// bitboard for the b1-h8 diagonal
-	uint64_t DIAGONAL_C1H6;	// bitboard for the c1-h8 diagonal
-	uint64_t DIAGONAL_D1H5;	// bitboard for the d1-h8 diagonal
-	uint64_t DIAGONAL_E1H4;	// bitboard for the e1-h8 diagonal
-	uint64_t DIAGONAL_F1H3;	// bitboard for the f1-h8 diagonal
-	uint64_t DIAGONAL_G1H2;	// bitboard for the g1-h8 diagonal
-	uint64_t DIAGONAL_H1H1;	// bitboard for the h1-h8 diagonal
-
-	uint64_t DIAGONAL_A1A1;	// bitboard for the a1-a1 diagonal
-	uint64_t DIAGONAL_A2B1; // bitboard for the a2-b1 diagonal
-	uint64_t DIAGONAL_A3C1;	// bitboard for the a3-c1 diagonal
-	uint64_t DIAGONAL_A4D1;	// bitboard for the a4-d1 diagonal
-	uint64_t DIAGONAL_A5E1;	// bitboard for the a5-e1 diagonal
-	uint64_t DIAGONAL_A6F1;	// bitboard for the a6-f1 diagonal
-	uint64_t DIAGONAL_A7G1;	// bitboard for the a7-g1 diagonal
-	uint64_t DIAGONAL_A8H1;	// bitboard for the a8-h1 diagonal
-	uint64_t DIAGONAL_B8H2;	// bitboard for the b8-h2 diagonal
-	uint64_t DIAGONAL_C8H3;	// bitboard for the c8-h3 diagonal
-	uint64_t DIAGONAL_D8H4;	// bitboard for the d8-h4 diagonal
-	uint64_t DIAGONAL_E8H5;	// bitboard for the e8-h5 diagonal
-	uint64_t DIAGONAL_F8H6;	// bitboard for the f8-h6 diagonal
-	uint64_t DIAGONAL_G8H7;	// bitboard for the g8-h7 diagonal
-	uint64_t DIAGONAL_H8H8;	// bitboard for the h8-h8 diagonal
 	uint64_t FILES[8];
 	uint64_t RANKS[8];
 	uint64_t DIAGONALS_UP[15];
@@ -103,13 +86,7 @@ public:
 	uint64_t BLACK_UNITS; 	// bitboard for all the black units
 	uint64_t EMPTY;		  	// bitboard for all the empty squares on the board
 	uint64_t FILE_EP;		// bitboard for en passant file
-	uint8_t moves[256][4];	// array to store possible moves
-	char turn;				// indicator for player's turn (0 for white, 1 for black)
-	char scoresheet[256][4];// array to record game history
 	
-
-	uint64_t MOVES_N;
-	uint64_t MOVES_K;
 public:
 	Bitboard(char board[8][8]);									// bitboard constructor
 	Bitboard();													// bitboard constructor
@@ -120,6 +97,8 @@ public:
 	void BitboardToBoard(char board[8][8]);
 	void Print(char board[8][8]);
 	void Print();
+	void PrintBitboard(uint64_t U64);
+	void PrintMoves(uint64_t MOVES);
 
 	uint64_t MovesWN(uint64_t UNIT, uint8_t i);
 	uint64_t MovesBN(uint64_t UNIT, uint8_t i);
@@ -135,9 +114,9 @@ public:
 	uint64_t MovesBP(uint64_t UNIT);
 	uint64_t MovesW();
 	uint64_t MovesB();
+	bool Move(uint8_t i0, uint8_t i1, bool turn);
 
-	void PrintBitboard(uint64_t U64);
-	void PrintMoves(uint64_t MOVES);
+	
 	// void PossibleMovesWP(uint8_t moves[256][4], uint8_t & m, uint8_t scoresheet[256][5], uint8_t N);
 	// void PossibleMovesWN(uint8_t moves[256][4], uint8_t & m);
 	// void PossibleMovesWR(uint8_t moves[256][4], uint8_t & m);

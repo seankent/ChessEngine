@@ -9,52 +9,6 @@
 Bitboard::Bitboard(char board[8][8])
 {
 	BoardToBitboard(board);	
-	FILE_A = 0x0101010101010101UL;
-	FILE_B = 0x0202020202020202UL;
-	FILE_C = 0x0404040404040404UL;
-	FILE_D = 0x0808080808080808UL;
-	FILE_E = 0x1010101010101010UL;
-	FILE_F = 0x2020202020202020UL;
-	FILE_G = 0x4040404040404040UL;
-	FILE_H = 0x8080808080808080UL;
-	RANK_1 = 0x00000000000000ffUL;
-	RANK_2 = 0x000000000000ff00UL;
-	RANK_3 = 0x0000000000ff0000UL;
-	RANK_4 = 0x00000000ff000000UL;
-	RANK_5 = 0x000000ff00000000UL;
-	RANK_6 = 0x0000ff0000000000UL;
-	RANK_7 = 0x00ff000000000000UL;
-	RANK_8 = 0xff00000000000000UL;
-	DIAGONAL_A8A8 = 0x0100000000000000UL;	// bitboard for the a8-a8 diagonal
-	DIAGONAL_A7B8 = 0x0201000000000000UL; 	// bitboard for the a7-b8 diagonal
-	DIAGONAL_A6C8 = 0x0402010000000000UL;	// bitboard for the a6-c8 diagonal
-	DIAGONAL_A5D8 = 0x0804020100000000UL;	// bitboard for the a5-d8 diagonal
-	DIAGONAL_A4E8 = 0x1008040201000000UL;	// bitboard for the a4-e8 diagonal
-	DIAGONAL_A3F8 = 0x2010080402010000UL;	// bitboard for the a3-f8 diagonal
-	DIAGONAL_A2G8 = 0x4020100804020100UL;	// bitboard for the a2-g8 diagonal
-	DIAGONAL_A1H8 = 0x8040201008040201UL;	// bitboard for the a1-h8 diagonal
-	DIAGONAL_B1H7 = 0x0080402010080402UL;	// bitboard for the b1-h8 diagonal
-	DIAGONAL_C1H6 = 0x0000804020100804UL;	// bitboard for the c1-h8 diagonal
-	DIAGONAL_D1H5 = 0x0000008040201008UL;	// bitboard for the d1-h8 diagonal
-	DIAGONAL_E1H4 = 0x0000000080402010UL;	// bitboard for the e1-h8 diagonal
-	DIAGONAL_F1H3 = 0x0000000000804020UL;	// bitboard for the f1-h8 diagonal
-	DIAGONAL_G1H2 = 0x0000000000008040UL;	// bitboard for the g1-h8 diagonal
-	DIAGONAL_H1H1 = 0x0000000000000080UL;	// bitboard for the h1-h8 diagonal
-	DIAGONAL_A1A1 = 0x0000000000000001UL;	// bitboard for the a1-a1 diagonal
-	DIAGONAL_A2B1 = 0x0000000000000102UL; 	// bitboard for the a2-b1 diagonal
-	DIAGONAL_A3C1 = 0x0000000000010204UL;	// bitboard for the a3-c1 diagonal
-	DIAGONAL_A4D1 = 0x0000000001020408UL;	// bitboard for the a4-d1 diagonal
-	DIAGONAL_A5E1 = 0x0000000102040810UL;	// bitboard for the a5-e1 diagonal
-	DIAGONAL_A6F1 = 0x0000010204081020UL;	// bitboard for the a6-f1 diagonal
-	DIAGONAL_A7G1 = 0x0001020408102040UL;	// bitboard for the a7-g1 diagonal
-	DIAGONAL_A8H1 = 0x0102040810204080UL;	// bitboard for the a8-h1 diagonal
-	DIAGONAL_B8H2 = 0x0204081020408000UL;	// bitboard for the b8-h2 diagonal
-	DIAGONAL_C8H3 = 0x0408102040800000UL;	// bitboard for the c8-h3 diagonal
-	DIAGONAL_D8H4 = 0x0810204080000000UL;	// bitboard for the d8-h4 diagonal
-	DIAGONAL_E8H5 = 0x1020408000000000UL;	// bitboard for the e8-h5 diagonal
-	DIAGONAL_F8H6 = 0x2040800000000000UL;	// bitboard for the f8-h6 diagonal
-	DIAGONAL_G8H7 = 0x4080000000000000UL;	// bitboard for the g8-h7 diagonal
-	DIAGONAL_H8H8 = 0x8000000000000000UL;	// bitboard for the h8-h8 diagonal
 	FILES[0] = FILE_A;
 	FILES[1] = FILE_B;
 	FILES[2] = FILE_C;
@@ -101,8 +55,6 @@ Bitboard::Bitboard(char board[8][8])
 	DIAGONALS_DOWN[12] = DIAGONAL_F8H6;
 	DIAGONALS_DOWN[13] = DIAGONAL_G8H7;
 	DIAGONALS_DOWN[14] = DIAGONAL_H8H8;
-	MOVES_N = 0x0000142200221400UL;
-	MOVES_K = 0x0000001C141C0000UL;
 	WHITE_UNITS = WR | WN | WB | WQ | WK | WP;
 	BLACK_UNITS = BR | BN | BB | BQ | BK | BP;
 	EMPTY = ~(WHITE_UNITS | BLACK_UNITS);
@@ -125,52 +77,6 @@ Bitboard::Bitboard()
 		{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'},
 	};
 	BoardToBitboard(board);	
-	FILE_A = 0x0101010101010101UL;
-	FILE_B = 0x0202020202020202UL;
-	FILE_C = 0x0404040404040404UL;
-	FILE_D = 0x0808080808080808UL;
-	FILE_E = 0x1010101010101010UL;
-	FILE_F = 0x2020202020202020UL;
-	FILE_G = 0x4040404040404040UL;
-	FILE_H = 0x8080808080808080UL;
-	RANK_1 = 0x00000000000000ffUL;
-	RANK_2 = 0x000000000000ff00UL;
-	RANK_3 = 0x0000000000ff0000UL;
-	RANK_4 = 0x00000000ff000000UL;
-	RANK_5 = 0x000000ff00000000UL;
-	RANK_6 = 0x0000ff0000000000UL;
-	RANK_7 = 0x00ff000000000000UL;
-	RANK_8 = 0xff00000000000000UL;
-	DIAGONAL_A8A8 = 0x0100000000000000UL;	// bitboard for the a8-a8 diagonal
-	DIAGONAL_A7B8 = 0x0201000000000000UL; 	// bitboard for the a7-b8 diagonal
-	DIAGONAL_A6C8 = 0x0402010000000000UL;	// bitboard for the a6-c8 diagonal
-	DIAGONAL_A5D8 = 0x0804020100000000UL;	// bitboard for the a5-d8 diagonal
-	DIAGONAL_A4E8 = 0x1008040201000000UL;	// bitboard for the a4-e8 diagonal
-	DIAGONAL_A3F8 = 0x2010080402010000UL;	// bitboard for the a3-f8 diagonal
-	DIAGONAL_A2G8 = 0x4020100804020100UL;	// bitboard for the a2-g8 diagonal
-	DIAGONAL_A1H8 = 0x8040201008040201UL;	// bitboard for the a1-h8 diagonal
-	DIAGONAL_B1H7 = 0x0080402010080402UL;	// bitboard for the b1-h8 diagonal
-	DIAGONAL_C1H6 = 0x0000804020100804UL;	// bitboard for the c1-h8 diagonal
-	DIAGONAL_D1H5 = 0x0000008040201008UL;	// bitboard for the d1-h8 diagonal
-	DIAGONAL_E1H4 = 0x0000000080402010UL;	// bitboard for the e1-h8 diagonal
-	DIAGONAL_F1H3 = 0x0000000000804020UL;	// bitboard for the f1-h8 diagonal
-	DIAGONAL_G1H2 = 0x0000000000008040UL;	// bitboard for the g1-h8 diagonal
-	DIAGONAL_H1H1 = 0x0000000000000080UL;	// bitboard for the h1-h8 diagonal
-	DIAGONAL_A1A1 = 0x0000000000000001UL;	// bitboard for the a1-a1 diagonal
-	DIAGONAL_A2B1 = 0x0000000000000102UL; 	// bitboard for the a2-b1 diagonal
-	DIAGONAL_A3C1 = 0x0000000000010204UL;	// bitboard for the a3-c1 diagonal
-	DIAGONAL_A4D1 = 0x0000000001020408UL;	// bitboard for the a4-d1 diagonal
-	DIAGONAL_A5E1 = 0x0000000102040810UL;	// bitboard for the a5-e1 diagonal
-	DIAGONAL_A6F1 = 0x0000010204081020UL;	// bitboard for the a6-f1 diagonal
-	DIAGONAL_A7G1 = 0x0001020408102040UL;	// bitboard for the a7-g1 diagonal
-	DIAGONAL_A8H1 = 0x0102040810204080UL;	// bitboard for the a8-h1 diagonal
-	DIAGONAL_B8H2 = 0x0204081020408000UL;	// bitboard for the b8-h2 diagonal
-	DIAGONAL_C8H3 = 0x0408102040800000UL;	// bitboard for the c8-h3 diagonal
-	DIAGONAL_D8H4 = 0x0810204080000000UL;	// bitboard for the d8-h4 diagonal
-	DIAGONAL_E8H5 = 0x1020408000000000UL;	// bitboard for the e8-h5 diagonal
-	DIAGONAL_F8H6 = 0x2040800000000000UL;	// bitboard for the f8-h6 diagonal
-	DIAGONAL_G8H7 = 0x4080000000000000UL;	// bitboard for the g8-h7 diagonal
-	DIAGONAL_H8H8 = 0x8000000000000000UL;	// bitboard for the h8-h8 diagonal
 	FILES[0] = FILE_A;
 	FILES[1] = FILE_B;
 	FILES[2] = FILE_C;
@@ -217,8 +123,6 @@ Bitboard::Bitboard()
 	DIAGONALS_DOWN[12] = DIAGONAL_F8H6;
 	DIAGONALS_DOWN[13] = DIAGONAL_G8H7;
 	DIAGONALS_DOWN[14] = DIAGONAL_H8H8;
-	MOVES_N = 0x0000142200221400UL;
-	MOVES_K = 0x0000001C141C0000UL;
 	WHITE_UNITS = WR | WN | WB | WQ | WK | WP;
 	BLACK_UNITS = BR | BN | BB | BQ | BK | BP;
 	EMPTY = ~(WHITE_UNITS | BLACK_UNITS);
@@ -414,7 +318,8 @@ uint64_t Bitboard::MovesWN(uint64_t UNIT, uint8_t i)
 	if (i < 27){
 		if ((i & 0x07) < 4) return (MOVES_N >> (27 - i)) & ~WHITE_UNITS & ~FILE_G & ~FILE_H;
 		else return (MOVES_N >> (27 - i)) & ~WHITE_UNITS & ~FILE_A & ~FILE_B;
-	} else {
+	} 
+	else {
 		if ((i & 0x07) < 4) return (MOVES_N << (i - 27)) & ~WHITE_UNITS & ~FILE_G & ~FILE_H;
 		else return (MOVES_N << (i - 27)) & ~WHITE_UNITS & ~FILE_A & ~FILE_B;
 	}
@@ -429,7 +334,8 @@ uint64_t Bitboard::MovesBN(uint64_t UNIT, uint8_t i)
 	if (i < 27){
 		if ((i & 0x07) < 4) return (MOVES_N >> (27 - i)) & ~BLACK_UNITS & ~FILE_G & ~FILE_H;
 		else return (MOVES_N >> (27 - i)) & ~BLACK_UNITS & ~FILE_A & ~FILE_B;
-	} else {
+	} 
+	else {
 		if ((i & 0x07) < 4) return (MOVES_N << (i - 27)) & ~BLACK_UNITS & ~FILE_G & ~FILE_H;
 		else return (MOVES_N << (i - 27)) & ~BLACK_UNITS & ~FILE_A & ~FILE_B;
 	}	
@@ -441,7 +347,7 @@ uint64_t Bitboard::MovesBN(uint64_t UNIT, uint8_t i)
 uint64_t Bitboard::MovesWR(uint64_t UNIT, uint8_t i)
 {	
 	uint64_t RANK = RANKS[i/8];
-	uint64_t FILE = FILES[i & 0x07];
+	uint64_t FILE = FILES[i & 0x7];
 	return (((((~EMPTY & RANK) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & RANK) - (Reverse(UNIT) << 1))) & RANK) |
 		   ((((~EMPTY & FILE) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & FILE) - (Reverse(UNIT) << 1))) & FILE)) & ~WHITE_UNITS;	 
 }
@@ -452,7 +358,7 @@ uint64_t Bitboard::MovesWR(uint64_t UNIT, uint8_t i)
 uint64_t Bitboard::MovesBR(uint64_t UNIT, uint8_t i)
 {	
 	uint64_t RANK = RANKS[i/8];
-	uint64_t FILE = FILES[i & 0x07];
+	uint64_t FILE = FILES[i & 0x7];
 	return (((((~EMPTY & RANK) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & RANK) - (Reverse(UNIT) << 1))) & RANK) |
 		   ((((~EMPTY & FILE) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & FILE) - (Reverse(UNIT) << 1))) & FILE)) & ~BLACK_UNITS;
 }
@@ -462,8 +368,8 @@ uint64_t Bitboard::MovesBR(uint64_t UNIT, uint8_t i)
 //==============================================
 uint64_t Bitboard::MovesWB(uint64_t UNIT, uint8_t i)
 {	
-	uint64_t DIAGONAL_UP = DIAGONALS_UP[7 - i/8 + (i & 0x07)];
-	uint64_t DIAGONAL_DOWN = DIAGONALS_DOWN[i/8 + (i & 0x07)];
+	uint64_t DIAGONAL_UP = DIAGONALS_UP[7 - i/8 + (i & 0x7)];
+	uint64_t DIAGONAL_DOWN = DIAGONALS_DOWN[i/8 + (i & 0x7)];
 	return (((((~EMPTY & DIAGONAL_UP) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & DIAGONAL_UP) - (Reverse(UNIT) << 1))) & DIAGONAL_UP) |
 		   ((((~EMPTY & DIAGONAL_DOWN) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & DIAGONAL_DOWN) - (Reverse(UNIT) << 1))) & DIAGONAL_DOWN)) & ~WHITE_UNITS;
 }
@@ -473,8 +379,8 @@ uint64_t Bitboard::MovesWB(uint64_t UNIT, uint8_t i)
 //==============================================
 uint64_t Bitboard::MovesBB(uint64_t UNIT, uint8_t i)
 {	
-	uint64_t DIAGONAL_UP = DIAGONALS_UP[7 - i/8 + (i & 0x07)];
-	uint64_t DIAGONAL_DOWN = DIAGONALS_DOWN[i/8 + (i & 0x07)];
+	uint64_t DIAGONAL_UP = DIAGONALS_UP[7 - i/8 + (i & 0x7)];
+	uint64_t DIAGONAL_DOWN = DIAGONALS_DOWN[i/8 + (i & 0x7)];
 	return (((((~EMPTY & DIAGONAL_UP) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & DIAGONAL_UP) - (Reverse(UNIT) << 1))) & DIAGONAL_UP) |
 		   ((((~EMPTY & DIAGONAL_DOWN) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & DIAGONAL_DOWN) - (Reverse(UNIT) << 1))) & DIAGONAL_DOWN)) & ~BLACK_UNITS;
 }
@@ -500,11 +406,12 @@ uint64_t Bitboard::MovesBQ(uint64_t UNIT, uint8_t i)
 //==============================================
 uint64_t Bitboard::MovesWK(uint64_t UNIT, uint8_t i)
 {	
-	if (UNIT == 0x0000000000000000UL) return 0x0000000000000000UL;
+	if (UNIT == 0) return 0;
 	if (i < 27){
 		if ((i & 0x07) < 4) return (MOVES_K >> (27 - i)) & ~WHITE_UNITS & ~FILE_H;
 		else return (MOVES_K >> (27 - i)) & ~WHITE_UNITS & ~FILE_A;
-	} else {
+	} 
+	else {
 		if ((i & 0x07) < 4) return (MOVES_K << (i - 27)) & ~WHITE_UNITS & ~FILE_H;
 		else return (MOVES_K << (i - 27)) & ~WHITE_UNITS & ~FILE_A;
 	}
@@ -515,11 +422,12 @@ uint64_t Bitboard::MovesWK(uint64_t UNIT, uint8_t i)
 //==============================================
 uint64_t Bitboard::MovesBK(uint64_t UNIT, uint8_t i)
 {	
-	if (UNIT == 0x0000000000000000UL) return 0x0000000000000000UL;
+	if (UNIT == 0) return 0;
 	if (i < 27){
 		if ((i & 0x07) < 4) return (MOVES_K >> (27 - i)) & ~BLACK_UNITS & ~FILE_H;
 		else return (MOVES_K >> (27 - i)) & ~BLACK_UNITS & ~FILE_A;
-	} else {
+	} 
+	else {
 		if ((i & 0x07) < 4) return (MOVES_K << (i - 27)) & ~BLACK_UNITS & ~FILE_H;
 		else return (MOVES_K << (i - 27)) & ~BLACK_UNITS & ~FILE_A;
 	}
@@ -530,7 +438,7 @@ uint64_t Bitboard::MovesBK(uint64_t UNIT, uint8_t i)
 //==============================================
 uint64_t Bitboard::MovesWP(uint64_t UNIT)
 {	
-	if (UNIT == 0x0000000000000000UL) return 0x0000000000000000UL;
+	if (UNIT == 0) return 0;
 	uint64_t PAWN_RIGHT = (UNIT << 9) & BLACK_UNITS & ~FILE_A; 						// capture right
 	uint64_t PAWN_LEFT = (UNIT << 7) & BLACK_UNITS & ~FILE_H; 						// capture left
 	uint64_t PAWN_FORWARD_1 = (UNIT << 8) & EMPTY; 									// move forward 1
@@ -545,7 +453,7 @@ uint64_t Bitboard::MovesWP(uint64_t UNIT)
 //==============================================
 uint64_t Bitboard::MovesBP(uint64_t UNIT)
 {	
-	if (UNIT == 0x0000000000000000UL) return 0x0000000000000000UL;
+	if (UNIT == 0) return 0;
 	uint64_t PAWN_RIGHT = (UNIT >> 7) & WHITE_UNITS & ~FILE_A; 						// capture right
 	uint64_t PAWN_LEFT = (UNIT >> 9) & WHITE_UNITS & ~FILE_H; 						// capture left
 	uint64_t PAWN_FORWARD_1 = (UNIT >> 8) & EMPTY; 									// move forward 1
@@ -556,7 +464,7 @@ uint64_t Bitboard::MovesBP(uint64_t UNIT)
 }
 
 //==============================================
-// MovesBP
+// MovesW
 //==============================================
 uint64_t Bitboard::MovesW()
 {		
@@ -597,255 +505,173 @@ uint64_t Bitboard::MovesW()
 		MOVES |= MovesWK(UNIT, i);
 		WK ^= UNIT;
 	}
-	// WR = 0xff;
-	// std::cout << std::bitset<64>(WR) << std::endl;
-	// std::cout << std::bitset<64>(this->WR) << std::endl;
-	//while ()
 	return MOVES;
 }
 
+//==============================================
+// MovesB
+//==============================================
+uint64_t Bitboard::MovesB()
+{		
+	uint64_t BR = this->BR;		// make copy of WR
+	uint64_t BN = this->BN;		// make copy of WN
+	uint64_t BB = this->BB;		// make copy of WB
+	uint64_t BQ = this->BQ;		// make copy of WQ
+	uint64_t BK = this->BK;		// make copy of WK
+	uint64_t BP = this->BP;		// make copy of WP
+
+	uint64_t MOVES;
+	uint64_t UNIT;
+	uint8_t i;
+	MOVES = MovesBP(BP);
+
+	while (BR != 0){
+		LS1B(BR, UNIT, i);
+		MOVES |= MovesBR(UNIT, i);
+		BR ^= UNIT;
+	}
+	while (BN != 0){
+		LS1B(BN, UNIT, i);
+		MOVES |= MovesBN(UNIT, i);
+		BN ^= UNIT;
+	}
+	while (BB != 0){
+		LS1B(BB, UNIT, i);
+		MOVES |= MovesBB(UNIT, i);
+		BB ^= UNIT;
+	}
+	while (BQ != 0){
+		LS1B(BQ, UNIT, i);
+		MOVES |= MovesBQ(UNIT, i);
+		BQ ^= UNIT;
+	}
+	while (BK != 0){
+		LS1B(BK, UNIT, i);
+		MOVES |= MovesBK(UNIT, i);
+		BK ^= UNIT;
+	}
+	return MOVES;
+}
 
 //==============================================
-// PossibleMovesWP()
+// Move
 //==============================================
-// void Bitboard::PossibleMovesWP(uint8_t moves[256][4], uint8_t & m, uint8_t scoresheet[256][5], uint8_t N)
-// {
-// 	uint64_t FILE_EP = 0x0000000000000000UL;
-// 	if ((N > 0) && (scoresheet[N - 1][0]%8 == scoresheet[N - 1][1]%8) && (scoresheet[N - 1][0]/8 == scoresheet[N - 1][1]/8 - 2)) FILE_EP = FILES[scoresheet[N - 1][1]%8];
+bool Bitboard::Move(uint8_t i0, uint8_t i1, bool turn)
+{
+	uint64_t UNIT_0 = 0x1UL << i0;
+	uint64_t UNIT_1 = 0x1UL << i1;
+	uint64_t MOVES;
+	if (turn == WHITE){
+		if ((UNIT_0 & WP) != 0){
+			MOVES = MovesWP(UNIT_0);
+			if ((UNIT_1 & MOVES) == 0) return 0;			
+			WP ^= UNIT_0;
+			WP |= UNIT_1;
+			if (UNIT_0 << 16 == UNIT_1) FILE_EP = FILES[i0 & 0x7];
+			else FILE_EP = 0x0;
+		}
+		else if ((UNIT_0 & WR) != 0){
+			MOVES = MovesWR(UNIT_0, i0);
+			if ((UNIT_1 & MOVES) == 0) return 0;			
+			WR ^= UNIT_0;
+			WR |= UNIT_1;
+			FILE_EP = 0x0;
+		} 
+		else if ((UNIT_0 & WN) != 0){
+			MOVES = MovesWN(UNIT_0, i0);
+			if ((UNIT_1 & MOVES) == 0) return 0;			
+			WN ^= UNIT_0;
+			WN |= UNIT_1;
+			FILE_EP = 0x0;
+		} 
+		else if ((UNIT_0 & WB) != 0){
+			MOVES = MovesWB(UNIT_0, i0);
+			if ((UNIT_1 & MOVES) == 0) return 0;	
+			WB ^= UNIT_0;
+			WB |= UNIT_1;
+			FILE_EP = 0x0;
+		}
+		else if ((UNIT_0 & WQ) != 0){
+			MOVES = MovesWQ(UNIT_0, i0);
+			if ((UNIT_1 & MOVES) == 0) return 0;			
+			WQ ^= UNIT_0;
+			WQ |= UNIT_1;
+			FILE_EP = 0x0;
+		}
+		else if ((UNIT_0 & WK) != 0){
+			MOVES = MovesWK(UNIT_0, i0);
+			if ((UNIT_1 & MOVES) == 0) return 0;			
+			WK ^= UNIT_0;
+			WK |= UNIT_1;
+			FILE_EP = 0x0;
+		}
+		else {
+			return 0;
+		}
+		if ((UNIT_1 & BP) != 0) BP ^= UNIT_1;
+		else if ((UNIT_1 & BR) != 0) BR ^= UNIT_1;
+		else if ((UNIT_1 & BN) != 0) BN ^= UNIT_1;
+		else if ((UNIT_1 & BB) != 0) BB ^= UNIT_1;
+		else if ((UNIT_1 & BQ) != 0) BQ ^= UNIT_1;
+		else if ((UNIT_1 & BK) != 0) BK ^= UNIT_1;
+		else if ((UNIT_1 & WP & FILE_EP & RANK_6)) BP ^= (UNIT_1 >> 8);
+	} 
+	else {
+		if ((UNIT_0 & BP) != 0){
+			MOVES = MovesBP(UNIT_0);
+			if ((UNIT_1 & MOVES) == 0) return 0;			
+			BP ^= UNIT_0;
+			BP |= UNIT_1;
+			if (UNIT_0 >> 16 == UNIT_1) FILE_EP = FILES[i0 & 0x7];
+			else FILE_EP = 0x0;
+		}
+		else if ((UNIT_0 & BR) != 0){
+			MOVES = MovesBR(UNIT_0, i0);
+			if ((UNIT_1 & MOVES) == 0) return 0;			
+			BR ^= UNIT_0;
+			BR |= UNIT_1;
+			FILE_EP = 0x0;
+		} 
+		else if ((UNIT_0 & BN) != 0){
+			MOVES = MovesBN(UNIT_0, i0);
+			if ((UNIT_1 & MOVES) == 0) return 0;			
+			BN ^= UNIT_0;
+			BN |= UNIT_1;
+			FILE_EP = 0x0;
+		} 
+		else if ((UNIT_0 & BB) != 0){
+			MOVES = MovesBB(UNIT_0, i0);
+			if ((UNIT_1 & MOVES) == 0) return 0;			
+			BB ^= UNIT_0;
+			BB |= UNIT_1;
+			FILE_EP = 0x0;
+		}
+		else if ((UNIT_0 & BQ) != 0){
+			MOVES = MovesBQ(UNIT_0, i0);
+			if ((UNIT_1 & MOVES) == 0) return 0;			
+			BQ ^= UNIT_0;
+			BQ |= UNIT_1;
+			FILE_EP = 0x0;
+		}
+		else if ((UNIT_0 & BK) != 0){
+			MOVES = MovesBK(UNIT_0, i0);
+			if ((UNIT_1 & MOVES) == 0) return 0;			
+			BK ^= UNIT_0;
+			BK |= UNIT_1;
+			FILE_EP = 0x0;
+		}
+		else {
+			return 0;
+		}
+		if ((UNIT_1 & WP) != 0) WP ^= UNIT_1;
+		else if ((UNIT_1 & WR) != 0) WR ^= UNIT_1;
+		else if ((UNIT_1 & WN) != 0) WN ^= UNIT_1;
+		else if ((UNIT_1 & WB) != 0) WB ^= UNIT_1;
+		else if ((UNIT_1 & WQ) != 0) WQ ^= UNIT_1;
+		else if ((UNIT_1 & WK) != 0) WK ^= UNIT_1;
+		else if ((UNIT_1 & BP & FILE_EP & RANK_3)) WP ^= (UNIT_1 << 8);
+	}
+	return 1;
+}
 
-// 	uint64_t PAWN_RIGHT = (WP << 9) & BLACK_UNITS & ~RANK_8 & ~FILE_A; 			// capture right
-// 	uint64_t PAWN_LEFT = (WP << 7) & BLACK_UNITS & ~RANK_8 & ~FILE_H; 			// capture left
-// 	uint64_t PAWN_FORWARD_1 = (WP << 8) & EMPTY & ~RANK_8; 						// move forward 1
-// 	uint64_t PAWN_FORWARD_2 = (WP << 16) & EMPTY & (EMPTY << 8) & RANK_4; 		// move forward 2
-// 	uint64_t PAWN_RIGHT_PROMOTION = (WP << 9) & BLACK_UNITS & RANK_8 & ~FILE_A; 	// capture right (with promotion)
-// 	uint64_t PAWN_LEFT_PROMOTION = (WP << 7) & BLACK_UNITS & RANK_8 & ~FILE_H; 	// capture left (with promotion)
-// 	uint64_t PAWN_FORWARD_PROMOTION = (WP << 8) & EMPTY & RANK_8; 				// move forward 1 (with promotion)
-// 	uint64_t PAWN_RIGHT_EP = (WP << 9) & (BP << 8) & RANK_6 & ~FILE_A & FILE_EP; // en passant right
-// 	uint64_t PAWN_LEFT_EP = (WP << 7) & (BP << 8) & RANK_6 & ~FILE_H & FILE_EP; // en passant left
-
-// 	for (uint8_t i = 0; i < 64; i++){
-// 		if (((PAWN_RIGHT >> i) & 1) != 0){				// capture right
-// 			moves[m][0] = i - 9;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_PAWN;
-// 			moves[m][3] = WHITE_PAWN;
-// 			m++;
-// 		}
-// 		if (((PAWN_LEFT >> i) & 1) != 0){				// capture left
-// 			moves[m][0] = i - 7;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_PAWN;
-// 			moves[m][3] = WHITE_PAWN;
-// 			m++;
-// 		}
-// 		if (((PAWN_FORWARD_1 >> i) & 1) != 0){			// move forward 1
-// 			moves[m][0] = i - 8;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_PAWN;	
-// 			moves[m][3] = WHITE_PAWN;
-// 			m++;
-// 		}
-// 		if (((PAWN_FORWARD_2 >> i) & 1) != 0){			// move forward 2
-// 			moves[m][0] = i - 16;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_PAWN;
-// 			moves[m][3] = WHITE_PAWN;
-// 			m++;
-// 		}
-// 		if (((PAWN_RIGHT_PROMOTION >> i) & 1) != 0){		// capture right (with promotion)
-// 			moves[m][0] = i - 9;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_PAWN;
-// 			moves[m][3] = WHITE_QUEEN;
-// 			m++;
-// 			moves[m][0] = i - 9;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_PAWN;
-// 			moves[m][3] = WHITE_KNIGHT;
-// 			m++;	
-// 			moves[m][0] = i - 9;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_PAWN;
-// 			moves[m][3] = WHITE_ROOK;
-// 			m++;	
-// 			moves[m][0] = i - 9;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_PAWN;
-// 			moves[m][3] = WHITE_BISHOP;
-// 			m++;		
-// 		}
-// 		if (((PAWN_LEFT_PROMOTION >> i) & 1) != 0){			// capture left (with promotion)
-// 			moves[m][0] = i - 7;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_PAWN;
-// 			moves[m][3] = WHITE_QUEEN;
-// 			m++;
-// 			moves[m][0] = i - 7;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_PAWN;
-// 			moves[m][3] = WHITE_KNIGHT;
-// 			m++;	
-// 			moves[m][0] = i - 7;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_PAWN;
-// 			moves[m][3] = WHITE_ROOK;
-// 			m++;	
-// 			moves[m][0] = i - 7;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_PAWN;
-// 			moves[m][3] = WHITE_BISHOP;
-// 			m++;		
-// 		}
-// 		if (((PAWN_FORWARD_PROMOTION >> i) & 1) != 0){		// move forward 1 (with promotion)
-// 			moves[m][0] = i - 8;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_PAWN;
-// 			moves[m][3] = WHITE_QUEEN;
-// 			m++;
-// 			moves[m][0] = i - 8;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_PAWN;
-// 			moves[m][3] = WHITE_KNIGHT;
-// 			m++;	
-// 			moves[m][0] = i - 8;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_PAWN;
-// 			moves[m][3] = WHITE_ROOK;
-// 			m++;	
-// 			moves[m][0] = i - 8;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_PAWN;
-// 			moves[m][3] = WHITE_BISHOP;
-// 			m++;		
-// 		}
-// 		if (((PAWN_RIGHT_EP >> i) & 1) != 0){				// en passant right
-// 			moves[m][0] = i - 9;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_PAWN;
-// 			moves[m][3] = WHITE_PAWN;
-// 			m++;
-// 		}
-// 		if (((PAWN_LEFT_EP >> i) & 1) != 0){				// en passant left
-// 			moves[m][0] = i - 7;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_PAWN;
-// 			moves[m][3] = WHITE_PAWN;
-// 			m++;
-// 		}
-// 	}
-// }
-
-// //==============================================
-// // PossibleMovesWN()
-// //==============================================
-// void Bitboard::PossibleMovesWN(uint8_t moves[256][4], uint8_t & m)
-// {
-// 	uint64_t KNIGHT_0 = (WN << 6) & ~WHITE_UNITS & ~FILE_G & ~FILE_H;
-// 	uint64_t KNIGHT_1 = (WN << 15) & ~WHITE_UNITS & ~FILE_H;
-// 	uint64_t KNIGHT_2 = (WN << 17) & ~WHITE_UNITS & ~FILE_A;
-// 	uint64_t KNIGHT_3 = (WN << 10) & ~WHITE_UNITS & ~FILE_A & ~FILE_B;
-// 	uint64_t KNIGHT_4 = (WN >> 6) & ~WHITE_UNITS & ~FILE_A & ~FILE_B;
-// 	uint64_t KNIGHT_5 = (WN >> 15) & ~WHITE_UNITS & ~FILE_A;
-// 	uint64_t KNIGHT_6 = (WN >> 17) & ~WHITE_UNITS & ~FILE_H;
-// 	uint64_t KNIGHT_7 = (WN >> 10) & ~WHITE_UNITS & ~FILE_G & ~FILE_H;
-
-// 	for (uint8_t i = 0; i < 64; i++){
-// 		if (((KNIGHT_0 >> i) & 1) != 0){				// capture right
-// 			moves[m][0] = i - 6;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_KNIGHT;
-// 			moves[m][3] = WHITE_KNIGHT;
-// 			m++;
-// 		}
-// 		if (((KNIGHT_1 >> i) & 1) != 0){				// capture right
-// 			moves[m][0] = i - 15;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_KNIGHT;
-// 			moves[m][3] = WHITE_KNIGHT;
-// 			m++;
-// 		}
-// 		if (((KNIGHT_2 >> i) & 1) != 0){				// capture right
-// 			moves[m][0] = i - 17;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_KNIGHT;
-// 			moves[m][3] = WHITE_KNIGHT;
-// 			m++;
-// 		}
-// 		if (((KNIGHT_3 >> i) & 1) != 0){				// capture right
-// 			moves[m][0] = i - 10;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_KNIGHT;
-// 			moves[m][3] = WHITE_KNIGHT;
-// 			m++;
-// 		}
-// 		if (((KNIGHT_4 >> i) & 1) != 0){				// capture right
-// 			moves[m][0] = i + 6;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_KNIGHT;
-// 			moves[m][3] = WHITE_KNIGHT;
-// 			m++;
-// 		}
-// 		if (((KNIGHT_5 >> i) & 1) != 0){				// capture right
-// 			moves[m][0] = i + 15;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_KNIGHT;
-// 			moves[m][3] = WHITE_KNIGHT;
-// 			m++;
-// 		}
-// 		if (((KNIGHT_6 >> i) & 1) != 0){				// capture right
-// 			moves[m][0] = i + 17;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_KNIGHT;
-// 			moves[m][3] = WHITE_KNIGHT;
-// 			m++;
-// 		}
-// 		if (((KNIGHT_7 >> i) & 1) != 0){				// capture right
-// 			moves[m][0] = i + 10;
-// 			moves[m][1] = i;
-// 			moves[m][2] = WHITE_KNIGHT;
-// 			moves[m][3] = WHITE_KNIGHT;
-// 			m++;
-// 		}
-// 	}
-// }
-
-
-
-
-// //==============================================
-// // PossibleMovesWR()
-// //==============================================
-// void Bitboard::PossibleMovesWR(uint8_t moves[256][4], uint8_t & m)
-// {
-// 	//std::cout << std::bitset<4>(Reverse(0b0010)) << std::endl;
-// 	// uint64_t ROOK = WR & (~WR + 1);
-// 	// int i = GetIndex(ROOK);
-// 	// uint64_t RANK = RANKS[i/8];
-// 	// uint64_t FILE = FILES[i%8];
-
-// 	// //MASK = 
-// 	// //uint64_t ROOK_HORIZONTAL = ((~EMPTY & FILE) ^ (~EMPTY - (ROOK << 1))) & ~WHITE_UNITS;
-	
-// 	// uint64_t ROOK_HORIZONTAL = (((~EMPTY & RANK) - (ROOK << 1)) ^ Reverse(Reverse(~EMPTY & RANK) - (Reverse(ROOK) << 1))) & RANK & ~WHITE_UNITS;
-// 	// uint64_t ROOK_VERTICAL = (((~EMPTY & FILE) - (ROOK << 1)) ^ Reverse(Reverse(~EMPTY & FILE) - (Reverse(ROOK) << 1))) & FILE & ~WHITE_UNITS;
-// 	// uint64_t ROOK_MOVES = ROOK_HORIZONTAL | ROOK_VERTICAL;
-
-// 	// // PrintBitboard(ROOK);
-// 	// // std::cout << std::endl;
-// 	// PrintBitboard(ROOK_MOVES);
-
-// 	// std::cout << std::endl;
-// 	// PrintBitboard(~EMPTY);
-	
-	
-// 	// for (uint8_t i = 0; i < 64; i++){
-// 	// 	if (((ROOK_RIGHT >> i) & 1) != 0){				// capture right
-// 	// 		moves[m][0] = i - 6;
-// 	// 		moves[m][1] = i;
-// 	// 		moves[m][2] = WHITE_KNIGHT;
-// 	// 		moves[m][3] = WHITE_KNIGHT;
-// 	// 		m++;
-// 	// 	}
-// 	// }
-// }
 

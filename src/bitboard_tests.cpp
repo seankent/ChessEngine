@@ -5,655 +5,6 @@
 #include "bitboard.hpp"
 #include "bitboard_tests.hpp"
 
-// //==============================================
-// // Test_Bitboard_PossibleMovesWP_0
-// //==============================================
-// void Test_Bitboard_PossibleMovesWP_0()
-// {
-// 	std::cout << "Test 0." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'P', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	uint8_t scoresheet[256][5];
-// 	uint8_t N = 0;
-// 	bitboard.PossibleMovesWP(moves, m, scoresheet, N);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWP_1
-// //==============================================
-// void Test_Bitboard_PossibleMovesWP_1()
-// {
-// 	std::cout << "Test 1." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', 'p', '-', '-', '-', '-', '-', '-'},
-// 		{'P', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	uint8_t scoresheet[256][5];
-// 	uint8_t N = 0;
-// 	bitboard.PossibleMovesWP(moves, m, scoresheet, N);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWP_2
-// //==============================================
-// void Test_Bitboard_PossibleMovesWP_2()
-// {
-// 	std::cout << "Test 2." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', 'P'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	uint8_t scoresheet[256][5];
-// 	uint8_t N = 0;
-// 	bitboard.PossibleMovesWP(moves, m, scoresheet, N);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWP_3
-// //==============================================
-// void Test_Bitboard_PossibleMovesWP_3()
-// {
-// 	std::cout << "Test 3." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', 'P', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	uint8_t scoresheet[256][5];
-// 	uint8_t N = 0;
-// 	bitboard.PossibleMovesWP(moves, m, scoresheet, N);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWP_4
-// //==============================================
-// void Test_Bitboard_PossibleMovesWP_4()
-// {
-// 	std::cout << "Test 4." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', 'p', '-', '-'},
-// 		{'-', '-', '-', '-', '-', 'P', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	uint8_t scoresheet[256][5];
-// 	uint8_t N = 0;
-// 	bitboard.PossibleMovesWP(moves, m, scoresheet, N);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWP_5
-// //==============================================
-// void Test_Bitboard_PossibleMovesWP_5()
-// {
-// 	std::cout << "Test 5." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', 'n', 'p', 'q', '-'},
-// 		{'-', '-', '-', '-', '-', 'P', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	uint8_t scoresheet[256][5];
-// 	uint8_t N = 0;
-// 	bitboard.PossibleMovesWP(moves, m, scoresheet, N);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWP_6
-// //==============================================
-// void Test_Bitboard_PossibleMovesWP_6()
-// {
-// 	std::cout << "Test 6." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', 'B', 'p', 'q', '-'},
-// 		{'-', '-', '-', '-', '-', 'P', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	uint8_t scoresheet[256][5];
-// 	uint8_t N = 0;
-// 	bitboard.PossibleMovesWP(moves, m, scoresheet, N);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWP_7
-// //==============================================
-// void Test_Bitboard_PossibleMovesWP_7()
-// {
-// 	std::cout << "Test 7." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', 'N', 'p', 'B', '-'},
-// 		{'-', '-', '-', '-', '-', 'P', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	uint8_t scoresheet[256][5];
-// 	uint8_t N = 0;
-// 	bitboard.PossibleMovesWP(moves, m, scoresheet, N);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWP_8
-// //==============================================
-// void Test_Bitboard_PossibleMovesWP_8()
-// {
-// 	std::cout << "Test 8." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', 'P', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	uint8_t scoresheet[256][5];
-// 	uint8_t N = 0;
-// 	bitboard.PossibleMovesWP(moves, m, scoresheet, N);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWP_9
-// //==============================================
-// void Test_Bitboard_PossibleMovesWP_9()
-// {
-// 	std::cout << "Test 9." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', 'k', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', 'P', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	uint8_t scoresheet[256][5];
-// 	uint8_t N = 0;
-// 	bitboard.PossibleMovesWP(moves, m, scoresheet, N);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWP_10
-// //==============================================
-// void Test_Bitboard_PossibleMovesWP_10()
-// {
-// 	std::cout << "Test 10." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', 'b', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', 'P', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	uint8_t scoresheet[256][5];
-// 	uint8_t N = 0;
-// 	bitboard.PossibleMovesWP(moves, m, scoresheet, N);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWP_11
-// //==============================================
-// void Test_Bitboard_PossibleMovesWP_11()
-// {
-// 	std::cout << "Test 11." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', 'P', 'p', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	uint8_t scoresheet[256][5];
-// 	scoresheet[0][0] = 12;
-// 	scoresheet[0][1] = 28;
-// 	scoresheet[0][2] = BLACK_PAWN;
-// 	scoresheet[0][3] = BLACK_PAWN;
-// 	uint8_t N = 1;
-// 	bitboard.PossibleMovesWP(moves, m, scoresheet, N);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWP_12
-// //==============================================
-// void Test_Bitboard_PossibleMovesWP_12()
-// {
-// 	std::cout << "Test 12." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', 'P', 'p', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	uint8_t scoresheet[256][5];
-// 	scoresheet[0][0] = 20;
-// 	scoresheet[0][1] = 28;
-// 	scoresheet[0][2] = BLACK_PAWN;
-// 	scoresheet[0][3] = BLACK_PAWN;
-// 	uint8_t N = 1;
-// 	bitboard.PossibleMovesWP(moves, m, scoresheet, N);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWP_13
-// //==============================================
-// void Test_Bitboard_PossibleMovesWP_13()
-// {
-// 	std::cout << "Test 13." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'p', '-', '-', '-', '-', '-', '-', 'P'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	uint8_t scoresheet[256][5];
-// 	scoresheet[0][0] = 8;
-// 	scoresheet[0][1] = 24;
-// 	scoresheet[0][2] = BLACK_PAWN;
-// 	scoresheet[0][3] = BLACK_PAWN;
-// 	uint8_t N = 1;
-// 	bitboard.PossibleMovesWP(moves, m, scoresheet, N);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWP_14
-// //==============================================
-// void Test_Bitboard_PossibleMovesWP_14()
-// {
-// 	std::cout << "Test 14." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', 'p', 'P', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	uint8_t scoresheet[256][5];
-// 	scoresheet[0][0] = 9;
-// 	scoresheet[0][1] = 25;
-// 	scoresheet[0][2] = BLACK_PAWN;
-// 	scoresheet[0][3] = BLACK_PAWN;
-// 	uint8_t N = 1;
-// 	bitboard.PossibleMovesWP(moves, m, scoresheet, N);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWP_15
-// //==============================================
-// void Test_Bitboard_PossibleMovesWP_15()
-// {
-// 	std::cout << "Test 15." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', 'p', 'P', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	uint8_t scoresheet[256][5];
-// 	scoresheet[0][0] = 17;
-// 	scoresheet[0][1] = 25;
-// 	scoresheet[0][2] = BLACK_PAWN;
-// 	scoresheet[0][3] = BLACK_PAWN;
-// 	uint8_t N = 1;
-// 	bitboard.PossibleMovesWP(moves, m, scoresheet, N);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWN_0
-// //==============================================
-// void Test_Bitboard_PossibleMovesWN_0()
-// {
-// 	std::cout << "Test 0." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', 'N', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	bitboard.PossibleMovesWN(moves, m);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWN_1
-// //==============================================
-// void Test_Bitboard_PossibleMovesWN_1()
-// {
-// 	std::cout << "Test 1." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', 'N', '-', '-', '-', '-', 'N', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	bitboard.PossibleMovesWN(moves, m);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWN_2
-// //==============================================
-// void Test_Bitboard_PossibleMovesWN_2()
-// {
-// 	std::cout << "Test 2." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', 'N', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	bitboard.PossibleMovesWN(moves, m);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWN_3
-// //==============================================
-// void Test_Bitboard_PossibleMovesWN_3()
-// {
-// 	std::cout << "Test 3." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'N', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	bitboard.PossibleMovesWN(moves, m);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWN_4
-// //==============================================
-// void Test_Bitboard_PossibleMovesWN_4()
-// {
-// 	std::cout << "Test 4." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', 'N'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	bitboard.PossibleMovesWN(moves, m);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWN_5
-// //==============================================
-// void Test_Bitboard_PossibleMovesWN_5()
-// {
-// 	std::cout << "Test 5." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', 'q', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', 'Q', '-'},
-// 		{'-', '-', '-', '-', 'N', '-', '-', '-'},
-// 		{'-', '-', 'R', '-', '-', '-', 'b', '-'},
-// 		{'-', '-', '-', 'r', '-', 'B', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	bitboard.PossibleMovesWN(moves, m);
-// 	bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWR_0
-// //==============================================
-// void Test_Bitboard_PossibleMovesWR_0()
-// {
-// 	std::cout << "Test 0." << std::endl;
-// 	char board[8][8] = {
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', 'P', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', 'P', '-', '-', '-'},
-// 		{'-', 'R', '-', '-', '-', '-', 'p', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 		{'-', '-', '-', '-', '-', '-', '-', '-'},
-// 	};
-// 	Bitboard bitboard(board);
-// 	uint8_t moves[256][4]; 
-// 	uint8_t m = 0;
-// 	bitboard.PossibleMovesWR(moves, m);
-// 	//bitboard.PrintMoves(moves, m);
-// 	std::cout << std::endl;
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWP
-// //==============================================
-// void Test_Bitboard_PossibleMovesWP()
-// {
-// 	Test_Bitboard_PossibleMovesWP_0();
-// 	Test_Bitboard_PossibleMovesWP_1();
-// 	Test_Bitboard_PossibleMovesWP_2();
-// 	Test_Bitboard_PossibleMovesWP_3();
-// 	Test_Bitboard_PossibleMovesWP_4();
-// 	Test_Bitboard_PossibleMovesWP_5();
-// 	Test_Bitboard_PossibleMovesWP_6();
-// 	Test_Bitboard_PossibleMovesWP_7();
-// 	Test_Bitboard_PossibleMovesWP_8();
-// 	Test_Bitboard_PossibleMovesWP_9();
-// 	Test_Bitboard_PossibleMovesWP_10();
-// 	Test_Bitboard_PossibleMovesWP_11();
-// 	Test_Bitboard_PossibleMovesWP_12();
-// 	Test_Bitboard_PossibleMovesWP_13();
-// 	Test_Bitboard_PossibleMovesWP_14();
-// 	Test_Bitboard_PossibleMovesWP_15();
-// }
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWN
-// //==============================================
-// void Test_Bitboard_PossibleMovesWN()
-// {
-// 	Test_Bitboard_PossibleMovesWN_0();
-// 	Test_Bitboard_PossibleMovesWN_1();
-// 	Test_Bitboard_PossibleMovesWN_2();
-// 	Test_Bitboard_PossibleMovesWN_3();
-// 	Test_Bitboard_PossibleMovesWN_4();
-// 	Test_Bitboard_PossibleMovesWN_5();
-// }
-
-
-// //==============================================
-// // Test_Bitboard_PossibleMovesWR
-// //==============================================
-// void Test_Bitboard_PossibleMovesWR()
-// {
-// 	Test_Bitboard_PossibleMovesWR_0();
-// }
-
 //==============================================
 // Test_MovesWN_0
 //==============================================
@@ -1790,7 +1141,7 @@ void Test_MovesWP_4()
 	uint64_t UNIT;
 	uint8_t i;
 	bitboard.LS1B(bitboard.WP, UNIT, i);
-	bitboard.FILE_EP = bitboard.FILE_C;
+	bitboard.FILE_EP = FILE_C;
 	uint64_t MOVES = bitboard.MovesWP(UNIT);
 	bitboard.PrintMoves(MOVES);
 }
@@ -1815,7 +1166,7 @@ void Test_MovesWP_5()
 	uint64_t UNIT;
 	uint8_t i;
 	bitboard.LS1B(bitboard.WP, UNIT, i);
-	bitboard.FILE_EP = bitboard.FILE_B;
+	bitboard.FILE_EP = FILE_B;
 	uint64_t MOVES = bitboard.MovesWP(UNIT);
 	bitboard.PrintMoves(MOVES);
 }
@@ -1924,7 +1275,7 @@ void Test_MovesBP_3()
 	Bitboard bitboard(board);
 	uint64_t UNIT;
 	uint8_t i;
-	bitboard.FILE_EP = bitboard.FILE_B;
+	bitboard.FILE_EP = FILE_B;
 	bitboard.LS1B(bitboard.BP, UNIT, i);
 	uint64_t MOVES = bitboard.MovesBP(UNIT);
 	bitboard.PrintMoves(MOVES);
@@ -1949,7 +1300,7 @@ void Test_MovesBP_4()
 	Bitboard bitboard(board);
 	uint64_t UNIT;
 	uint8_t i;
-	bitboard.FILE_EP = bitboard.FILE_G;
+	bitboard.FILE_EP = FILE_G;
 	bitboard.LS1B(bitboard.BP, UNIT, i);
 	uint64_t MOVES = bitboard.MovesBP(UNIT);
 	bitboard.PrintMoves(MOVES);
@@ -2130,4 +1481,605 @@ void Test_MovesW()
 	Test_MovesW_3();
 	Test_MovesW_4();
 	Test_MovesW_5();
+}
+
+
+//==============================================
+// Test_MovesB_0
+//==============================================
+void Test_MovesB_0()
+{
+	std::cout << "Test 0:" << std::endl;
+	char board[8][8] = {
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	uint64_t MOVES = bitboard.MovesB();
+	bitboard.PrintMoves(MOVES);
+}
+
+//==============================================
+// Test_MovesB_1
+//==============================================
+void Test_MovesB_1()
+{
+	std::cout << "Test 1:" << std::endl;
+	char board[8][8] = {
+		{'r', ' ', ' ', ' ', ' ', ' ', ' ', 'r'},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	uint64_t MOVES = bitboard.MovesB();
+	bitboard.PrintMoves(MOVES);
+}
+
+//==============================================
+// Test_MovesB_2
+//==============================================
+void Test_MovesB_2()
+{
+	std::cout << "Test 2:" << std::endl;
+	char board[8][8] = {
+		{' ', 'n', ' ', ' ', ' ', ' ', 'n', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	uint64_t MOVES = bitboard.MovesB();
+	bitboard.PrintMoves(MOVES);
+}
+
+//==============================================
+// Test_MovesB_3
+//==============================================
+void Test_MovesB_3()
+{
+	std::cout << "Test 3:" << std::endl;
+	char board[8][8] = {
+		{' ', ' ', 'b', ' ', ' ', 'b', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	uint64_t MOVES = bitboard.MovesB();
+	bitboard.PrintMoves(MOVES);
+}
+
+//==============================================
+// Test_MovesB_4
+//==============================================
+void Test_MovesB_4()
+{
+	std::cout << "Test 4:" << std::endl;
+	char board[8][8] = {
+		{' ', ' ', ' ', 'q', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', 'q', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	uint64_t MOVES = bitboard.MovesB();
+	bitboard.PrintMoves(MOVES);
+}
+
+//==============================================
+// Test_MovesB_5
+//==============================================
+void Test_MovesB_5()
+{
+	std::cout << "Test 5:" << std::endl;
+	char board[8][8] = {
+		{' ', ' ', ' ', ' ', 'k', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', 'k', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	uint64_t MOVES = bitboard.MovesB();
+	bitboard.PrintMoves(MOVES);
+}
+
+//==============================================
+// Test_MovesB
+//==============================================
+void Test_MovesB()
+{
+	Test_MovesB_0();
+	Test_MovesB_1();
+	Test_MovesB_2();
+	Test_MovesB_3();
+	Test_MovesB_4();
+	Test_MovesB_5();
+}
+
+//==============================================
+// Test_Move_0
+//==============================================
+void Test_Move_0()
+{
+	std::cout << "Test 0:" << std::endl;
+	char board[8][8] = {
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{'R', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	uint8_t i0 = 0;
+	uint8_t i1 = 16;
+	bool turn = WHITE;
+	bool legal = bitboard.Move(i0, i1, turn);
+	if (legal){
+		bitboard.Print();
+	} 
+	else {
+		std::cout << "illegal" << std::endl;
+	}
+}
+
+//==============================================
+// Test_Move_1
+//==============================================
+void Test_Move_1()
+{
+	std::cout << "Test 1:" << std::endl;
+	char board[8][8] = {
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', 'N', ' ', ' ', ' ', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	uint8_t i0 = 1;
+	uint8_t i1 = 18;
+	bool turn = WHITE;
+	bool legal = bitboard.Move(i0, i1, turn);
+	if (legal){
+		bitboard.Print();
+	} 
+	else {
+		std::cout << "illegal" << std::endl;
+	}
+}
+
+//==============================================
+// Test_Move_2
+//==============================================
+void Test_Move_2()
+{
+	std::cout << "Test 2:" << std::endl;
+	char board[8][8] = {
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', 'B', ' ', ' ', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	uint8_t i0 = 2;
+	uint8_t i1 = 38;
+	bool turn = WHITE;
+	bool legal = bitboard.Move(i0, i1, turn);
+	if (legal){
+		bitboard.Print();
+	} 
+	else {
+		std::cout << "illegal" << std::endl;
+	}
+}
+
+//==============================================
+// Test_Move_3
+//==============================================
+void Test_Move_3()
+{
+	std::cout << "Test 3:" << std::endl;
+	char board[8][8] = {
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', 'Q', ' ', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	uint8_t i0 = 3;
+	uint8_t i1 = 59;
+	bool turn = WHITE;
+	bool legal = bitboard.Move(i0, i1, turn);
+	if (legal){
+		bitboard.Print();
+	} 
+	else {
+		std::cout << "illegal" << std::endl;
+	}
+}
+
+//==============================================
+// Test_Move_4
+//==============================================
+void Test_Move_4()
+{
+	std::cout << "Test 4:" << std::endl;
+	char board[8][8] = {
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', 'K', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	uint8_t i0 = 4;
+	uint8_t i1 = 12;
+	bool turn = WHITE;
+	bool legal = bitboard.Move(i0, i1, turn);
+	if (legal){
+		bitboard.Print();
+	} 
+	else {
+		std::cout << "illegal" << std::endl;
+	}
+}
+
+//==============================================
+// Test_Move_5
+//==============================================
+void Test_Move_5()
+{
+	std::cout << "Test 5:" << std::endl;
+	char board[8][8] = {
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{'P', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	uint8_t i0 = 8;
+	uint8_t i1 = 24;
+	bool turn = WHITE;
+	bool legal = bitboard.Move(i0, i1, turn);
+	if (legal){
+		bitboard.Print();
+		bitboard.PrintBitboard(bitboard.FILE_EP);
+	} 
+	else {
+		std::cout << "illegal" << std::endl;
+	}
+}
+
+//==============================================
+// Test_Move_6
+//==============================================
+void Test_Move_6()
+{
+	std::cout << "Test 6:" << std::endl;
+	char board[8][8] = {
+		{'r', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	uint8_t i0 = 56;
+	uint8_t i1 = 48;
+	bool turn = BLACK;
+	bool legal = bitboard.Move(i0, i1, turn);
+	if (legal){
+		bitboard.Print();
+	} 
+	else {
+		std::cout << "illegal" << std::endl;
+	}
+}
+
+//==============================================
+// Test_Move_7
+//==============================================
+void Test_Move_7()
+{
+	std::cout << "Test 7:" << std::endl;
+	char board[8][8] = {
+		{' ', 'n', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	uint8_t i0 = 57;
+	uint8_t i1 = 42;
+	bool turn = BLACK;
+	bool legal = bitboard.Move(i0, i1, turn);
+	if (legal){
+		bitboard.Print();
+	} 
+	else {
+		std::cout << "illegal" << std::endl;
+	}
+}
+
+//==============================================
+// Test_Move_8
+//==============================================
+void Test_Move_8()
+{
+	std::cout << "Test 8:" << std::endl;
+	char board[8][8] = {
+		{' ', ' ', 'b', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	uint8_t i0 = 58;
+	uint8_t i1 = 40;
+	bool turn = BLACK;
+	bool legal = bitboard.Move(i0, i1, turn);
+	if (legal){
+		bitboard.Print();
+	} 
+	else {
+		std::cout << "illegal" << std::endl;
+	}
+}
+
+//==============================================
+// Test_Move_9
+//==============================================
+void Test_Move_9()
+{
+	std::cout << "Test 9:" << std::endl;
+	char board[8][8] = {
+		{' ', ' ', ' ', 'q', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	uint8_t i0 = 59;
+	uint8_t i1 = 3;
+	bool turn = BLACK;
+	bool legal = bitboard.Move(i0, i1, turn);
+	if (legal){
+		bitboard.Print();
+	} 
+	else {
+		std::cout << "illegal" << std::endl;
+	}
+}
+
+//==============================================
+// Test_Move_10
+//==============================================
+void Test_Move_10()
+{
+	std::cout << "Test 1:" << std::endl;
+	char board[8][8] = {
+		{' ', ' ', ' ', ' ', 'k', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	uint8_t i0 = 60;
+	uint8_t i1 = 52;
+	bool turn = BLACK;
+	bool legal = bitboard.Move(i0, i1, turn);
+	if (legal){
+		bitboard.Print();
+	} 
+	else {
+		std::cout << "illegal" << std::endl;
+	}
+}
+
+//==============================================
+// Test_Move_11
+//==============================================
+void Test_Move_11()
+{
+	std::cout << "Test 11:" << std::endl;
+	char board[8][8] = {
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', 'p', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	uint8_t i0 = 50;
+	uint8_t i1 = 34;
+	bool turn = BLACK;
+	bool legal = bitboard.Move(i0, i1, turn);
+	if (legal){
+		bitboard.Print();
+		bitboard.PrintBitboard(bitboard.FILE_EP);
+	} 
+	else {
+		std::cout << "illegal" << std::endl;
+	}
+}
+
+//==============================================
+// Test_Move_12
+//==============================================
+void Test_Move_12()
+{
+	std::cout << "Test 12:" << std::endl;
+	char board[8][8] = {
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{'q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{'R', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	uint8_t i0 = 0;
+	uint8_t i1 = 32;
+	bool turn = WHITE;
+	bool legal = bitboard.Move(i0, i1, turn);
+	if (legal){
+		bitboard.Print();
+	} 
+	else {
+		std::cout << "illegal" << std::endl;
+	}
+}
+
+//==============================================
+// Test_Move_13
+//==============================================
+void Test_Move_13()
+{
+	std::cout << "Test 13:" << std::endl;
+	char board[8][8] = {
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', 'P', 'p', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	bitboard.FILE_EP = FILE_B;
+	uint8_t i0 = 26;
+	uint8_t i1 = 17;
+	bool turn = BLACK;
+	bool legal = bitboard.Move(i0, i1, turn);
+	if (legal){
+		bitboard.Print();
+	} 
+	else {
+		std::cout << "illegal" << std::endl;
+	}
+}
+
+//==============================================
+// Test_Move_14
+//==============================================
+void Test_Move_14()
+{
+	std::cout << "Test 14:" << std::endl;
+	char board[8][8] = {
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', 'P', 'p'},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	};
+	Bitboard bitboard(board);
+	bitboard.FILE_EP = FILE_H;
+	uint8_t i0 = 38;
+	uint8_t i1 = 47;
+	bool turn = WHITE;
+	bool legal = bitboard.Move(i0, i1, turn);
+	if (legal){
+		bitboard.Print();
+	} 
+	else {
+		std::cout << "illegal" << std::endl;
+	}
+}
+
+//==============================================
+// Test_Move
+//==============================================
+void Test_Move()
+{
+	Test_Move_0();
+	Test_Move_1();
+	Test_Move_2();
+	Test_Move_3();
+	Test_Move_4();
+	Test_Move_5();
+	Test_Move_6();
+	Test_Move_7();
+	Test_Move_8();
+	Test_Move_9();
+	Test_Move_10();
+	Test_Move_11();
+	Test_Move_12();
+	Test_Move_13();
+	Test_Move_14();
 }

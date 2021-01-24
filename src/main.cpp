@@ -20,7 +20,10 @@ int main(void)
 	// Test_MovesBK();
 	// Test_MovesWP();
 	// Test_MovesBP();
-	Test_MovesW();
+	// Test_MovesW();
+	Test_Move();
+	
+	// bitboard.Print();
 	//Bitboard bitboard;
 	//bitboard.PrintBitboard(bitboard.DIAGONAL_H8H8);
 	// uint64_t LS1B;
