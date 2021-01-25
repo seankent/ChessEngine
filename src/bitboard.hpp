@@ -116,14 +116,6 @@ public:
 	uint64_t MovesB();
 	bool Move(uint8_t i0, uint8_t i1, bool turn);
 
-	
-	// void PossibleMovesWP(uint8_t moves[256][4], uint8_t & m, uint8_t scoresheet[256][5], uint8_t N);
-	// void PossibleMovesWN(uint8_t moves[256][4], uint8_t & m);
-	// void PossibleMovesWR(uint8_t moves[256][4], uint8_t & m);
-	// int GetIndex(uint64_t x);
-	
-	
-	
 private:
 };
 

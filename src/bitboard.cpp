@@ -55,10 +55,6 @@ Bitboard::Bitboard(char board[8][8])
 	DIAGONALS_DOWN[12] = DIAGONAL_F8H6;
 	DIAGONALS_DOWN[13] = DIAGONAL_G8H7;
 	DIAGONALS_DOWN[14] = DIAGONAL_H8H8;
-	WHITE_UNITS = WR | WN | WB | WQ | WK | WP;
-	BLACK_UNITS = BR | BN | BB | BQ | BK | BP;
-	EMPTY = ~(WHITE_UNITS | BLACK_UNITS);
-	FILE_EP = 0x0000000000000000UL;
 }
 
 //==============================================
@@ -123,10 +119,6 @@ Bitboard::Bitboard()
 	DIAGONALS_DOWN[12] = DIAGONAL_F8H6;
 	DIAGONALS_DOWN[13] = DIAGONAL_G8H7;
 	DIAGONALS_DOWN[14] = DIAGONAL_H8H8;
-	WHITE_UNITS = WR | WN | WB | WQ | WK | WP;
-	BLACK_UNITS = BR | BN | BB | BQ | BK | BP;
-	EMPTY = ~(WHITE_UNITS | BLACK_UNITS);
-	FILE_EP = 0x0000000000000000UL;
 }
 
 //==============================================
@@ -226,6 +218,10 @@ void Bitboard::BoardToBitboard(char board[8][8])
 				break;
 		}
 	}
+	WHITE_UNITS = WR | WN | WB | WQ | WK | WP;
+	BLACK_UNITS = BR | BN | BB | BQ | BK | BP;
+	EMPTY = ~(WHITE_UNITS | BLACK_UNITS);
+	FILE_EP = 0x0;
 }
 
 //==============================================
@@ -567,6 +563,7 @@ bool Bitboard::Move(uint8_t i0, uint8_t i1, bool turn)
 			if ((UNIT_1 & MOVES) == 0) return 0;			
 			WP ^= UNIT_0;
 			WP |= UNIT_1;
+			if (UNIT_1 & FILE_EP & RANK_6) BP ^= (UNIT_1 >> 8);
 			if (UNIT_0 << 16 == UNIT_1) FILE_EP = FILES[i0 & 0x7];
 			else FILE_EP = 0x0;
 		}
@@ -614,7 +611,6 @@ bool Bitboard::Move(uint8_t i0, uint8_t i1, bool turn)
 		else if ((UNIT_1 & BB) != 0) BB ^= UNIT_1;
 		else if ((UNIT_1 & BQ) != 0) BQ ^= UNIT_1;
 		else if ((UNIT_1 & BK) != 0) BK ^= UNIT_1;
-		else if ((UNIT_1 & WP & FILE_EP & RANK_6)) BP ^= (UNIT_1 >> 8);
 	} 
 	else {
 		if ((UNIT_0 & BP) != 0){
@@ -622,6 +618,7 @@ bool Bitboard::Move(uint8_t i0, uint8_t i1, bool turn)
 			if ((UNIT_1 & MOVES) == 0) return 0;			
 			BP ^= UNIT_0;
 			BP |= UNIT_1;
+			if (UNIT_1 & FILE_EP & RANK_3) WP ^= (UNIT_1 << 8);
 			if (UNIT_0 >> 16 == UNIT_1) FILE_EP = FILES[i0 & 0x7];
 			else FILE_EP = 0x0;
 		}
@@ -669,9 +666,15 @@ bool Bitboard::Move(uint8_t i0, uint8_t i1, bool turn)
 		else if ((UNIT_1 & WB) != 0) WB ^= UNIT_1;
 		else if ((UNIT_1 & WQ) != 0) WQ ^= UNIT_1;
 		else if ((UNIT_1 & WK) != 0) WK ^= UNIT_1;
-		else if ((UNIT_1 & BP & FILE_EP & RANK_3)) WP ^= (UNIT_1 << 8);
 	}
+	WHITE_UNITS = WR | WN | WB | WQ | WK | WP;
+	BLACK_UNITS = BR | BN | BB | BQ | BK | BP;
+	EMPTY = ~(WHITE_UNITS | BLACK_UNITS);
 	return 1;
 }
+
+
+
+
 
 
