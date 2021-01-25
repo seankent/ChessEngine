@@ -61,6 +61,15 @@
 #define MOVES_K 0x0000001C141C0000UL
 
 //==============================================
+// const
+//==============================================
+const uint64_t FILES[] = {FILE_A, FILE_B, FILE_C, FILE_D, FILE_E, FILE_F, FILE_G, FILE_H};
+const uint64_t RANKS[] = {RANK_1, RANK_2, RANK_3, RANK_4, RANK_5, RANK_6, RANK_7, RANK_8};
+const uint64_t DIAGONALS_UP[] = {DIAGONAL_A8A8, DIAGONAL_A7B8, DIAGONAL_A6C8, DIAGONAL_A5D8, DIAGONAL_A4E8, DIAGONAL_A3F8, DIAGONAL_A2G8, DIAGONAL_A1H8, DIAGONAL_B1H7, DIAGONAL_C1H6, DIAGONAL_D1H5, DIAGONAL_E1H4, DIAGONAL_F1H3, DIAGONAL_G1H2, DIAGONAL_H1H1};
+const uint64_t DIAGONALS_DOWN[] = {DIAGONAL_A1A1, DIAGONAL_A2B1, DIAGONAL_A3C1, DIAGONAL_A4D1, DIAGONAL_A5E1, DIAGONAL_A6F1, DIAGONAL_A7G1, DIAGONAL_A8H1, DIAGONAL_B8H2, DIAGONAL_C8H3, DIAGONAL_D8H4, DIAGONAL_E8H5, DIAGONAL_F8H6, DIAGONAL_G8H7, DIAGONAL_H8H8};
+
+
+//==============================================
 // Bitboard
 //==============================================
 class Bitboard
@@ -78,28 +87,22 @@ public:
 	uint64_t BQ; 			// bitboard for the black queens
 	uint64_t BK; 			// bitboard for the black king
 	uint64_t BP;			// bitboard for the black pawns			
-	uint64_t FILES[8];
-	uint64_t RANKS[8];
-	uint64_t DIAGONALS_UP[15];
-	uint64_t DIAGONALS_DOWN[15];
 	uint64_t WHITE_UNITS; 	// bitboard for all the white units
 	uint64_t BLACK_UNITS; 	// bitboard for all the black units
 	uint64_t EMPTY;		  	// bitboard for all the empty squares on the board
 	uint64_t FILE_EP;		// bitboard for en passant file
-	
+
 public:
-	Bitboard(char board[8][8]);									// bitboard constructor
-	Bitboard();													// bitboard constructor
-	//void LS1B(uint64_t UNIT, uint64_t LS1, uint8_t i);
-	void LS1B(uint64_t U64, uint64_t & LS1B, uint8_t & i);
-	uint64_t Reverse(uint64_t U64);
+	Bitboard(char board[8][8]);		// bitboard constructor
+	Bitboard();						// bitboard constructor
 	void BoardToBitboard(char board[8][8]);
 	void BitboardToBoard(char board[8][8]);
+	void LS1B(uint64_t U64, uint64_t & LS1B, uint8_t & i);
+	uint64_t Reverse(uint64_t U64);
 	void Print(char board[8][8]);
 	void Print();
 	void PrintBitboard(uint64_t U64);
 	void PrintMoves(uint64_t MOVES);
-
 	uint64_t MovesWN(uint64_t UNIT, uint8_t i);
 	uint64_t MovesBN(uint64_t UNIT, uint8_t i);
 	uint64_t MovesWR(uint64_t UNIT, uint8_t i);
@@ -115,9 +118,6 @@ public:
 	uint64_t MovesW();
 	uint64_t MovesB();
 	bool Move(uint8_t i0, uint8_t i1, bool turn);
-
-private:
 };
-
 
 #endif

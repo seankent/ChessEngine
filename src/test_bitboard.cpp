@@ -1,9 +1,7 @@
 //==============================================
 // include
 //==============================================
-#include <iostream>
-#include "bitboard.hpp"
-#include "bitboard_tests.hpp"
+#include "test_bitboard.hpp"
 
 //==============================================
 // Test_MovesWN_0
