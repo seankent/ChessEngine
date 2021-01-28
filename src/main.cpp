@@ -1,5 +1,6 @@
 #include <iostream>
 #include "bitboard.hpp"
+#include "game.hpp"
 #include "test_bitboard.hpp"
 
 //==============================================
@@ -7,21 +8,34 @@
 //==============================================
 int main(void)
 {
-	Test_MovesWN();
-	Test_MovesBN();
-	Test_MovesWR();
-	Test_MovesBR();
-	Test_MovesWB();
-	Test_MovesBB();
-	Test_MovesWQ();
-	Test_MovesBQ();
-	Test_MovesWK();
-	Test_MovesBK();
-	Test_MovesWP();
-	Test_MovesBP();
-	Test_MovesW();
-	Test_Move();
-	
+	// Test_MovesWN();
+	// Test_MovesBN();
+	// Test_MovesWR();
+	// Test_MovesBR();
+	// Test_MovesWB();
+	// Test_MovesBB();
+	// Test_MovesWQ();
+	// Test_MovesBQ();
+	// Test_MovesWK();
+	// Test_MovesBK();
+	// Test_MovesWP();
+	// Test_MovesBP();
+	// Test_MovesW();
+	// char board[8][8] = {
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', 'b', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{'R', ' ', ' ', ' ', 'K', ' ', ' ', ' '},
+	// };
+	//Test_Move();
+	//std::cout << "this message \f weeee" << std::endl;
+	//Game game(board, WHITE);
+	Game game;
+	game.Run();
 	//foo();
 	// uint64_t LS1B;
 	// uint8_t i;

@@ -11,6 +11,11 @@
 //==============================================
 #define WHITE 0
 #define BLACK 1
+#define NONE 0
+#define ROOK 1
+#define KNIGHT 2
+#define BISHOP 3
+#define QUEEN 4
 #define FILE_A 0x0101010101010101UL 		// bitboard for the a-file
 #define FILE_B 0x0202020202020202UL 		// bitboard for the b-file
 #define FILE_C 0x0404040404040404UL		// bitboard for the c-file
@@ -91,10 +96,17 @@ public:
 	uint64_t BLACK_UNITS; 	// bitboard for all the black units
 	uint64_t EMPTY;		  	// bitboard for all the empty squares on the board
 	uint64_t FILE_EP;		// bitboard for en passant file
+	uint64_t MOVES_W;
+	uint64_t MOVES_B;
+	uint64_t ATTACKS_W;
+	uint64_t ATTACKS_B;
+public:
+	bool turn;
+	bool wkc, wqc, bkc, bqc;	// castle rights
 
 public:
-	Bitboard(char board[8][8]);		// bitboard constructor
-	Bitboard();						// bitboard constructor
+	Bitboard(char board[8][8], bool turn);		// bitboard constructor
+	Bitboard();									// bitboard constructor
 	void BoardToBitboard(char board[8][8]);
 	void BitboardToBoard(char board[8][8]);
 	void LS1B(uint64_t U64, uint64_t & LS1B, uint8_t & i);
@@ -115,9 +127,10 @@ public:
 	uint64_t MovesBK(uint64_t UNIT, uint8_t i);
 	uint64_t MovesWP(uint64_t UNIT);
 	uint64_t MovesBP(uint64_t UNIT);
-	uint64_t MovesW();
-	uint64_t MovesB();
-	bool Move(uint8_t i0, uint8_t i1, bool turn);
+	uint64_t MovesWC();
+	uint64_t MovesW(uint64_t & ATTACKS);
+	uint64_t MovesB(uint64_t & ATTACKS);
+	bool Move(uint8_t i0, uint8_t i1, uint8_t peice);
 };
 
 #endif
