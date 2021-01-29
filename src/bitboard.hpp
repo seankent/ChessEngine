@@ -16,6 +16,8 @@
 #define KNIGHT 2
 #define BISHOP 3
 #define QUEEN 4
+#define KING 5
+#define PAWN 6
 #define FILE_A 0x0101010101010101UL 		// bitboard for the a-file
 #define FILE_B 0x0202020202020202UL 		// bitboard for the b-file
 #define FILE_C 0x0404040404040404UL		// bitboard for the c-file
@@ -103,6 +105,8 @@ public:
 public:
 	bool turn;
 	bool wkc, wqc, bkc, bqc;	// castle rights
+	uint64_t moves[256][11];		// [i0, i1, i2, unit0 type, unit1 type, unit2 type, wkc, wqc, bkc, bqc, ep]
+	int n;
 
 public:
 	Bitboard(char board[8][8], bool turn);		// bitboard constructor
@@ -130,7 +134,8 @@ public:
 	uint64_t MovesWC();
 	uint64_t MovesW(uint64_t & ATTACKS);
 	uint64_t MovesB(uint64_t & ATTACKS);
-	bool Move(uint8_t i0, uint8_t i1, uint8_t peice);
+	bool Move(uint64_t UNIT0, uint64_t UNIT1, uint8_t peice);
+	void Undo();
 };
 
 #endif

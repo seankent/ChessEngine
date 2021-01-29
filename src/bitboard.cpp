@@ -14,6 +14,7 @@ Bitboard::Bitboard(char board[8][8], bool turn)
 	this->wqc = 1;
 	this->bkc = 1;
 	this->bqc = 1;
+	this->n = 0;
 }
 
 //==============================================
@@ -37,6 +38,7 @@ Bitboard::Bitboard()
 	this->wqc = 1;
 	this->bkc = 1;
 	this->bqc = 1;
+	this->n = 0;
 }
 
 //==============================================
@@ -178,7 +180,10 @@ void Bitboard::Print(char board[8][8])
 		std::cout << (char)('0' + (char)(8 - i)) << ' '; 
 		for (int j = 0; j < 8; j++){
 			std::cout << "| " << board[i][j] << " ";
-			if (j == 7) std::cout << "|" << std::endl;
+			if (j == 7){
+				if (i == 0) std::cout << "| turn: " << turn << std::endl;
+				else std::cout << "|" << std::endl;
+			}
 		}
 	}
 	std::cout << "  +---+---+---+---+---+---+---+---+" << std::endl;
@@ -484,85 +489,121 @@ uint64_t Bitboard::MovesB(uint64_t & ATTACKS)
 //==============================================
 // Move
 //==============================================
-bool Bitboard::Move(uint8_t i0, uint8_t i1, uint8_t piece)
+bool Bitboard::Move(uint64_t UNIT0, uint64_t UNIT1, uint8_t piece)
 {
-	uint64_t UNIT_0 = 0x1UL << i0;
-	uint64_t UNIT_1 = 0x1UL << i1;
+	if (n > 256) return 0;
+
 	uint64_t MOVES;
+
+	moves[n][0] = UNIT0;
+	moves[n][1] = UNIT1;
+	moves[n][2] = 0x0UL;
+	moves[n][3] = NONE;
+	moves[n][4] = NONE;
+	moves[n][5] = NONE;
+	moves[n][6] = FILE_EP;
+	moves[n][7] = wkc;		
+	moves[n][8] = wqc;
+	moves[n][9] = bkc;
+	moves[n][10] = bqc;
+	uint8_t i0, i1;
+	LS1B(UNIT0, UNIT0, i0);
+	LS1B(UNIT1, UNIT1, i1);
+
 	if (turn == WHITE){
-		if ((UNIT_0 & WP) != 0){
-			MOVES = MovesWP(UNIT_0);
-			if ((UNIT_1 & MOVES) == 0) return 0;
-			if ((UNIT_1 & RANK_8) != 0){	// pawn promotion
+		if ((UNIT0 & WP) != 0){
+			MOVES = MovesWP(UNIT0);
+			if ((UNIT1 & MOVES) == 0) return 0;
+			moves[n][3] = PAWN;
+			moves[n][4] = PAWN;
+			if ((UNIT1 & RANK_8) != 0){	// pawn promotion
 				switch (piece){
 					case ROOK:
-						WP ^= UNIT_0;
-						WR |= UNIT_1;
+						WP ^= UNIT0;
+						WR |= UNIT1;
+						moves[n][4] = ROOK;
 						break;
 					case KNIGHT:
-						WP ^= UNIT_0;
-						WN |= UNIT_1;
+						WP ^= UNIT0;
+						WN |= UNIT1;
+						moves[n][4] = KNIGHT;
 						break;
 					case BISHOP:
-						WP ^= UNIT_0;
-						WB |= UNIT_1;
+						WP ^= UNIT0;
+						WB |= UNIT1;
+						moves[n][4] = BISHOP;
 						break;
 					case QUEEN:
-						WP ^= UNIT_0;
-						WQ |= UNIT_1;
+						WP ^= UNIT0;
+						WQ |= UNIT1;
+						moves[n][4] = QUEEN;
 						break;
 					default:
 						return 0;
 				}
 			} 
 			else {
-				WP ^= UNIT_0;
-				WP |= UNIT_1;
+				WP ^= UNIT0;
+				WP |= UNIT1;
 			}
-			if (UNIT_1 & FILE_EP & RANK_6) BP ^= (UNIT_1 >> 8);
-			if (UNIT_0 << 16 == UNIT_1) FILE_EP = FILES[i0 & 0x7];
+			if (UNIT1 & FILE_EP & RANK_6){
+				BP ^= (UNIT1 >> 8);
+				moves[n][2] = (UNIT1 >> 8);
+				moves[n][5] = PAWN;
+			}
+			if (UNIT0 << 16 == UNIT1) FILE_EP = FILES[i0 & 0x7];
 			else FILE_EP = 0x0;
 		}
-		else if ((UNIT_0 & WR) != 0){
-			MOVES = MovesWR(UNIT_0, i0);
-			if ((UNIT_1 & MOVES) == 0) return 0;			
-			WR ^= UNIT_0;
-			WR |= UNIT_1;
+		else if ((UNIT0 & WR) != 0){
+			MOVES = MovesWR(UNIT0, i0);
+			if ((UNIT1 & MOVES) == 0) return 0;
+			moves[n][3] = ROOK;
+			moves[n][4] = ROOK;			
+			WR ^= UNIT0;
+			WR |= UNIT1;
 			FILE_EP = 0x0;
 			if ((WR & 0x0000000000000001UL) == 0) wqc = 0;
 			if ((WR & 0x0000000000000080UL) == 0) wkc = 0;
 		} 
-		else if ((UNIT_0 & WN) != 0){
-			MOVES = MovesWN(UNIT_0, i0);
-			if ((UNIT_1 & MOVES) == 0) return 0;			
-			WN ^= UNIT_0;
-			WN |= UNIT_1;
+		else if ((UNIT0 & WN) != 0){
+			MOVES = MovesWN(UNIT0, i0);
+			if ((UNIT1 & MOVES) == 0) return 0;
+			moves[n][3] = KNIGHT;
+			moves[n][4] = KNIGHT;			
+			WN ^= UNIT0;
+			WN |= UNIT1;
 			FILE_EP = 0x0;
 		} 
-		else if ((UNIT_0 & WB) != 0){
-			MOVES = MovesWB(UNIT_0, i0);
-			if ((UNIT_1 & MOVES) == 0) return 0;	
-			WB ^= UNIT_0;
-			WB |= UNIT_1;
+		else if ((UNIT0 & WB) != 0){
+			MOVES = MovesWB(UNIT0, i0);
+			if ((UNIT1 & MOVES) == 0) return 0;
+			moves[n][3] = BISHOP;
+			moves[n][4] = BISHOP;
+			WB ^= UNIT0;
+			WB |= UNIT1;
 			FILE_EP = 0x0;
 		}
-		else if ((UNIT_0 & WQ) != 0){
-			MOVES = MovesWQ(UNIT_0, i0);
-			if ((UNIT_1 & MOVES) == 0) return 0;			
-			WQ ^= UNIT_0;
-			WQ |= UNIT_1;
+		else if ((UNIT0 & WQ) != 0){
+			MOVES = MovesWQ(UNIT0, i0);
+			if ((UNIT1 & MOVES) == 0) return 0;	
+			moves[n][3] = QUEEN;
+			moves[n][4] = QUEEN;		
+			WQ ^= UNIT0;
+			WQ |= UNIT1;
 			FILE_EP = 0x0;
 		}
-		else if ((UNIT_0 & WK) != 0){
-			MOVES = MovesWK(UNIT_0, i0);
-			if ((UNIT_1 & MOVES) == 0) return 0;			
-			WK ^= UNIT_0;
-			WK |= UNIT_1;
-			if ((UNIT_0 >> 2) == UNIT_1){
+		else if ((UNIT0 & WK) != 0){
+			MOVES = MovesWK(UNIT0, i0);
+			if ((UNIT1 & MOVES) == 0) return 0;
+			moves[n][3] = KING;
+			moves[n][4] = KING;		
+			WK ^= UNIT0;
+			WK |= UNIT1;
+			if ((UNIT0 >> 2) == UNIT1){
 				WR ^= 0x0000000000000001UL;
 				WR |= 0x0000000000000008UL;
 			}
-			if ((UNIT_0 << 2) == UNIT_1){
+			if ((UNIT0 << 2) == UNIT1){
 				WR ^= 0x0000000000000080UL;
 				WR |= 0x0000000000000020UL;
 			}
@@ -573,88 +614,134 @@ bool Bitboard::Move(uint8_t i0, uint8_t i1, uint8_t piece)
 		else {
 			return 0;
 		}
-		if ((UNIT_1 & BP) != 0) BP ^= UNIT_1;
-		else if ((UNIT_1 & BR) != 0) BR ^= UNIT_1;
-		else if ((UNIT_1 & BN) != 0) BN ^= UNIT_1;
-		else if ((UNIT_1 & BB) != 0) BB ^= UNIT_1;
-		else if ((UNIT_1 & BQ) != 0) BQ ^= UNIT_1;
-		else if ((UNIT_1 & BK) != 0) BK ^= UNIT_1;
+
+		if ((UNIT1 & BP) != 0){ 
+			BP ^= UNIT1;
+			moves[n][2] = UNIT1;
+			moves[n][5] = PAWN;
+		}
+		else if ((UNIT1 & BR) != 0){
+			BR ^= UNIT1;
+			moves[n][2] = UNIT1;
+			moves[n][5] = ROOK;
+		}
+		else if ((UNIT1 & BN) != 0){
+			BN ^= UNIT1;
+			moves[n][2] = UNIT1;
+			moves[n][5] = KNIGHT;
+		}
+		else if ((UNIT1 & BB) != 0){
+			BB ^= UNIT1;
+			moves[n][2] = UNIT1;
+			moves[n][5] = BISHOP;
+		}
+		else if ((UNIT1 & BQ) != 0){
+			BQ ^= UNIT1;
+			moves[n][2] = UNIT1;
+			moves[n][5] = QUEEN;
+		}
+		else if ((UNIT1 & BK) != 0){
+			BK ^= UNIT1;
+			moves[n][2] = UNIT1;
+			moves[n][5] = KING;
+		}
 		turn = BLACK;
+		n++;
 	} 
 	else {
-		if ((UNIT_0 & BP) != 0){
-			MOVES = MovesBP(UNIT_0);
-			if ((UNIT_1 & MOVES) == 0) return 0;
-			if ((UNIT_1 & RANK_1) != 0){	// pawn promotion
+		if ((UNIT0 & BP) != 0){
+			MOVES = MovesBP(UNIT0);
+			if ((UNIT1 & MOVES) == 0) return 0;
+			moves[n][3] = PAWN;
+			moves[n][4] = PAWN;
+			if ((UNIT1 & RANK_1) != 0){	// pawn promotion
 				switch (piece){
 					case ROOK:
-						BP ^= UNIT_0;
-						BR |= UNIT_1;
+						BP ^= UNIT0;
+						BR |= UNIT1;
+						moves[n][4] = ROOK;
 						break;
 					case KNIGHT:
-						BP ^= UNIT_0;
-						BN |= UNIT_1;
+						BP ^= UNIT0;
+						BN |= UNIT1;
+						moves[n][4] = KNIGHT;
 						break;
 					case BISHOP:
-						BP ^= UNIT_0;
-						BB |= UNIT_1;
+						BP ^= UNIT0;
+						BB |= UNIT1;
+						moves[n][4] = BISHOP;
 						break;
 					case QUEEN:
-						BP ^= UNIT_0;
-						BQ |= UNIT_1;
+						BP ^= UNIT0;
+						BQ |= UNIT1;
+						moves[n][4] = QUEEN;
 						break;
 					default:
 						return 0;
 				}
 			} 
 			else {
-				BP ^= UNIT_0;
-				BP |= UNIT_1;
+				BP ^= UNIT0;
+				BP |= UNIT1;
 			}		
-			if (UNIT_1 & FILE_EP & RANK_3) WP ^= (UNIT_1 << 8);
-			if (UNIT_0 >> 16 == UNIT_1) FILE_EP = FILES[i0 & 0x7];
+			if (UNIT1 & FILE_EP & RANK_3){
+				WP ^= (UNIT1 << 8);
+				moves[n][2] = (UNIT1 << 8);
+				moves[n][5] = PAWN;
+			} 
+			if (UNIT0 >> 16 == UNIT1) FILE_EP = FILES[i0 & 0x7];
 			else FILE_EP = 0x0;
 		}
-		else if ((UNIT_0 & BR) != 0){
-			MOVES = MovesBR(UNIT_0, i0);
-			if ((UNIT_1 & MOVES) == 0) return 0;			
-			BR ^= UNIT_0;
-			BR |= UNIT_1;
+		else if ((UNIT0 & BR) != 0){
+			MOVES = MovesBR(UNIT0, i0);
+			if ((UNIT1 & MOVES) == 0) return 0;
+			moves[n][3] = ROOK;
+			moves[n][4] = ROOK;			
+			BR ^= UNIT0;
+			BR |= UNIT1;
 			FILE_EP = 0x0;
 			if ((BR & 0x0100000000000000UL) == 0) bqc = 0;
 			if ((BR & 0x8000000000000000UL) == 0) bkc = 0;
 		} 
-		else if ((UNIT_0 & BN) != 0){
-			MOVES = MovesBN(UNIT_0, i0);
-			if ((UNIT_1 & MOVES) == 0) return 0;			
-			BN ^= UNIT_0;
-			BN |= UNIT_1;
+		else if ((UNIT0 & BN) != 0){
+			MOVES = MovesBN(UNIT0, i0);
+			if ((UNIT1 & MOVES) == 0) return 0;
+			moves[n][3] = KNIGHT;
+			moves[n][4] = KNIGHT;			
+			BN ^= UNIT0;
+			BN |= UNIT1;
 			FILE_EP = 0x0;
 		} 
-		else if ((UNIT_0 & BB) != 0){
-			MOVES = MovesBB(UNIT_0, i0);
-			if ((UNIT_1 & MOVES) == 0) return 0;			
-			BB ^= UNIT_0;
-			BB |= UNIT_1;
+		else if ((UNIT0 & BB) != 0){
+			MOVES = MovesBB(UNIT0, i0);
+			if ((UNIT1 & MOVES) == 0) return 0;
+			moves[n][3] = BISHOP;
+			moves[n][4] = BISHOP;			
+			BB ^= UNIT0;
+			BB |= UNIT1;
 			FILE_EP = 0x0;
 		}
-		else if ((UNIT_0 & BQ) != 0){
-			MOVES = MovesBQ(UNIT_0, i0);
-			if ((UNIT_1 & MOVES) == 0) return 0;			
-			BQ ^= UNIT_0;
-			BQ |= UNIT_1;
+		else if ((UNIT0 & BQ) != 0){
+			MOVES = MovesBQ(UNIT0, i0);
+			if ((UNIT1 & MOVES) == 0) return 0;
+			moves[n][3] = QUEEN;
+			moves[n][4] = QUEEN;			
+			BQ ^= UNIT0;
+			BQ |= UNIT1;
 			FILE_EP = 0x0;
 		}
-		else if ((UNIT_0 & BK) != 0){
-			MOVES = MovesBK(UNIT_0, i0);
-			if ((UNIT_1 & MOVES) == 0) return 0;			
-			BK ^= UNIT_0;
-			BK |= UNIT_1;
-			if ((UNIT_0 >> 2) == UNIT_1){
+		else if ((UNIT0 & BK) != 0){
+			MOVES = MovesBK(UNIT0, i0);
+			if ((UNIT1 & MOVES) == 0) return 0;
+			moves[n][3] = KING;
+			moves[n][4] = KING;			
+			BK ^= UNIT0;
+			BK |= UNIT1;
+			if ((UNIT0 >> 2) == UNIT1){
 				BR ^= 0x0100000000000000UL;
 				BR |= 0x0800000000000000UL;
 			}
-			if ((UNIT_0 << 2) == UNIT_1){
+			if ((UNIT0 << 2) == UNIT1){
 				BR ^= 0x8000000000000000UL;
 				BR |= 0x2000000000000000UL;
 			}
@@ -665,13 +752,39 @@ bool Bitboard::Move(uint8_t i0, uint8_t i1, uint8_t piece)
 		else {
 			return 0;
 		}
-		if ((UNIT_1 & WP) != 0) WP ^= UNIT_1;
-		else if ((UNIT_1 & WR) != 0) WR ^= UNIT_1;
-		else if ((UNIT_1 & WN) != 0) WN ^= UNIT_1;
-		else if ((UNIT_1 & WB) != 0) WB ^= UNIT_1;
-		else if ((UNIT_1 & WQ) != 0) WQ ^= UNIT_1;
-		else if ((UNIT_1 & WK) != 0) WK ^= UNIT_1;
+
+		if ((UNIT1 & WP) != 0){
+			WP ^= UNIT1;
+			moves[n][2] = UNIT1;
+			moves[n][5] = PAWN;
+		}
+		else if ((UNIT1 & WR) != 0){
+			WR ^= UNIT1;
+			moves[n][2] = UNIT1;
+			moves[n][5] = ROOK;
+		}
+		else if ((UNIT1 & WN) != 0){
+			WN ^= UNIT1;
+			moves[n][2] = UNIT1;
+			moves[n][5] = KNIGHT;
+		}
+		else if ((UNIT1 & WB) != 0){
+			WB ^= UNIT1;
+			moves[n][2] = UNIT1;
+			moves[n][5] = BISHOP;
+		}
+		else if ((UNIT1 & WQ) != 0){
+			WQ ^= UNIT1;
+			moves[n][2] = UNIT1;
+			moves[n][5] = QUEEN;
+		}
+		else if ((UNIT1 & WK) != 0){
+			WK ^= UNIT1;
+			moves[n][2] = UNIT1;
+			moves[n][5] = KING;
+		}
 		turn = WHITE;
+		n++;
 	}
 	WHITE_UNITS = WR | WN | WB | WQ | WK | WP;
 	BLACK_UNITS = BR | BN | BB | BQ | BK | BP;
@@ -679,6 +792,191 @@ bool Bitboard::Move(uint8_t i0, uint8_t i1, uint8_t piece)
 	MOVES_W = MovesW(ATTACKS_W);
 	MOVES_B = MovesB(ATTACKS_B);
 	return 1;
+}
+
+//==============================================
+// Undo
+//==============================================
+void Bitboard::Undo()
+{
+	if (n == 0) return;
+	n--;
+
+	uint64_t UNIT0 = moves[n][0];
+	uint64_t UNIT1 = moves[n][1];
+	uint64_t UNIT2 = moves[n][2];
+	FILE_EP = moves[n][6];
+	wkc = moves[n][7];
+	wqc = moves[n][8];
+	bkc = moves[n][9];
+	bqc = moves[n][10];
+
+	if (turn == WHITE){
+		switch (moves[n][3]){
+			case ROOK:
+				BR |= UNIT0;
+				break;
+			case KNIGHT:
+				BN |= UNIT0;
+				break;
+			case BISHOP:
+				BB |= UNIT0;
+				break;
+			case QUEEN:
+				BQ |= UNIT0;
+				break;
+			case KING:
+				BK |= UNIT0;
+				break;
+			case PAWN:
+				BP |= UNIT0;
+				break;
+			default:
+				break;
+		}
+		switch (moves[n][4]){
+			case ROOK:
+				BR ^= UNIT1;
+				break;
+			case KNIGHT:
+				BN ^= UNIT1;
+				break;
+			case BISHOP:
+				BB ^= UNIT1;
+				break;
+			case QUEEN:
+				BQ ^= UNIT1;
+				break;
+			case KING:
+				BK ^= UNIT1;
+				break;
+			case PAWN:
+				BP ^= UNIT1;
+				break;
+			default:
+				break;
+		}
+		switch (moves[n][5]){
+			case ROOK:
+				WR |= UNIT2;
+				break;
+			case KNIGHT:
+				WN |= UNIT2;
+				break;
+			case BISHOP:
+				WB |= UNIT2;
+				break;
+			case QUEEN:
+				WQ |= UNIT2;
+				break;
+			case KING:
+				WK |= UNIT2;
+				break;
+			case PAWN:
+				WP |= UNIT2;
+				break;
+			default:
+				break;
+		}
+
+		if ((moves[n][3] == KING) && (moves[n][4] == KING)){
+			if ((UNIT0 >> 2) == UNIT1){
+				BR |= 0x0100000000000000UL;
+				BR ^= 0x0800000000000000UL;
+			}
+			else if ((UNIT0 << 2) == UNIT1){
+				BR |= 0x8000000000000000UL;
+				BR ^= 0x2000000000000000UL;
+			}
+		}
+		turn = BLACK;
+	}
+	else {
+		switch (moves[n][3]){
+			case ROOK:
+				WR |= UNIT0;
+				break;
+			case KNIGHT:
+				WN |= UNIT0;
+				break;
+			case BISHOP:
+				WB |= UNIT0;
+				break;
+			case QUEEN:
+				WQ |= UNIT0;
+				break;
+			case KING:
+				WK |= UNIT0;
+				break;
+			case PAWN:	
+				WP |= UNIT0;
+				break;
+			default:
+				break;
+		}
+		switch (moves[n][4]){
+			case ROOK:
+				WR ^= UNIT1;
+				break;
+			case KNIGHT:
+				WN ^= UNIT1;
+				break;
+			case BISHOP:
+				WB ^= UNIT1;
+				break;
+			case QUEEN:
+				WQ ^= UNIT1;
+				break;
+			case KING:
+				WK ^= UNIT1;
+				break;
+			case PAWN:
+				WP ^= UNIT1;
+				break;
+			default:
+				break;
+		}
+		switch (moves[n][5]){
+			case ROOK:
+				BR |= UNIT2;
+				break;
+			case KNIGHT:
+				BN |= UNIT2;
+				break;
+			case BISHOP:
+				BB |= UNIT2;
+				break;
+			case QUEEN:
+				BQ |= UNIT2;
+				break;
+			case KING:
+				BK |= UNIT2;
+				break;
+			case PAWN:
+				BP |= UNIT2;
+				break;
+			default:
+				break;
+		}
+
+		if ((moves[n][3] == KING) && (moves[n][4] == KING)){
+			if ((UNIT0 >> 2) == UNIT1){
+				WR |= 0x0000000000000001UL;
+				WR ^= 0x0000000000000008UL;
+
+			}
+			else if ((UNIT0 << 2)== UNIT1){
+				WR |= 0x0000000000000080UL;
+				WR ^= 0x0000000000000020UL;
+			}
+		}
+		turn = WHITE;
+	}
+	WHITE_UNITS = WR | WN | WB | WQ | WK | WP;
+	BLACK_UNITS = BR | BN | BB | BQ | BK | BP;
+	EMPTY = ~(WHITE_UNITS | BLACK_UNITS);
+	MOVES_W = MovesW(ATTACKS_W);
+	MOVES_B = MovesB(ATTACKS_B);
 }
 
 

@@ -1815,7 +1815,9 @@ void Test_Move_0()
 	Bitboard bitboard(board, WHITE);
 	uint8_t i0 = 0;
 	uint8_t i1 = 16;
-	bool legal = bitboard.Move(i0, i1, NONE);
+	uint64_t UNIT0 = 0x1UL << i0;
+	uint64_t UNIT1 = 0x1UL << i1;
+	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
 	if (legal){
 		bitboard.Print();
 	} 
@@ -1843,7 +1845,9 @@ void Test_Move_1()
 	Bitboard bitboard(board, WHITE);
 	uint8_t i0 = 1;
 	uint8_t i1 = 18;
-	bool legal = bitboard.Move(i0, i1, NONE);
+	uint64_t UNIT0 = 0x1UL << i0;
+	uint64_t UNIT1 = 0x1UL << i1;
+	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
 	if (legal){
 		bitboard.Print();
 	} 
@@ -1871,7 +1875,9 @@ void Test_Move_2()
 	Bitboard bitboard(board, WHITE);
 	uint8_t i0 = 2;
 	uint8_t i1 = 38;
-	bool legal = bitboard.Move(i0, i1, NONE);
+	uint64_t UNIT0 = 0x1UL << i0;
+	uint64_t UNIT1 = 0x1UL << i1;
+	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
 	if (legal){
 		bitboard.Print();
 	} 
@@ -1899,7 +1905,9 @@ void Test_Move_3()
 	Bitboard bitboard(board, WHITE);
 	uint8_t i0 = 3;
 	uint8_t i1 = 59;
-	bool legal = bitboard.Move(i0, i1, NONE);
+	uint64_t UNIT0 = 0x1UL << i0;
+	uint64_t UNIT1 = 0x1UL << i1;
+	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
 	if (legal){
 		bitboard.Print();
 	} 
@@ -1927,7 +1935,9 @@ void Test_Move_4()
 	Bitboard bitboard(board, WHITE);
 	uint8_t i0 = 4;
 	uint8_t i1 = 12;
-	bool legal = bitboard.Move(i0, i1, NONE);
+	uint64_t UNIT0 = 0x1UL << i0;
+	uint64_t UNIT1 = 0x1UL << i1;
+	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
 	if (legal){
 		bitboard.Print();
 	} 
@@ -1955,7 +1965,9 @@ void Test_Move_5()
 	Bitboard bitboard(board, WHITE);
 	uint8_t i0 = 8;
 	uint8_t i1 = 24;
-	bool legal = bitboard.Move(i0, i1, NONE);
+	uint64_t UNIT0 = 0x1UL << i0;
+	uint64_t UNIT1 = 0x1UL << i1;
+	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
 	if (legal){
 		bitboard.Print();
 		bitboard.PrintBitboard(bitboard.FILE_EP);
@@ -1984,7 +1996,9 @@ void Test_Move_6()
 	Bitboard bitboard(board, BLACK);
 	uint8_t i0 = 56;
 	uint8_t i1 = 48;
-	bool legal = bitboard.Move(i0, i1, NONE);
+	uint64_t UNIT0 = 0x1UL << i0;
+	uint64_t UNIT1 = 0x1UL << i1;
+	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
 	if (legal){
 		bitboard.Print();
 	} 
@@ -2012,7 +2026,9 @@ void Test_Move_7()
 	Bitboard bitboard(board, BLACK);
 	uint8_t i0 = 57;
 	uint8_t i1 = 42;
-	bool legal = bitboard.Move(i0, i1, NONE);
+	uint64_t UNIT0 = 0x1UL << i0;
+	uint64_t UNIT1 = 0x1UL << i1;
+	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
 	if (legal){
 		bitboard.Print();
 	} 
@@ -2040,7 +2056,9 @@ void Test_Move_8()
 	Bitboard bitboard(board, BLACK);
 	uint8_t i0 = 58;
 	uint8_t i1 = 40;
-	bool legal = bitboard.Move(i0, i1, NONE);
+	uint64_t UNIT0 = 0x1UL << i0;
+	uint64_t UNIT1 = 0x1UL << i1;
+	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
 	if (legal){
 		bitboard.Print();
 	} 
@@ -2068,7 +2086,9 @@ void Test_Move_9()
 	Bitboard bitboard(board, BLACK);
 	uint8_t i0 = 59;
 	uint8_t i1 = 3;
-	bool legal = bitboard.Move(i0, i1, NONE);
+	uint64_t UNIT0 = 0x1UL << i0;
+	uint64_t UNIT1 = 0x1UL << i1;
+	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
 	if (legal){
 		bitboard.Print();
 	} 
@@ -2096,7 +2116,9 @@ void Test_Move_10()
 	Bitboard bitboard(board, BLACK);
 	uint8_t i0 = 60;
 	uint8_t i1 = 52;
-	bool legal = bitboard.Move(i0, i1, NONE);
+	uint64_t UNIT0 = 0x1UL << i0;
+	uint64_t UNIT1 = 0x1UL << i1;
+	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
 	if (legal){
 		bitboard.Print();
 	} 
@@ -2124,7 +2146,9 @@ void Test_Move_11()
 	Bitboard bitboard(board, BLACK);
 	uint8_t i0 = 50;
 	uint8_t i1 = 34;
-	bool legal = bitboard.Move(i0, i1, NONE);
+	uint64_t UNIT0 = 0x1UL << i0;
+	uint64_t UNIT1 = 0x1UL << i1;
+	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
 	if (legal){
 		bitboard.Print();
 		bitboard.PrintBitboard(bitboard.FILE_EP);
@@ -2153,7 +2177,9 @@ void Test_Move_12()
 	Bitboard bitboard(board, WHITE);
 	uint8_t i0 = 0;
 	uint8_t i1 = 32;
-	bool legal = bitboard.Move(i0, i1, NONE);
+	uint64_t UNIT0 = 0x1UL << i0;
+	uint64_t UNIT1 = 0x1UL << i1;
+	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
 	if (legal){
 		bitboard.Print();
 	} 
@@ -2182,7 +2208,9 @@ void Test_Move_13()
 	bitboard.FILE_EP = FILE_B;
 	uint8_t i0 = 26;
 	uint8_t i1 = 17;
-	bool legal = bitboard.Move(i0, i1, NONE);
+	uint64_t UNIT0 = 0x1UL << i0;
+	uint64_t UNIT1 = 0x1UL << i1;
+	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
 	if (legal){
 		bitboard.Print();
 	} 
@@ -2211,7 +2239,9 @@ void Test_Move_14()
 	bitboard.FILE_EP = FILE_H;
 	uint8_t i0 = 38;
 	uint8_t i1 = 47;
-	bool legal = bitboard.Move(i0, i1, NONE);
+	uint64_t UNIT0 = 0x1UL << i0;
+	uint64_t UNIT1 = 0x1UL << i1;
+	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
 	if (legal){
 		bitboard.Print();
 	} 
@@ -2240,7 +2270,9 @@ void Test_Move_15()
 	bitboard.FILE_EP = FILE_H;
 	uint8_t i0 = 48;
 	uint8_t i1 = 56;
-	bool legal = bitboard.Move(i0, i1, QUEEN);
+	uint64_t UNIT0 = 0x1UL << i0;
+	uint64_t UNIT1 = 0x1UL << i1;
+	bool legal = bitboard.Move(UNIT0, UNIT1, QUEEN);
 	if (legal){
 		bitboard.Print();
 	} 
@@ -2269,7 +2301,9 @@ void Test_Move_16()
 	bitboard.FILE_EP = FILE_H;
 	uint8_t i0 = 10;
 	uint8_t i1 = 3;
-	bool legal = bitboard.Move(i0, i1, KNIGHT);
+	uint64_t UNIT0 = 0x1UL << i0;
+	uint64_t UNIT1 = 0x1UL << i1;
+	bool legal = bitboard.Move(UNIT0, UNIT1, KNIGHT);
 	if (legal){
 		bitboard.Print();
 	} 
@@ -2298,7 +2332,9 @@ void Test_Move_17()
 	bitboard.FILE_EP = FILE_H;
 	uint8_t i0 = 4;
 	uint8_t i1 = 2;
-	bool legal = bitboard.Move(i0, i1, NONE);
+	uint64_t UNIT0 = 0x1UL << i0;
+	uint64_t UNIT1 = 0x1UL << i1;
+	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
 	if (legal){
 		bitboard.Print();
 	} 
