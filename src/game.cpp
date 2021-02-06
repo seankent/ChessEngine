@@ -60,9 +60,9 @@ void Game::Run()
 			UNIT1 = 0x1UL << i1;
 			bitboard.Move(UNIT0, UNIT1, NONE);
 		}
-		std::cout << "n: " << (int)bitboard.n << std::endl;
-		std::cout << "i0: " << (int)bitboard.moves[bitboard.n-1][0] << std::endl;
-		std::cout << "i1: " << (int)bitboard.moves[bitboard.n-1][1] << std::endl;
+		// std::cout << "n: " << (int)bitboard.n << std::endl;
+		// std::cout << "i0: " << (int)bitboard.moves[bitboard.n-1][0] << std::endl;
+		// std::cout << "i1: " << (int)bitboard.moves[bitboard.n-1][1] << std::endl;
 
 		//std::cout << "\x1B[20F" << std::endl;
 	}

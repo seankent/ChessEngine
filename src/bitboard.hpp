@@ -1,10 +1,11 @@
-#ifndef BITBOARD_H
-#define BITBOARD_H
+#ifndef BITBOARD_HPP
+#define BITBOARD_HPP
 
 //==============================================
 // include
 //==============================================
 #include <iostream>
+#include <iomanip>
 
 //==============================================
 // define
@@ -64,8 +65,6 @@
 #define DIAGONAL_F8H6 0x2040800000000000UL	// bitboard for the f8-h6 diagonal
 #define DIAGONAL_G8H7 0x4080000000000000UL	// bitboard for the g8-h7 diagonal
 #define DIAGONAL_H8H8 0x8000000000000000UL	// bitboard for the h8-h8 diagonal
-#define MOVES_N 0x0000142200221400UL
-#define MOVES_K 0x0000001C141C0000UL
 
 //==============================================
 // const
@@ -98,14 +97,13 @@ public:
 	uint64_t BLACK_UNITS; 	// bitboard for all the black units
 	uint64_t EMPTY;		  	// bitboard for all the empty squares on the board
 	uint64_t FILE_EP;		// bitboard for en passant file
-	uint64_t MOVES_W;
-	uint64_t MOVES_B;
-	uint64_t ATTACKS_W;
-	uint64_t ATTACKS_B;
+	uint64_t WHITE_ATTACKS;
+	uint64_t BLACK_ATTACKS;
 public:
 	bool turn;
-	bool wkc, wqc, bkc, bqc;	// castle rights
-	uint64_t moves[256][11];		// [i0, i1, i2, unit0 type, unit1 type, unit2 type, wkc, wqc, bkc, bqc, ep]
+	bool wkc, wqc, bkc, bqc;	// castling rights
+	bool wc, bc;				// check indicators
+	uint64_t moves[256][11];	// [i0, i1, i2, unit0 type, unit1 type, unit2 type, wkc, wqc, bkc, bqc, ep]
 	int n;
 
 public:
@@ -113,27 +111,27 @@ public:
 	Bitboard();									// bitboard constructor
 	void BoardToBitboard(char board[8][8]);
 	void BitboardToBoard(char board[8][8]);
+	bool Update();
 	void LS1B(uint64_t U64, uint64_t & LS1B, uint8_t & i);
 	uint64_t Reverse(uint64_t U64);
 	void Print(char board[8][8]);
 	void Print();
 	void PrintBitboard(uint64_t U64);
-	void PrintMoves(uint64_t MOVES);
-	uint64_t MovesWN(uint64_t UNIT, uint8_t i);
-	uint64_t MovesBN(uint64_t UNIT, uint8_t i);
+	void PrintMovess(uint64_t MOVES);
+	uint64_t MovesWN(uint64_t UNIT);
+	uint64_t MovesBN(uint64_t UNIT);
 	uint64_t MovesWR(uint64_t UNIT, uint8_t i);
 	uint64_t MovesBR(uint64_t UNIT, uint8_t i);
 	uint64_t MovesWB(uint64_t UNIT, uint8_t i);
 	uint64_t MovesBB(uint64_t UNIT, uint8_t i);
 	uint64_t MovesWQ(uint64_t UNIT, uint8_t i);
 	uint64_t MovesBQ(uint64_t UNIT, uint8_t i);
-	uint64_t MovesWK(uint64_t UNIT, uint8_t i);
-	uint64_t MovesBK(uint64_t UNIT, uint8_t i);
+	uint64_t MovesWK(uint64_t UNIT);
+	uint64_t MovesBK(uint64_t UNIT);
 	uint64_t MovesWP(uint64_t UNIT);
 	uint64_t MovesBP(uint64_t UNIT);
-	uint64_t MovesWC();
-	uint64_t MovesW(uint64_t & ATTACKS);
-	uint64_t MovesB(uint64_t & ATTACKS);
+	uint64_t AttacksW();
+	uint64_t AttacksB();
 	bool Move(uint64_t UNIT0, uint64_t UNIT1, uint8_t peice);
 	void Undo();
 };

@@ -18,23 +18,23 @@ int main(void)
 	// Test_MovesBQ();
 	// Test_MovesWK();
 	// Test_MovesBK();
-	// Test_MovesWP();
-	// Test_MovesBP();
+	// Test_MoveWP();
+	// Test_MoveBP();
 	// Test_MovesW();
 	char board[8][8] = {
 		{'r', ' ', ' ', ' ', 'k', ' ', ' ', 'r'},
+		{' ', ' ', ' ', 'B', ' ', ' ', ' ', ' '},
 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', 'b', ' ', ' '},
 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 		{'R', ' ', ' ', ' ', 'K', ' ', ' ', 'R'},
 	};
-	// Test_Move();
-	//std::cout << "this message \f weeee" << std::endl;
-	Game game(board, WHITE);
-	// Game game;
+	// // Test_Move();
+	// //std::cout << "this message \f weeee" << std::endl;
+	Game game(board, BLACK);
+	// // Game game;
 	game.Run();
 	//bitboard.Print();
 	//foo();
