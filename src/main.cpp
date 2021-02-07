@@ -22,26 +22,27 @@ int main(void)
 	// Test_MoveWP();
 	// Test_MoveBP();
 	// Test_MovesW();
-	char board[8][8] = {
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{'p', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', 'K', ' ', ' ', ' '},
-	};
+	// char board[8][8] = {
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', 'p', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', 'P', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// };
 	// // // Test_Move();
 	// // //std::cout << "this message \f weeee" << std::endl;
 	// Game game(board, BLACK);
 	// // // Game game;
 	// game.Run();
 
-	Bitboard bitboard(board, WHITE);
-	//Bitboard bitboard;
+	//Bitboard bitboard(board, BLACK);
+	Bitboard bitboard;
+	//bitboard.turn = true;
 	Search search(bitboard);
-	search.DepthFirstSearch();
+	search.DepthFirstSearch(5);
 
 	//bitboard.Print();
 	//foo();

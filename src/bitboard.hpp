@@ -132,7 +132,7 @@ public:
 	uint64_t MovesBP(uint64_t UNIT);
 	uint64_t AttacksW();
 	uint64_t AttacksB();
-	void Move(uint64_t UNIT0, uint64_t UNIT1, uint8_t id0, uint8_t id1, uint8_t & id2);
+	void Move(uint64_t UNIT0, uint64_t UNIT1, uint8_t id0, uint8_t id1);
 	// bool Move(uint64_t UNIT0, uint64_t UNIT1, uint8_t peice);
 	// void Undo();
 };

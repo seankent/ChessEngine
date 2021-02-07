@@ -489,7 +489,7 @@ uint64_t Bitboard::AttacksB()
 //==============================================
 // Move
 //==============================================
-void Bitboard::Move(uint64_t UNIT0, uint64_t UNIT1, uint8_t id0, uint8_t id1, uint8_t & id2)
+void Bitboard::Move(uint64_t UNIT0, uint64_t UNIT1, uint8_t id0, uint8_t id1)
 {
 	if (turn == WHITE){
 		switch (id0){
@@ -543,34 +543,17 @@ void Bitboard::Move(uint64_t UNIT0, uint64_t UNIT1, uint8_t id0, uint8_t id1, ui
 				break;
 			case PAWN:
 				WP |= UNIT1;
-				if (UNIT1 & FILE_EP & RANK_6) BP ^= (UNIT1 >> 8);
+				if (UNIT1 & FILE_EP & RANK_6){ BP ^= (UNIT1 >> 8);
+				}
 				break;
 		}
 
-		if ((UNIT1 & BR) != 0){
-			BR ^= UNIT1;
-			id2 = ROOK;
-		}
-		else if ((UNIT1 & BN) != 0){
-			BN ^= UNIT1;
-			id2 = KNIGHT;
-		}
-		else if ((UNIT1 & BB) != 0){
-			BB ^= UNIT1;
-			id2 = BISHOP;
-		}
-		else if ((UNIT1 & BQ) != 0){
-			BQ ^= UNIT1;
-			id2 = QUEEN;
-		}
-		else if ((UNIT1 & BK) != 0){
-			BK ^= UNIT1;
-			id2 = KING;
-		}
-		else if ((UNIT1 & BP) != 0){ 
-			BP ^= UNIT1;
-			id2 = PAWN;
-		}
+		if ((UNIT1 & BR) != 0) BR ^= UNIT1;
+		else if ((UNIT1 & BN) != 0) BN ^= UNIT1;
+		else if ((UNIT1 & BB) != 0) BB ^= UNIT1;
+		else if ((UNIT1 & BQ) != 0) BQ ^= UNIT1;
+		else if ((UNIT1 & BK) != 0) BK ^= UNIT1;
+		else if ((UNIT1 & BP) != 0) BP ^= UNIT1;
 
 		if ((id0 == PAWN) && ((UNIT0 << 16) == UNIT1)){
 			uint8_t i;
@@ -637,30 +620,12 @@ void Bitboard::Move(uint64_t UNIT0, uint64_t UNIT1, uint8_t id0, uint8_t id1, ui
 				break;
 		}
 
-		if ((UNIT1 & WR) != 0){
-			WR ^= UNIT1;
-			id2 = ROOK;
-		}
-		else if ((UNIT1 & WN) != 0){
-			WN ^= UNIT1;
-			id2 = KNIGHT;
-		}
-		else if ((UNIT1 & WB) != 0){
-			WB ^= UNIT1;
-			id2 = BISHOP;
-		}
-		else if ((UNIT1 & WQ) != 0){
-			WQ ^= UNIT1;
-			id2 = QUEEN;
-		}
-		else if ((UNIT1 & WK) != 0){
-			WK ^= UNIT1;
-			id2 = KING;
-		}
-		else if ((UNIT1 & WP) != 0){ 
-			WP ^= UNIT1;
-			id2 = PAWN;
-		}
+		if ((UNIT1 & WR) != 0) WR ^= UNIT1;
+		else if ((UNIT1 & WN) != 0) WN ^= UNIT1;
+		else if ((UNIT1 & WB) != 0) WB ^= UNIT1;
+		else if ((UNIT1 & WQ) != 0) WQ ^= UNIT1;
+		else if ((UNIT1 & WK) != 0) WK ^= UNIT1;
+		else if ((UNIT1 & WP) != 0) WP ^= UNIT1;
 
 		if ((id0 == PAWN) && ((UNIT0 >> 16) == UNIT1)){
 			uint8_t i;
@@ -675,6 +640,196 @@ void Bitboard::Move(uint64_t UNIT0, uint64_t UNIT1, uint8_t id0, uint8_t id1, ui
 	Update();
 	turn = !turn;
 }
+
+// //==============================================
+// // Move
+// //==============================================
+// void Bitboard::Move(uint64_t UNIT0, uint64_t UNIT1, uint8_t id0, uint8_t id1, uint8_t & id2)
+// {
+// 	if (turn == WHITE){
+// 		switch (id0){
+// 			case ROOK:
+// 				WR ^= UNIT0;
+// 				if ((WR & 0x0000000000000080UL) == 0) wkc = false;
+// 				if ((WR & 0x0000000000000001UL) == 0) wqc = false;
+// 				break;
+// 			case KNIGHT:
+// 				WN ^= UNIT0;
+// 				break;
+// 			case BISHOP:
+// 				WB ^= UNIT0;
+// 				break;
+// 			case QUEEN:
+// 				WQ ^= UNIT0;
+// 				break;
+// 			case KING:
+// 				WK ^= UNIT0;
+// 				wkc = false;
+// 				wqc = false;
+// 				if ((UNIT0 >> 2) == UNIT1){
+// 					WR ^= 0x0000000000000001UL;
+// 					WR |= 0x0000000000000008UL;
+// 				}
+// 				else if ((UNIT0 << 2) == UNIT1){
+// 					WR ^= 0x0000000000000080UL;
+// 					WR |= 0x0000000000000020UL;
+// 				}
+// 				break;
+// 			case PAWN:
+// 				WP ^= UNIT0;
+// 				break;
+// 		}
+
+// 		switch (id1){
+// 			case ROOK:
+// 				WR |= UNIT1;
+// 				break;
+// 			case KNIGHT:
+// 				WN |= UNIT1;
+// 				break;
+// 			case BISHOP:
+// 				WB |= UNIT1;
+// 				break;
+// 			case QUEEN:
+// 				WQ |= UNIT1;
+// 				break;
+// 			case KING:
+// 				WK |= UNIT1;
+// 				break;
+// 			case PAWN:
+// 				WP |= UNIT1;
+// 				if (UNIT1 & FILE_EP & RANK_6) BP ^= (UNIT1 >> 8);
+// 				break;
+// 		}
+
+// 		if ((UNIT1 & BR) != 0){
+// 			BR ^= UNIT1;
+// 			id2 = ROOK;
+// 		}
+// 		else if ((UNIT1 & BN) != 0){
+// 			BN ^= UNIT1;
+// 			id2 = KNIGHT;
+// 		}
+// 		else if ((UNIT1 & BB) != 0){
+// 			BB ^= UNIT1;
+// 			id2 = BISHOP;
+// 		}
+// 		else if ((UNIT1 & BQ) != 0){
+// 			BQ ^= UNIT1;
+// 			id2 = QUEEN;
+// 		}
+// 		else if ((UNIT1 & BK) != 0){
+// 			BK ^= UNIT1;
+// 			id2 = KING;
+// 		}
+// 		else if ((UNIT1 & BP) != 0){ 
+// 			BP ^= UNIT1;
+// 			id2 = PAWN;
+// 		}
+
+// 		if ((id0 == PAWN) && ((UNIT0 << 16) == UNIT1)){
+// 			uint8_t i;
+// 			for (i = 0; i < 64; i++){
+// 				if ((0x1UL << i) == UNIT0) break;
+// 			}
+// 			FILE_EP = FILES[i & 0x7];
+// 		} 
+// 		else FILE_EP = 0x0UL;
+// 	}
+// 	else {
+// 		switch (id0){
+// 			case ROOK:
+// 				BR ^= UNIT0;
+// 				if ((BR & 0x8000000000000000UL) == 0) bkc = false;
+// 				if ((BR & 0x0100000000000000UL) == 0) bqc = false;
+// 				break;
+// 			case KNIGHT:
+// 				BN ^= UNIT0;
+// 				break;
+// 			case BISHOP:
+// 				BB ^= UNIT0;
+// 				break;
+// 			case QUEEN:
+// 				BQ ^= UNIT0;
+// 				break;
+// 			case KING:
+// 				BK ^= UNIT0;
+// 				bkc = false;
+// 				bqc = false;
+// 				if ((UNIT0 >> 2) == UNIT1){
+// 					BR ^= 0x0100000000000000UL;
+// 					BR |= 0x0800000000000000UL;
+// 				}
+// 				if ((UNIT0 << 2) == UNIT1){
+// 					BR ^= 0x8000000000000000UL;
+// 					BR |= 0x2000000000000000UL;
+// 				}
+// 				break;
+// 			case PAWN:
+// 				BP ^= UNIT0;
+// 				break;
+// 		}
+
+// 		switch (id1){
+// 			case ROOK:
+// 				BR |= UNIT1;
+// 				break;
+// 			case KNIGHT:
+// 				BN |= UNIT1;
+// 				break;
+// 			case BISHOP:
+// 				BB |= UNIT1;
+// 				break;
+// 			case QUEEN:
+// 				BQ |= UNIT1;
+// 				break;
+// 			case KING:
+// 				BK |= UNIT1;
+// 				break;
+// 			case PAWN:
+// 				BP |= UNIT1;
+// 				if (UNIT1 & FILE_EP & RANK_3) WP ^= (UNIT1 << 8);;
+// 				break;
+// 		}
+
+// 		if ((UNIT1 & WR) != 0){
+// 			WR ^= UNIT1;
+// 			id2 = ROOK;
+// 		}
+// 		else if ((UNIT1 & WN) != 0){
+// 			WN ^= UNIT1;
+// 			id2 = KNIGHT;
+// 		}
+// 		else if ((UNIT1 & WB) != 0){
+// 			WB ^= UNIT1;
+// 			id2 = BISHOP;
+// 		}
+// 		else if ((UNIT1 & WQ) != 0){
+// 			WQ ^= UNIT1;
+// 			id2 = QUEEN;
+// 		}
+// 		else if ((UNIT1 & WK) != 0){
+// 			WK ^= UNIT1;
+// 			id2 = KING;
+// 		}
+// 		else if ((UNIT1 & WP) != 0){ 
+// 			WP ^= UNIT1;
+// 			id2 = PAWN;
+// 		}
+
+// 		if ((id0 == PAWN) && ((UNIT0 >> 16) == UNIT1)){
+// 			uint8_t i;
+// 			for (i = 0; i < 64; i++){
+// 				if ((0x1UL << i) == UNIT0) break;
+// 			}
+// 			FILE_EP = FILES[i & 0x7];
+// 		} 
+// 		else FILE_EP = 0x0UL;
+// 	}
+
+// 	Update();
+// 	turn = !turn;
+// }
 
 // //==============================================
 // // Moves

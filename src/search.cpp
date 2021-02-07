@@ -13,49 +13,43 @@ Search::Search(Bitboard bitboard)
 }
 
 //==============================================
-// StoreBitboard
+// Store
 //==============================================
-void Search::StoreBitboard()
+void Search::Store()
 {
-	mem[depth][0] = bitboard.WR;
-	mem[depth][1] = bitboard.WN;
-	mem[depth][2] = bitboard.WB;
-	mem[depth][3] = bitboard.WQ; 
-	mem[depth][4] = bitboard.WK;
-	mem[depth][5] = bitboard.WP; 
-	mem[depth][6] = bitboard.BR;
-	mem[depth][7] = bitboard.BN; 
-	mem[depth][8] = bitboard.BB;
-	mem[depth][9] = bitboard.BQ; 
-	mem[depth][10] = bitboard.BK;
-	mem[depth][11] = bitboard.BP; 
-	mem[depth][12] = bitboard.WHITE_UNITS;
-	mem[depth][13] = bitboard.BLACK_UNITS; 
-	mem[depth][14] = bitboard.EMPTY;
-	mem[depth][15] = bitboard.WHITE_ATTACKS; 
-	mem[depth][16] = bitboard.BLACK_ATTACKS;
-	mem[depth][17] = bitboard.turn;
-	mem[depth][18] = bitboard.wkc;
-	mem[depth][19] = bitboard.wqc;
-	mem[depth][20] = bitboard.bkc;
-	mem[depth][21] = bitboard.bqc;
-	mem[depth][22] = bitboard.wc;
-	mem[depth][23] = bitboard.bc;
-}
-
-//==============================================
-// StoreMove
-//==============================================
-void Search::StoreMove()
-{
-	mem[depth][24] = UNIT0; 
-	mem[depth][25] = UNIT1;
-	mem[depth][26] = id0;
-	mem[depth][27] = id1;
-	mem[depth][28] = id2;
-	mem[depth][29] = UNITS;
-	mem[depth][30] = MOVES;
-	mem[depth][31] = index;	
+	mem[d][0] = bitboard.WR;
+	mem[d][1] = bitboard.WN;
+	mem[d][2] = bitboard.WB;
+	mem[d][3] = bitboard.WQ; 
+	mem[d][4] = bitboard.WK;
+	mem[d][5] = bitboard.WP; 
+	mem[d][6] = bitboard.BR;
+	mem[d][7] = bitboard.BN; 
+	mem[d][8] = bitboard.BB;
+	mem[d][9] = bitboard.BQ; 
+	mem[d][10] = bitboard.BK;
+	mem[d][11] = bitboard.BP; 
+	mem[d][12] = bitboard.WHITE_UNITS;
+	mem[d][13] = bitboard.BLACK_UNITS; 
+	mem[d][14] = bitboard.EMPTY;
+	mem[d][15] = bitboard.WHITE_ATTACKS; 
+	mem[d][16] = bitboard.BLACK_ATTACKS;
+	mem[d][17] = bitboard.FILE_EP;
+	mem[d][18] = bitboard.turn;
+	mem[d][19] = bitboard.wkc;
+	mem[d][20] = bitboard.wqc;
+	mem[d][21] = bitboard.bkc;
+	mem[d][22] = bitboard.bqc;
+	mem[d][23] = bitboard.wc;
+	mem[d][24] = bitboard.bc;
+	mem[d][25] = UNIT0; 
+	mem[d][26] = UNIT1;
+	mem[d][27] = id0;
+	mem[d][28] = id1;
+	mem[d][29] = UNITS;
+	mem[d][30] = MOVES;
+	mem[d][31] = index;
+	mem[d][32] = indexPrmt;		
 }
 
 //==============================================
@@ -63,86 +57,87 @@ void Search::StoreMove()
 //==============================================
 void Search::Load()
 {
-	bitboard.WR = mem[depth][0];
-	bitboard.WN = mem[depth][1];
-	bitboard.WB = mem[depth][2];
-	bitboard.WQ = mem[depth][3]; 
-	bitboard.WK = mem[depth][4];
-	bitboard.WP = mem[depth][5]; 
-	bitboard.BR = mem[depth][6];
-	bitboard.BN = mem[depth][7]; 
-	bitboard.BB = mem[depth][8];
-	bitboard.BQ = mem[depth][9]; 
-	bitboard.BK = mem[depth][10];
-	bitboard.BP = mem[depth][11]; 
-	bitboard.WHITE_UNITS = mem[depth][12];
-	bitboard.BLACK_UNITS = mem[depth][13]; 
-	bitboard.EMPTY = mem[depth][14];
-	bitboard.WHITE_ATTACKS = mem[depth][15]; 
-	bitboard.BLACK_ATTACKS = mem[depth][16];
-	bitboard.turn = mem[depth][17];
-	bitboard.wkc = mem[depth][18];
-	bitboard.wqc = mem[depth][19];
-	bitboard.bkc = mem[depth][20];
-	bitboard.bqc = mem[depth][21];
-	bitboard.wc = mem[depth][22];
-	bitboard.bc = mem[depth][23];
-	UNIT0 = mem[depth][24]; 
-	UNIT1 = mem[depth][25];
-	id0 = mem[depth][26];
-	id1 = mem[depth][27];
-	id2 = mem[depth][28];
-	UNITS = mem[depth][29];
-	MOVES = mem[depth][30];
-	index = mem[depth][31];
+	bitboard.WR = mem[d][0];
+	bitboard.WN = mem[d][1];
+	bitboard.WB = mem[d][2];
+	bitboard.WQ = mem[d][3]; 
+	bitboard.WK = mem[d][4];
+	bitboard.WP = mem[d][5]; 
+	bitboard.BR = mem[d][6];
+	bitboard.BN = mem[d][7]; 
+	bitboard.BB = mem[d][8];
+	bitboard.BQ = mem[d][9]; 
+	bitboard.BK = mem[d][10];
+	bitboard.BP = mem[d][11]; 
+	bitboard.WHITE_UNITS = mem[d][12];
+	bitboard.BLACK_UNITS = mem[d][13]; 
+	bitboard.EMPTY = mem[d][14];
+	bitboard.WHITE_ATTACKS = mem[d][15]; 
+	bitboard.BLACK_ATTACKS = mem[d][16];
+	bitboard.FILE_EP = mem[d][17];
+	bitboard.turn = mem[d][18];
+	bitboard.wkc = mem[d][19];
+	bitboard.wqc = mem[d][20];
+	bitboard.bkc = mem[d][21];
+	bitboard.bqc = mem[d][22];
+	bitboard.wc = mem[d][23];
+	bitboard.bc = mem[d][24];
+	UNIT0 = mem[d][25]; 
+	UNIT1 = mem[d][26];
+	id0 = mem[d][27];
+	id1 = mem[d][28];
+	UNITS = mem[d][29];
+	MOVES = mem[d][30];
+	index = mem[d][31];
+	indexPrmt = mem[d][32];
 }
 
 //==============================================
 // DepthFirstSearch
 //==============================================
-void Search::DepthFirstSearch()
+void Search::DepthFirstSearch(uint8_t D)
 {
 	std::cout << "Starting Search..." << std::endl;
 	UNITS = 0x0UL;
 	MOVES = 0x0UL;
-	depth = 0;
-
-	uint8_t ids[] = {PAWN, ROOK, KNIGHT, BISHOP, QUEEN, KING};
-	uint8_t idsPrmt[] = {QUEEN, KNIGHT, ROOK, BISHOP};
-	index = -1;
+	d = 0;
+	index = 0;
 	indexPrmt = 0;
-	bitboard.Print();
+	count = 0;
+	//bitboard.Print();
 
 	while (true){
-
-		if (depth == 2){
-			depth--;
+		if ((d == D) || (d == MAX_DEPTH)){
+			d--;
 			Load();
 		}
-
-		if (MOVES != 0x0UL){
+		else if (MOVES != 0x0UL){
 			bitboard.LS1B(MOVES, UNIT1, i);
-
-			if ((id0 == PAWN) && ((UNIT1 & RANK_8) != 0)){
-				if (indexPrmt == 4) MOVES ^= UNIT1;
-				else {
-					id1 = idsPrmt[indexPrmt];
-					indexPrmt++;
-				}
+			if ((id0 == PAWN) && (((UNIT1 & RANK_1) != 0) || ((UNIT1 & RANK_8) != 0))){
+				id1 = idsPrmt[indexPrmt];
+				if (indexPrmt == 3) MOVES ^= UNIT1;
+				indexPrmt++;
 			}
-			// need to take care of promotions
-			MOVES ^= UNIT1; 			
-			StoreBitboard();
-			bitboard.Move(UNIT0, UNIT1, id0, id1, id2);
-			StoreMove();
+			else {
+				MOVES ^= UNIT1;
+			}
+			Store();
+			bitboard.Move(UNIT0, UNIT1, id0, id1);
+
+			// check if move is valid
+			if ((bitboard.turn == WHITE && bitboard.bc) || (bitboard.turn == BLACK && bitboard.wc)){
+				Load();
+				continue;
+			}
+
 			UNITS = 0x0UL;
 			MOVES = 0x0UL;
-			index = -1;
-			depth++;
-			bitboard.Print();
+			index = 0;
+			d++;
+			count++;
+			//bitboard.Print();
 		}
-
-		if (UNITS != 0){
+		else if (UNITS != 0){
 			bitboard.LS1B(UNITS, UNIT0, i);
 			UNITS ^= UNIT0;
 			switch (id0){
@@ -170,42 +165,50 @@ void Search::DepthFirstSearch()
 					if (bitboard.turn == WHITE) MOVES = bitboard.MovesWP(UNIT0);
 					else MOVES = bitboard.MovesBP(UNIT0);
 					break;
+				default:
+					MOVES = 0x0UL;
 			}
 		}
-		else {
-			if (index < 5){
-				index++;
-				
-				id0 = ids[index];
-				id1 = ids[index];
-				switch (id0){
-					case ROOK:
-						if (bitboard.turn == WHITE) UNITS = bitboard.WR;
-						else UNITS = bitboard.BR;
-						break;
-					case KNIGHT:
-						if (bitboard.turn == WHITE) UNITS = bitboard.WN;
-						else UNITS = bitboard.BN;
-						break;
-					case BISHOP:
-						if (bitboard.turn == WHITE) UNITS = bitboard.WB;
-						else UNITS = bitboard.BB;
-						break;
-					case QUEEN:
-						if (bitboard.turn == WHITE) UNITS = bitboard.WQ;
-						else UNITS = bitboard.BQ;
-						break;
-					case KING:
-						if (bitboard.turn == WHITE) UNITS = bitboard.WK;
-						else UNITS = bitboard.BK;
-						break;
-					case PAWN:
-						if (bitboard.turn == WHITE) UNITS = bitboard.WP;
-						else UNITS = bitboard.BP;
-						break;
-				}
+		else if (index < 6){
+			id0 = ids[index];
+			id1 = ids[index];
+			switch (id0){
+				case ROOK:
+					if (bitboard.turn == WHITE) UNITS = bitboard.WR;
+					else UNITS = bitboard.BR;
+					break;
+				case KNIGHT:
+					if (bitboard.turn == WHITE) UNITS = bitboard.WN;
+					else UNITS = bitboard.BN;
+					break;
+				case BISHOP:
+					if (bitboard.turn == WHITE) UNITS = bitboard.WB;
+					else UNITS = bitboard.BB;
+					break;
+				case QUEEN:
+					if (bitboard.turn == WHITE) UNITS = bitboard.WQ;
+					else UNITS = bitboard.BQ;
+					break;
+				case KING:
+					if (bitboard.turn == WHITE) UNITS = bitboard.WK;
+					else UNITS = bitboard.BK;
+					break;
+				case PAWN:
+					if (bitboard.turn == WHITE) UNITS = bitboard.WP;
+					else UNITS = bitboard.BP;
+					break;
+				default:
+					UNITS = 0x0UL;
 			}
-			else return;
+			index++;
+		}
+		else if (d != 0){
+			d--;
+			Load();
+		}
+		else{
+			std::cout << "count: " << (int)count << std::endl;
+			return;
 		}
 
 	}
@@ -218,7 +221,7 @@ void Search::DepthFirstSearch()
 	// uint8_t i;
 
 	// int count = 0;
-	// int depth = 0;
+	// int d = 0;
 
 
 	// while (1){
@@ -319,7 +322,7 @@ void Search::DepthFirstSearch()
 
 	// 	Move(UNIT0, UNIT1, UNIT2 id0, id1, id2);
 	// 	turn = !turn;
-	// 	depth++;
+	// 	d++;
 
 
 	// } 
