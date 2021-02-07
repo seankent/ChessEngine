@@ -1,5 +1,6 @@
 #include <iostream>
 #include "bitboard.hpp"
+#include "search.hpp"
 #include "game.hpp"
 #include "test_bitboard.hpp"
 
@@ -22,20 +23,26 @@ int main(void)
 	// Test_MoveBP();
 	// Test_MovesW();
 	char board[8][8] = {
-		{'r', ' ', ' ', ' ', 'k', ' ', ' ', 'r'},
-		{' ', ' ', ' ', 'B', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{'p', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{'R', ' ', ' ', ' ', 'K', ' ', ' ', 'R'},
+		{' ', ' ', ' ', ' ', 'K', ' ', ' ', ' '},
 	};
-	// // Test_Move();
-	// //std::cout << "this message \f weeee" << std::endl;
-	Game game(board, BLACK);
-	// // Game game;
-	game.Run();
+	// // // Test_Move();
+	// // //std::cout << "this message \f weeee" << std::endl;
+	// Game game(board, BLACK);
+	// // // Game game;
+	// game.Run();
+
+	Bitboard bitboard(board, WHITE);
+	//Bitboard bitboard;
+	Search search(bitboard);
+	search.DepthFirstSearch();
+
 	//bitboard.Print();
 	//foo();
 	// uint64_t LS1B;

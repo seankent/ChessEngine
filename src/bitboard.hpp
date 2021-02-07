@@ -96,22 +96,22 @@ public:
 	uint64_t WHITE_UNITS; 	// bitboard for all the white units
 	uint64_t BLACK_UNITS; 	// bitboard for all the black units
 	uint64_t EMPTY;		  	// bitboard for all the empty squares on the board
-	uint64_t FILE_EP;		// bitboard for en passant file
 	uint64_t WHITE_ATTACKS;
 	uint64_t BLACK_ATTACKS;
+	uint64_t FILE_EP;		// bitboard for en passant file
 public:
 	bool turn;
 	bool wkc, wqc, bkc, bqc;	// castling rights
 	bool wc, bc;				// check indicators
-	uint64_t moves[256][11];	// [i0, i1, i2, unit0 type, unit1 type, unit2 type, wkc, wqc, bkc, bqc, ep]
-	int n;
+	// uint64_t moves[256][11];	// [i0, i1, i2, unit0 type, unit1 type, unit2 type, wkc, wqc, bkc, bqc, ep]
+	// int n;
 
 public:
 	Bitboard(char board[8][8], bool turn);		// bitboard constructor
 	Bitboard();									// bitboard constructor
 	void BoardToBitboard(char board[8][8]);
 	void BitboardToBoard(char board[8][8]);
-	bool Update();
+	void Update();
 	void LS1B(uint64_t U64, uint64_t & LS1B, uint8_t & i);
 	uint64_t Reverse(uint64_t U64);
 	void Print(char board[8][8]);
@@ -132,8 +132,9 @@ public:
 	uint64_t MovesBP(uint64_t UNIT);
 	uint64_t AttacksW();
 	uint64_t AttacksB();
-	bool Move(uint64_t UNIT0, uint64_t UNIT1, uint8_t peice);
-	void Undo();
+	void Move(uint64_t UNIT0, uint64_t UNIT1, uint8_t id0, uint8_t id1, uint8_t & id2);
+	// bool Move(uint64_t UNIT0, uint64_t UNIT1, uint8_t peice);
+	// void Undo();
 };
 
 #endif

@@ -2031,574 +2031,574 @@ void Test_MovesBP()
 // 	Test_MovesB_5();
 // }
 
-//==============================================
-// Test_Move_0
-//==============================================
-void Test_Move_0()
-{
-	std::cout << "Test 0:" << std::endl;
-	char board[8][8] = {
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{'R', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-	};
-	Bitboard bitboard(board, WHITE);
-	uint8_t i0 = 0;
-	uint8_t i1 = 16;
-	uint64_t UNIT0 = 0x1UL << i0;
-	uint64_t UNIT1 = 0x1UL << i1;
-	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
-	if (legal){
-		bitboard.Print();
-	} 
-	else {
-		std::cout << "illegal" << std::endl;
-	}
-}
+// //==============================================
+// // Test_Move_0
+// //==============================================
+// void Test_Move_0()
+// {
+// 	std::cout << "Test 0:" << std::endl;
+// 	char board[8][8] = {
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{'R', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 	};
+// 	Bitboard bitboard(board, WHITE);
+// 	uint8_t i0 = 0;
+// 	uint8_t i1 = 16;
+// 	uint64_t UNIT0 = 0x1UL << i0;
+// 	uint64_t UNIT1 = 0x1UL << i1;
+// 	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
+// 	if (legal){
+// 		bitboard.Print();
+// 	} 
+// 	else {
+// 		std::cout << "illegal" << std::endl;
+// 	}
+// }
 
-//==============================================
-// Test_Move_1
-//==============================================
-void Test_Move_1()
-{
-	std::cout << "Test 1:" << std::endl;
-	char board[8][8] = {
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', 'N', ' ', ' ', ' ', ' ', ' ', ' '},
-	};
-	Bitboard bitboard(board, WHITE);
-	uint8_t i0 = 1;
-	uint8_t i1 = 18;
-	uint64_t UNIT0 = 0x1UL << i0;
-	uint64_t UNIT1 = 0x1UL << i1;
-	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
-	if (legal){
-		bitboard.Print();
-	} 
-	else {
-		std::cout << "illegal" << std::endl;
-	}
-}
+// //==============================================
+// // Test_Move_1
+// //==============================================
+// void Test_Move_1()
+// {
+// 	std::cout << "Test 1:" << std::endl;
+// 	char board[8][8] = {
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', 'N', ' ', ' ', ' ', ' ', ' ', ' '},
+// 	};
+// 	Bitboard bitboard(board, WHITE);
+// 	uint8_t i0 = 1;
+// 	uint8_t i1 = 18;
+// 	uint64_t UNIT0 = 0x1UL << i0;
+// 	uint64_t UNIT1 = 0x1UL << i1;
+// 	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
+// 	if (legal){
+// 		bitboard.Print();
+// 	} 
+// 	else {
+// 		std::cout << "illegal" << std::endl;
+// 	}
+// }
 
-//==============================================
-// Test_Move_2
-//==============================================
-void Test_Move_2()
-{
-	std::cout << "Test 2:" << std::endl;
-	char board[8][8] = {
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', 'B', ' ', ' ', ' ', ' ', ' '},
-	};
-	Bitboard bitboard(board, WHITE);
-	uint8_t i0 = 2;
-	uint8_t i1 = 38;
-	uint64_t UNIT0 = 0x1UL << i0;
-	uint64_t UNIT1 = 0x1UL << i1;
-	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
-	if (legal){
-		bitboard.Print();
-	} 
-	else {
-		std::cout << "illegal" << std::endl;
-	}
-}
+// //==============================================
+// // Test_Move_2
+// //==============================================
+// void Test_Move_2()
+// {
+// 	std::cout << "Test 2:" << std::endl;
+// 	char board[8][8] = {
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', 'B', ' ', ' ', ' ', ' ', ' '},
+// 	};
+// 	Bitboard bitboard(board, WHITE);
+// 	uint8_t i0 = 2;
+// 	uint8_t i1 = 38;
+// 	uint64_t UNIT0 = 0x1UL << i0;
+// 	uint64_t UNIT1 = 0x1UL << i1;
+// 	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
+// 	if (legal){
+// 		bitboard.Print();
+// 	} 
+// 	else {
+// 		std::cout << "illegal" << std::endl;
+// 	}
+// }
 
-//==============================================
-// Test_Move_3
-//==============================================
-void Test_Move_3()
-{
-	std::cout << "Test 3:" << std::endl;
-	char board[8][8] = {
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', 'Q', ' ', ' ', ' ', ' '},
-	};
-	Bitboard bitboard(board, WHITE);
-	uint8_t i0 = 3;
-	uint8_t i1 = 59;
-	uint64_t UNIT0 = 0x1UL << i0;
-	uint64_t UNIT1 = 0x1UL << i1;
-	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
-	if (legal){
-		bitboard.Print();
-	} 
-	else {
-		std::cout << "illegal" << std::endl;
-	}
-}
+// //==============================================
+// // Test_Move_3
+// //==============================================
+// void Test_Move_3()
+// {
+// 	std::cout << "Test 3:" << std::endl;
+// 	char board[8][8] = {
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', 'Q', ' ', ' ', ' ', ' '},
+// 	};
+// 	Bitboard bitboard(board, WHITE);
+// 	uint8_t i0 = 3;
+// 	uint8_t i1 = 59;
+// 	uint64_t UNIT0 = 0x1UL << i0;
+// 	uint64_t UNIT1 = 0x1UL << i1;
+// 	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
+// 	if (legal){
+// 		bitboard.Print();
+// 	} 
+// 	else {
+// 		std::cout << "illegal" << std::endl;
+// 	}
+// }
 
-//==============================================
-// Test_Move_4
-//==============================================
-void Test_Move_4()
-{
-	std::cout << "Test 4:" << std::endl;
-	char board[8][8] = {
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', 'K', ' ', ' ', ' '},
-	};
-	Bitboard bitboard(board, WHITE);
-	uint8_t i0 = 4;
-	uint8_t i1 = 12;
-	uint64_t UNIT0 = 0x1UL << i0;
-	uint64_t UNIT1 = 0x1UL << i1;
-	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
-	if (legal){
-		bitboard.Print();
-	} 
-	else {
-		std::cout << "illegal" << std::endl;
-	}
-}
+// //==============================================
+// // Test_Move_4
+// //==============================================
+// void Test_Move_4()
+// {
+// 	std::cout << "Test 4:" << std::endl;
+// 	char board[8][8] = {
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', 'K', ' ', ' ', ' '},
+// 	};
+// 	Bitboard bitboard(board, WHITE);
+// 	uint8_t i0 = 4;
+// 	uint8_t i1 = 12;
+// 	uint64_t UNIT0 = 0x1UL << i0;
+// 	uint64_t UNIT1 = 0x1UL << i1;
+// 	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
+// 	if (legal){
+// 		bitboard.Print();
+// 	} 
+// 	else {
+// 		std::cout << "illegal" << std::endl;
+// 	}
+// }
 
-//==============================================
-// Test_Move_5
-//==============================================
-void Test_Move_5()
-{
-	std::cout << "Test 5:" << std::endl;
-	char board[8][8] = {
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{'P', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-	};
-	Bitboard bitboard(board, WHITE);
-	uint8_t i0 = 8;
-	uint8_t i1 = 24;
-	uint64_t UNIT0 = 0x1UL << i0;
-	uint64_t UNIT1 = 0x1UL << i1;
-	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
-	if (legal){
-		bitboard.Print();
-		bitboard.PrintBitboard(bitboard.FILE_EP);
-	} 
-	else {
-		std::cout << "illegal" << std::endl;
-	}
-}
+// //==============================================
+// // Test_Move_5
+// //==============================================
+// void Test_Move_5()
+// {
+// 	std::cout << "Test 5:" << std::endl;
+// 	char board[8][8] = {
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{'P', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 	};
+// 	Bitboard bitboard(board, WHITE);
+// 	uint8_t i0 = 8;
+// 	uint8_t i1 = 24;
+// 	uint64_t UNIT0 = 0x1UL << i0;
+// 	uint64_t UNIT1 = 0x1UL << i1;
+// 	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
+// 	if (legal){
+// 		bitboard.Print();
+// 		bitboard.PrintBitboard(bitboard.FILE_EP);
+// 	} 
+// 	else {
+// 		std::cout << "illegal" << std::endl;
+// 	}
+// }
 
-//==============================================
-// Test_Move_6
-//==============================================
-void Test_Move_6()
-{
-	std::cout << "Test 6:" << std::endl;
-	char board[8][8] = {
-		{'r', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-	};
-	Bitboard bitboard(board, BLACK);
-	uint8_t i0 = 56;
-	uint8_t i1 = 48;
-	uint64_t UNIT0 = 0x1UL << i0;
-	uint64_t UNIT1 = 0x1UL << i1;
-	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
-	if (legal){
-		bitboard.Print();
-	} 
-	else {
-		std::cout << "illegal" << std::endl;
-	}
-}
+// //==============================================
+// // Test_Move_6
+// //==============================================
+// void Test_Move_6()
+// {
+// 	std::cout << "Test 6:" << std::endl;
+// 	char board[8][8] = {
+// 		{'r', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 	};
+// 	Bitboard bitboard(board, BLACK);
+// 	uint8_t i0 = 56;
+// 	uint8_t i1 = 48;
+// 	uint64_t UNIT0 = 0x1UL << i0;
+// 	uint64_t UNIT1 = 0x1UL << i1;
+// 	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
+// 	if (legal){
+// 		bitboard.Print();
+// 	} 
+// 	else {
+// 		std::cout << "illegal" << std::endl;
+// 	}
+// }
 
-//==============================================
-// Test_Move_7
-//==============================================
-void Test_Move_7()
-{
-	std::cout << "Test 7:" << std::endl;
-	char board[8][8] = {
-		{' ', 'n', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-	};
-	Bitboard bitboard(board, BLACK);
-	uint8_t i0 = 57;
-	uint8_t i1 = 42;
-	uint64_t UNIT0 = 0x1UL << i0;
-	uint64_t UNIT1 = 0x1UL << i1;
-	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
-	if (legal){
-		bitboard.Print();
-	} 
-	else {
-		std::cout << "illegal" << std::endl;
-	}
-}
+// //==============================================
+// // Test_Move_7
+// //==============================================
+// void Test_Move_7()
+// {
+// 	std::cout << "Test 7:" << std::endl;
+// 	char board[8][8] = {
+// 		{' ', 'n', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 	};
+// 	Bitboard bitboard(board, BLACK);
+// 	uint8_t i0 = 57;
+// 	uint8_t i1 = 42;
+// 	uint64_t UNIT0 = 0x1UL << i0;
+// 	uint64_t UNIT1 = 0x1UL << i1;
+// 	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
+// 	if (legal){
+// 		bitboard.Print();
+// 	} 
+// 	else {
+// 		std::cout << "illegal" << std::endl;
+// 	}
+// }
 
-//==============================================
-// Test_Move_8
-//==============================================
-void Test_Move_8()
-{
-	std::cout << "Test 8:" << std::endl;
-	char board[8][8] = {
-		{' ', ' ', 'b', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-	};
-	Bitboard bitboard(board, BLACK);
-	uint8_t i0 = 58;
-	uint8_t i1 = 40;
-	uint64_t UNIT0 = 0x1UL << i0;
-	uint64_t UNIT1 = 0x1UL << i1;
-	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
-	if (legal){
-		bitboard.Print();
-	} 
-	else {
-		std::cout << "illegal" << std::endl;
-	}
-}
+// //==============================================
+// // Test_Move_8
+// //==============================================
+// void Test_Move_8()
+// {
+// 	std::cout << "Test 8:" << std::endl;
+// 	char board[8][8] = {
+// 		{' ', ' ', 'b', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 	};
+// 	Bitboard bitboard(board, BLACK);
+// 	uint8_t i0 = 58;
+// 	uint8_t i1 = 40;
+// 	uint64_t UNIT0 = 0x1UL << i0;
+// 	uint64_t UNIT1 = 0x1UL << i1;
+// 	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
+// 	if (legal){
+// 		bitboard.Print();
+// 	} 
+// 	else {
+// 		std::cout << "illegal" << std::endl;
+// 	}
+// }
 
-//==============================================
-// Test_Move_9
-//==============================================
-void Test_Move_9()
-{
-	std::cout << "Test 9:" << std::endl;
-	char board[8][8] = {
-		{' ', ' ', ' ', 'q', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-	};
-	Bitboard bitboard(board, BLACK);
-	uint8_t i0 = 59;
-	uint8_t i1 = 3;
-	uint64_t UNIT0 = 0x1UL << i0;
-	uint64_t UNIT1 = 0x1UL << i1;
-	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
-	if (legal){
-		bitboard.Print();
-	} 
-	else {
-		std::cout << "illegal" << std::endl;
-	}
-}
+// //==============================================
+// // Test_Move_9
+// //==============================================
+// void Test_Move_9()
+// {
+// 	std::cout << "Test 9:" << std::endl;
+// 	char board[8][8] = {
+// 		{' ', ' ', ' ', 'q', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 	};
+// 	Bitboard bitboard(board, BLACK);
+// 	uint8_t i0 = 59;
+// 	uint8_t i1 = 3;
+// 	uint64_t UNIT0 = 0x1UL << i0;
+// 	uint64_t UNIT1 = 0x1UL << i1;
+// 	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
+// 	if (legal){
+// 		bitboard.Print();
+// 	} 
+// 	else {
+// 		std::cout << "illegal" << std::endl;
+// 	}
+// }
 
-//==============================================
-// Test_Move_10
-//==============================================
-void Test_Move_10()
-{
-	std::cout << "Test 1:" << std::endl;
-	char board[8][8] = {
-		{' ', ' ', ' ', ' ', 'k', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-	};
-	Bitboard bitboard(board, BLACK);
-	uint8_t i0 = 60;
-	uint8_t i1 = 52;
-	uint64_t UNIT0 = 0x1UL << i0;
-	uint64_t UNIT1 = 0x1UL << i1;
-	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
-	if (legal){
-		bitboard.Print();
-	} 
-	else {
-		std::cout << "illegal" << std::endl;
-	}
-}
+// //==============================================
+// // Test_Move_10
+// //==============================================
+// void Test_Move_10()
+// {
+// 	std::cout << "Test 1:" << std::endl;
+// 	char board[8][8] = {
+// 		{' ', ' ', ' ', ' ', 'k', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 	};
+// 	Bitboard bitboard(board, BLACK);
+// 	uint8_t i0 = 60;
+// 	uint8_t i1 = 52;
+// 	uint64_t UNIT0 = 0x1UL << i0;
+// 	uint64_t UNIT1 = 0x1UL << i1;
+// 	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
+// 	if (legal){
+// 		bitboard.Print();
+// 	} 
+// 	else {
+// 		std::cout << "illegal" << std::endl;
+// 	}
+// }
 
-//==============================================
-// Test_Move_11
-//==============================================
-void Test_Move_11()
-{
-	std::cout << "Test 11:" << std::endl;
-	char board[8][8] = {
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', 'p', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-	};
-	Bitboard bitboard(board, BLACK);
-	uint8_t i0 = 50;
-	uint8_t i1 = 34;
-	uint64_t UNIT0 = 0x1UL << i0;
-	uint64_t UNIT1 = 0x1UL << i1;
-	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
-	if (legal){
-		bitboard.Print();
-		bitboard.PrintBitboard(bitboard.FILE_EP);
-	} 
-	else {
-		std::cout << "illegal" << std::endl;
-	}
-}
+// //==============================================
+// // Test_Move_11
+// //==============================================
+// void Test_Move_11()
+// {
+// 	std::cout << "Test 11:" << std::endl;
+// 	char board[8][8] = {
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', 'p', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 	};
+// 	Bitboard bitboard(board, BLACK);
+// 	uint8_t i0 = 50;
+// 	uint8_t i1 = 34;
+// 	uint64_t UNIT0 = 0x1UL << i0;
+// 	uint64_t UNIT1 = 0x1UL << i1;
+// 	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
+// 	if (legal){
+// 		bitboard.Print();
+// 		bitboard.PrintBitboard(bitboard.FILE_EP);
+// 	} 
+// 	else {
+// 		std::cout << "illegal" << std::endl;
+// 	}
+// }
 
-//==============================================
-// Test_Move_12
-//==============================================
-void Test_Move_12()
-{
-	std::cout << "Test 12:" << std::endl;
-	char board[8][8] = {
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{'q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{'R', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-	};
-	Bitboard bitboard(board, WHITE);
-	uint8_t i0 = 0;
-	uint8_t i1 = 32;
-	uint64_t UNIT0 = 0x1UL << i0;
-	uint64_t UNIT1 = 0x1UL << i1;
-	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
-	if (legal){
-		bitboard.Print();
-	} 
-	else {
-		std::cout << "illegal" << std::endl;
-	}
-}
+// //==============================================
+// // Test_Move_12
+// //==============================================
+// void Test_Move_12()
+// {
+// 	std::cout << "Test 12:" << std::endl;
+// 	char board[8][8] = {
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{'q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{'R', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 	};
+// 	Bitboard bitboard(board, WHITE);
+// 	uint8_t i0 = 0;
+// 	uint8_t i1 = 32;
+// 	uint64_t UNIT0 = 0x1UL << i0;
+// 	uint64_t UNIT1 = 0x1UL << i1;
+// 	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
+// 	if (legal){
+// 		bitboard.Print();
+// 	} 
+// 	else {
+// 		std::cout << "illegal" << std::endl;
+// 	}
+// }
 
-//==============================================
-// Test_Move_13
-//==============================================
-void Test_Move_13()
-{
-	std::cout << "Test 13:" << std::endl;
-	char board[8][8] = {
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', 'P', 'p', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-	};
-	Bitboard bitboard(board, BLACK);
-	bitboard.FILE_EP = FILE_B;
-	uint8_t i0 = 26;
-	uint8_t i1 = 17;
-	uint64_t UNIT0 = 0x1UL << i0;
-	uint64_t UNIT1 = 0x1UL << i1;
-	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
-	if (legal){
-		bitboard.Print();
-	} 
-	else {
-		std::cout << "illegal" << std::endl;
-	}
-}
+// //==============================================
+// // Test_Move_13
+// //==============================================
+// void Test_Move_13()
+// {
+// 	std::cout << "Test 13:" << std::endl;
+// 	char board[8][8] = {
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', 'P', 'p', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 	};
+// 	Bitboard bitboard(board, BLACK);
+// 	bitboard.FILE_EP = FILE_B;
+// 	uint8_t i0 = 26;
+// 	uint8_t i1 = 17;
+// 	uint64_t UNIT0 = 0x1UL << i0;
+// 	uint64_t UNIT1 = 0x1UL << i1;
+// 	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
+// 	if (legal){
+// 		bitboard.Print();
+// 	} 
+// 	else {
+// 		std::cout << "illegal" << std::endl;
+// 	}
+// }
 
-//==============================================
-// Test_Move_14
-//==============================================
-void Test_Move_14()
-{
-	std::cout << "Test 14:" << std::endl;
-	char board[8][8] = {
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', 'P', 'p'},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-	};
-	Bitboard bitboard(board, WHITE);
-	bitboard.FILE_EP = FILE_H;
-	uint8_t i0 = 38;
-	uint8_t i1 = 47;
-	uint64_t UNIT0 = 0x1UL << i0;
-	uint64_t UNIT1 = 0x1UL << i1;
-	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
-	if (legal){
-		bitboard.Print();
-	} 
-	else {
-		std::cout << "illegal" << std::endl;
-	}
-}
+// //==============================================
+// // Test_Move_14
+// //==============================================
+// void Test_Move_14()
+// {
+// 	std::cout << "Test 14:" << std::endl;
+// 	char board[8][8] = {
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', 'P', 'p'},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 	};
+// 	Bitboard bitboard(board, WHITE);
+// 	bitboard.FILE_EP = FILE_H;
+// 	uint8_t i0 = 38;
+// 	uint8_t i1 = 47;
+// 	uint64_t UNIT0 = 0x1UL << i0;
+// 	uint64_t UNIT1 = 0x1UL << i1;
+// 	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
+// 	if (legal){
+// 		bitboard.Print();
+// 	} 
+// 	else {
+// 		std::cout << "illegal" << std::endl;
+// 	}
+// }
 
-//==============================================
-// Test_Move_15
-//==============================================
-void Test_Move_15()
-{
-	std::cout << "Test 15:" << std::endl;
-	char board[8][8] = {
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{'P', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-	};
-	Bitboard bitboard(board, WHITE);
-	bitboard.FILE_EP = FILE_H;
-	uint8_t i0 = 48;
-	uint8_t i1 = 56;
-	uint64_t UNIT0 = 0x1UL << i0;
-	uint64_t UNIT1 = 0x1UL << i1;
-	bool legal = bitboard.Move(UNIT0, UNIT1, QUEEN);
-	if (legal){
-		bitboard.Print();
-	} 
-	else {
-		std::cout << "illegal" << std::endl;
-	}
-}
+// //==============================================
+// // Test_Move_15
+// //==============================================
+// void Test_Move_15()
+// {
+// 	std::cout << "Test 15:" << std::endl;
+// 	char board[8][8] = {
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{'P', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 	};
+// 	Bitboard bitboard(board, WHITE);
+// 	bitboard.FILE_EP = FILE_H;
+// 	uint8_t i0 = 48;
+// 	uint8_t i1 = 56;
+// 	uint64_t UNIT0 = 0x1UL << i0;
+// 	uint64_t UNIT1 = 0x1UL << i1;
+// 	bool legal = bitboard.Move(UNIT0, UNIT1, QUEEN);
+// 	if (legal){
+// 		bitboard.Print();
+// 	} 
+// 	else {
+// 		std::cout << "illegal" << std::endl;
+// 	}
+// }
 
-//==============================================
-// Test_Move_16
-//==============================================
-void Test_Move_16()
-{
-	std::cout << "Test 16:" << std::endl;
-	char board[8][8] = {
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', 'p', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', 'Q', ' ', ' ', ' ', ' '},
-	};
-	Bitboard bitboard(board, BLACK);
-	bitboard.FILE_EP = FILE_H;
-	uint8_t i0 = 10;
-	uint8_t i1 = 3;
-	uint64_t UNIT0 = 0x1UL << i0;
-	uint64_t UNIT1 = 0x1UL << i1;
-	bool legal = bitboard.Move(UNIT0, UNIT1, KNIGHT);
-	if (legal){
-		bitboard.Print();
-	} 
-	else {
-		std::cout << "illegal" << std::endl;
-	}
-}
+// //==============================================
+// // Test_Move_16
+// //==============================================
+// void Test_Move_16()
+// {
+// 	std::cout << "Test 16:" << std::endl;
+// 	char board[8][8] = {
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', 'p', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', 'Q', ' ', ' ', ' ', ' '},
+// 	};
+// 	Bitboard bitboard(board, BLACK);
+// 	bitboard.FILE_EP = FILE_H;
+// 	uint8_t i0 = 10;
+// 	uint8_t i1 = 3;
+// 	uint64_t UNIT0 = 0x1UL << i0;
+// 	uint64_t UNIT1 = 0x1UL << i1;
+// 	bool legal = bitboard.Move(UNIT0, UNIT1, KNIGHT);
+// 	if (legal){
+// 		bitboard.Print();
+// 	} 
+// 	else {
+// 		std::cout << "illegal" << std::endl;
+// 	}
+// }
 
-//==============================================
-// Test_Move_17
-//==============================================
-void Test_Move_17()
-{
-	std::cout << "Test 17:" << std::endl;
-	char board[8][8] = {
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{'R', ' ', ' ', ' ', 'K', ' ', ' ', ' '},
-	};
-	Bitboard bitboard(board, WHITE);
-	bitboard.FILE_EP = FILE_H;
-	uint8_t i0 = 4;
-	uint8_t i1 = 2;
-	uint64_t UNIT0 = 0x1UL << i0;
-	uint64_t UNIT1 = 0x1UL << i1;
-	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
-	if (legal){
-		bitboard.Print();
-	} 
-	else {
-		std::cout << "illegal" << std::endl;
-	}
-}
+// //==============================================
+// // Test_Move_17
+// //==============================================
+// void Test_Move_17()
+// {
+// 	std::cout << "Test 17:" << std::endl;
+// 	char board[8][8] = {
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+// 		{'R', ' ', ' ', ' ', 'K', ' ', ' ', ' '},
+// 	};
+// 	Bitboard bitboard(board, WHITE);
+// 	bitboard.FILE_EP = FILE_H;
+// 	uint8_t i0 = 4;
+// 	uint8_t i1 = 2;
+// 	uint64_t UNIT0 = 0x1UL << i0;
+// 	uint64_t UNIT1 = 0x1UL << i1;
+// 	bool legal = bitboard.Move(UNIT0, UNIT1, NONE);
+// 	if (legal){
+// 		bitboard.Print();
+// 	} 
+// 	else {
+// 		std::cout << "illegal" << std::endl;
+// 	}
+// }
 
-//==============================================
-// Test_Moves
-//==============================================
-void Test_Moves()
-{
-	Test_Move_0();
-	Test_Move_1();
-	Test_Move_2();
-	Test_Move_3();
-	Test_Move_4();
-	Test_Move_5();
-	Test_Move_6();
-	Test_Move_7();
-	Test_Move_8();
-	Test_Move_9();
-	Test_Move_10();
-	Test_Move_11();
-	Test_Move_12();
-	Test_Move_13();
-	Test_Move_14();
-	Test_Move_15();
-	Test_Move_16();
-	Test_Move_17();
-}
+// //==============================================
+// // Test_Moves
+// //==============================================
+// void Test_Moves()
+// {
+// 	Test_Move_0();
+// 	Test_Move_1();
+// 	Test_Move_2();
+// 	Test_Move_3();
+// 	Test_Move_4();
+// 	Test_Move_5();
+// 	Test_Move_6();
+// 	Test_Move_7();
+// 	Test_Move_8();
+// 	Test_Move_9();
+// 	Test_Move_10();
+// 	Test_Move_11();
+// 	Test_Move_12();
+// 	Test_Move_13();
+// 	Test_Move_14();
+// 	Test_Move_15();
+// 	Test_Move_16();
+// 	Test_Move_17();
+// }
