@@ -1,5 +1,6 @@
 #include <iostream>
 #include "bitboard.hpp"
+#include "evaluate.hpp"
 #include "search.hpp"
 #include "game.hpp"
 #include "test_bitboard.hpp"
@@ -23,34 +24,41 @@ int main(void)
 	// Test_MoveBP();
 	// Test_MovesW();
 	// char board[8][8] = {
-	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-	// 	{' ', ' ', ' ', ' ', ' ', 'p', ' ', ' '},
-	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-	// 	{' ', ' ', ' ', ' ', 'P', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', 'r', ' ', 'k', ' '},
+	// 	{' ', ' ', ' ', ' ', 'r', 'p', 'p', 'p'},
 	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', 'P', 'P', 'P'},
+	// 	{'R', ' ', ' ', ' ', ' ', ' ', 'K', ' '},
 	// };
+	char board[8][8] = {
+		{' ', ' ', ' ', ' ', 'r', ' ', 'k', ' '},
+		{' ', ' ', ' ', ' ', ' ', 'p', 'p', 'p'},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'N'},
+		{' ', ' ', ' ', 'Q', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', 'P', 'P', 'P'},
+		{' ', ' ', ' ', ' ', ' ', ' ', 'K', ' '},
+	};
 	// // // Test_Move();
 	// // //std::cout << "this message \f weeee" << std::endl;
 	// Game game(board, BLACK);
 	// // // Game game;
 	// game.Run();
 
-	//Bitboard bitboard(board, BLACK);
-	Bitboard bitboard;
-	//bitboard.turn = true;
+	Bitboard bitboard(board, WHITE);
 	Search search(bitboard);
-	search.DepthFirstSearch(5);
+	search.Minimax(4);
+	uint64_t UNIT0 = search.BEST0;
+	uint64_t UNIT1 = search.BEST1;
+	uint8_t id0 = search.ID0;
+	uint8_t id1 = search.ID1;
+	bitboard.Move(UNIT0, UNIT1, id0, id1);
+	bitboard.Print();
 
-	//bitboard.Print();
-	//foo();
-	// uint64_t LS1B;
-	// uint8_t i;
-	// bitboard.LS1B(0x0, LS1B, i);
-	// std::cout << std::bitset<64>(LS1B) << std::endl;
-	// std::cout << (int)i << std::endl;
 	return 0;
 }
 

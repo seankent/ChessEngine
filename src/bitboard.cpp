@@ -14,8 +14,6 @@ Bitboard::Bitboard(char board[8][8], bool turn)
 	this->wqc = true;
 	this->bkc = true;
 	this->bqc = true;
-	this->wc = false;
-	this->bc = false;
 }
 
 //==============================================
@@ -39,8 +37,6 @@ Bitboard::Bitboard()
 	this->wqc = true;
 	this->bkc = true;
 	this->bqc = true;
-	this->wc = false;
-	this->bc = false;
 }
 
 //==============================================
@@ -432,17 +428,17 @@ uint64_t Bitboard::AttacksW()
 	uint64_t WB = this->WB;		// make copy of WB
 	uint64_t WQ = this->WQ;		// make copy of WQ
 
-	while (WR != 0){
+	while (WR != 0x0UL){
 		LS1B(WR, UNIT, i);
 		ATTACKS |= MovesWR(UNIT, i);
 		WR ^= UNIT;
 	}
-	while (WB != 0){
+	while (WB != 0x0UL){
 		LS1B(WB, UNIT, i);
 		ATTACKS |= MovesWB(UNIT, i);
 		WB ^= UNIT;
 	}
-	while (WQ != 0){
+	while (WQ != 0x0UL){
 		LS1B(WQ, UNIT, i);
 		ATTACKS |= MovesWQ(UNIT, i);
 		WQ ^= UNIT;
@@ -465,17 +461,17 @@ uint64_t Bitboard::AttacksB()
 	uint64_t BB = this->BB;		// make copy of WB
 	uint64_t BQ = this->BQ;		// make copy of WQ
 
-	while (BR != 0){
+	while (BR != 0x0UL){
 		LS1B(BR, UNIT, i);
 		ATTACKS |= MovesBR(UNIT, i);
 		BR ^= UNIT;
 	}
-	while (BB != 0){
+	while (BB != 0x0UL){
 		LS1B(BB, UNIT, i);
 		ATTACKS |= MovesBB(UNIT, i);
 		BB ^= UNIT;
 	}
-	while (BQ != 0){
+	while (BQ != 0x0UL){
 		LS1B(BQ, UNIT, i);
 		ATTACKS |= MovesBQ(UNIT, i);
 		BQ ^= UNIT;
