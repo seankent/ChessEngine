@@ -1,6 +1,6 @@
 CC = g++
-CFLAGS =
-#CFLAGS = -Wall -g
+#CFLAGS =
+CFLAGS = -Wall -g
 
 main: main.o bitboard.o search.o evaluate.o game.o test_bitboard.o
 	$(CC) $(CFLAGS) -o main main.o bitboard.o search.o evaluate.o game.o test_bitboard.o

@@ -95,12 +95,11 @@ void Search::Load()
 	index = mem[d][31];
 	indexPrmt = mem[d][32];
 
-	//std::cout << "turn " << (value > mem[d][33] << std::endl;
 	if (((bitboard.turn == WHITE) && (value > (int)mem[d][33])) || ((bitboard.turn == BLACK) && (value < (int)mem[d][33]))){
-		BEST0 = UNIT0;
-		BEST1 = UNIT1;
-		ID0 = id0;
-		ID1 = id1;
+		BEST0 = mem[0][25];
+		BEST1 = mem[0][26];
+		ID0 = mem[0][27];
+		ID1 = mem[0][28];
 	}
 	else {
 		value = mem[d][33];
@@ -109,6 +108,8 @@ void Search::Load()
 		ID0 = mem[d][36];
 		ID1 = mem[d][37];
 	}
+	if (mem[d][35] == 0xfffffffffffffff8UL) std::cout <<  "corrupted" << std::endl;
+	if (BEST1 == 0xfffffffffffffff8UL) std::cout <<  "hi" << std::endl;
 }
 
 // //==============================================
@@ -171,14 +172,10 @@ void Search::DepthFirstSearch(uint8_t D)
 	std::cout << "Starting Search..." << std::endl;
 	UNITS = 0x0UL;
 	MOVES = 0x0UL;
-	BEST0 = 0x0UL;
-	BEST1 = 0x0UL;
 	d = 0;
 	index = 0;
 	indexPrmt = 0;
 	count = 0;
-
-	//bitboard.Print();
 
 	while (true){
 		if ((d == D) || (d == MAX_DEPTH)){
@@ -197,9 +194,11 @@ void Search::DepthFirstSearch(uint8_t D)
 			}
 			Store();
 			bitboard.Move(UNIT0, UNIT1, id0, id1);
+			d++;
 
 			// check if move is valid
 			if ((bitboard.turn == WHITE && bitboard.bc) || (bitboard.turn == BLACK && bitboard.wc)){
+				d--;
 				Load();
 				continue;
 			}
@@ -207,7 +206,6 @@ void Search::DepthFirstSearch(uint8_t D)
 			UNITS = 0x0UL;
 			MOVES = 0x0UL;
 			index = 0;
-			d++;
 			count++;
 			//bitboard.Print();
 		}
@@ -298,6 +296,10 @@ void Search::Minimax(uint8_t D)
 	std::cout << "Starting Search..." << std::endl;
 	UNITS = 0x0UL;
 	MOVES = 0x0UL;
+	BEST0 = 0x0UL;
+	BEST1 = 0x0UL;
+	ID0 = 0;
+	ID1 = 0;
 	d = 0;
 	index = 0;
 	indexPrmt = 0;
@@ -324,13 +326,17 @@ void Search::Minimax(uint8_t D)
 			}
 			Store();
 			bitboard.Move(UNIT0, UNIT1, id0, id1);
+			d++;
+
 			if (bitboard.turn == WHITE && bitboard.bc){
 				value = INFINITY;
+				d--;
 				Load();
 				continue;
 			}
 			else if (bitboard.turn == BLACK && bitboard.wc){
 				value = -INFINITY;
+				d--;
 				Load();
 				continue;
 			}
@@ -339,8 +345,9 @@ void Search::Minimax(uint8_t D)
 			else value = INFINITY;
 			UNITS = 0x0UL;
 			MOVES = 0x0UL;
+			BEST0 = 0x0UL;
+			BEST1 = 0x0UL;
 			index = 0;
-			d++;
 			count++;
 			//bitboard.Print();
 		}
@@ -414,7 +421,6 @@ void Search::Minimax(uint8_t D)
 			else if ((bitboard.turn == BLACK) && (value == INFINITY) && bitboard.bc == false) value = 0;
 			d--;
 			Load();
-
 		}
 		else{
 			std::cout << "count: " << (int)count << std::endl;

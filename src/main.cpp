@@ -33,31 +33,112 @@ int main(void)
 	// 	{' ', ' ', ' ', ' ', ' ', 'P', 'P', 'P'},
 	// 	{'R', ' ', ' ', ' ', ' ', ' ', 'K', ' '},
 	// };
+	// char board[8][8] = {
+	// 	{' ', ' ', ' ', ' ', 'r', ' ', 'k', ' '},
+	// 	{' ', ' ', ' ', ' ', 'r', 'p', 'p', 'p'},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'N'},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', 'P', 'P', 'P'},
+	// 	{'R', ' ', ' ', ' ', ' ', ' ', 'K', ' '},
+	// };
+	// char board[8][8] = {
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// };
+	// char board[8][8] = {
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', 'k', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', 'r', 'P', ' '},
+	// 	{' ', ' ', 'p', ' ', 'R', 'n', ' ', 'K'},
+	// 	{' ', ' ', ' ', 'p', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', 'P', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', 'P', 'B', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// };
 	char board[8][8] = {
-		{' ', ' ', ' ', ' ', 'r', ' ', 'k', ' '},
-		{' ', ' ', ' ', ' ', ' ', 'p', 'p', 'p'},
+		{' ', ' ', ' ', 'r', ' ', ' ', 'k', ' '},
+		{' ', ' ', ' ', ' ', 'q', ' ', ' ', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', 'p', ' '},
+		{' ', ' ', ' ', 'b', ' ', ' ', 'N', ' '},
+		{' ', ' ', ' ', ' ', 'B', ' ', ' ', 'Q'},
 		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'N'},
-		{' ', ' ', ' ', 'Q', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', 'P', 'P', 'P'},
-		{' ', ' ', ' ', ' ', ' ', ' ', 'K', ' '},
+		{' ', ' ', ' ', ' ', ' ', ' ', 'P', 'P'},
+		{' ', ' ', ' ', ' ', ' ', 'R', 'K', ' '},
 	};
+
+	Bitboard bitboard(board, WHITE);
+	Search search(bitboard);
+	search.bitboard.Print();
+
+	uint64_t UNIT0, UNIT1;
+	uint8_t id0, id1;
+	while (1){
+		search.Minimax(5);
+		UNIT0 = search.BEST0;
+		UNIT1 = search.BEST1;
+		id0 = search.ID0;
+		id1 = search.ID1;
+		if (UNIT0 == 0x0UL) break;
+		search.bitboard.Move(UNIT0, UNIT1, id0, id1);
+		search.bitboard.Print();
+	}
 	// // // Test_Move();
 	// // //std::cout << "this message \f weeee" << std::endl;
 	// Game game(board, BLACK);
 	// // // Game game;
 	// game.Run();
 
-	Bitboard bitboard(board, WHITE);
-	Search search(bitboard);
-	search.Minimax(4);
-	uint64_t UNIT0 = search.BEST0;
-	uint64_t UNIT1 = search.BEST1;
-	uint8_t id0 = search.ID0;
-	uint8_t id1 = search.ID1;
-	bitboard.Move(UNIT0, UNIT1, id0, id1);
-	bitboard.Print();
+	// Bitboard bitboard;
+	// Search search(bitboard);
+	// search.DepthFirstSearch(5);
+
+	// Bitboard bitboard(board, BLACK);
+	// bitboard.Print();
+	// //std::cout << "Turn: " << bitboard.turn << std::endl;
+	// Search search(bitboard);
+	// uint64_t UNIT0, UNIT1;
+	// uint8_t id0, id1;
+	// search.Minimax(4);
+	// UNIT0 = search.BEST0;
+	// UNIT1 = search.BEST1;
+	// id0 = search.ID0;
+	// id1 = search.ID1;
+	// //std::cout << "UNIT0: ";
+	// //bitboard.PrintBitboard(UNIT0);
+	// //std::cout << "UNIT1: ";
+	// //bitboard.PrintBitboard(UNIT1);
+	// search.bitboard.Move(UNIT0, UNIT1, id0, id1);
+	// //std::cout << "Turn: " << bitboard.turn << std::endl;
+	// search.bitboard.Print();
+	// // std::cout << "UNIT0: ";
+	// // bitboard.PrintBitboard(UNIT0);
+	// // std::cout << "UNIT1: ";
+	// // bitboard.PrintBitboard(UNIT1);
+	// // std::cout << "Turn: " << bitboard.turn << std::endl;
+	// search.Minimax(1);
+	// UNIT0 = search.BEST0;
+	// UNIT1 = search.BEST1;
+	// id0 = search.ID0;
+	// id1 = search.ID1;
+	// search.bitboard.Move(UNIT0, UNIT1, id0, id1);
+	// search.bitboard.Print();
+
+	// search.Minimax(4);
+	// UNIT0 = search.BEST0;
+	// UNIT1 = search.BEST1;
+	// id0 = search.ID0;
+	// id1 = search.ID1;
+	// search.bitboard.Move(UNIT0, UNIT1, id0, id1);
+	// search.bitboard.Print();
+
 
 	return 0;
 }
