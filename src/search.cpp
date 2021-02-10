@@ -183,7 +183,7 @@ void Search::DepthFirstSearch(uint8_t D)
 			Load();
 		}
 		else if (MOVES != 0x0UL){
-			bitboard.LS1B(MOVES, UNIT1, i);
+			UNIT1 = bitboard.LS1B(MOVES, i);
 			if ((id0 == PAWN) && (((UNIT1 & RANK_1) != 0) || ((UNIT1 & RANK_8) != 0))){
 				id1 = idsPrmt[indexPrmt];
 				if (indexPrmt == 3) MOVES ^= UNIT1;
@@ -210,7 +210,7 @@ void Search::DepthFirstSearch(uint8_t D)
 			//bitboard.Print();
 		}
 		else if (UNITS != 0){
-			bitboard.LS1B(UNITS, UNIT0, i);
+			UNIT0 = bitboard.LS1B(UNITS, i);
 			UNITS ^= UNIT0;
 			switch (id0){
 				case ROOK:
@@ -315,7 +315,7 @@ void Search::Minimax(uint8_t D)
 			Load();
 		}
 		else if (MOVES != 0x0UL){
-			bitboard.LS1B(MOVES, UNIT1, i);
+			UNIT1 = bitboard.LS1B(MOVES, i);
 			if ((id0 == PAWN) && (((UNIT1 & RANK_1) != 0) || ((UNIT1 & RANK_8) != 0))){
 				id1 = idsPrmt[indexPrmt];
 				if (indexPrmt == 3) MOVES ^= UNIT1;
@@ -352,7 +352,7 @@ void Search::Minimax(uint8_t D)
 			//bitboard.Print();
 		}
 		else if (UNITS != 0){
-			bitboard.LS1B(UNITS, UNIT0, i);
+			UNIT0 = bitboard.LS1B(UNITS, i);
 			UNITS ^= UNIT0;
 			switch (id0){
 				case ROOK:

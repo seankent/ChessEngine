@@ -10,6 +10,7 @@
 //==============================================
 int main(void)
 {
+	std::cout << "hi";
 	// Test_MovesWN();
 	// Test_MovesBN();
 	// Test_MovesWR();
@@ -63,33 +64,48 @@ int main(void)
 	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 	// };
-	char board[8][8] = {
-		{' ', ' ', ' ', 'r', ' ', ' ', 'k', ' '},
-		{' ', ' ', ' ', ' ', 'q', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', 'p', ' '},
-		{' ', ' ', ' ', 'b', ' ', ' ', 'N', ' '},
-		{' ', ' ', ' ', ' ', 'B', ' ', ' ', 'Q'},
-		{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-		{' ', ' ', ' ', ' ', ' ', ' ', 'P', 'P'},
-		{' ', ' ', ' ', ' ', ' ', 'R', 'K', ' '},
-	};
+	// char board[8][8] = {
+	// 	{' ', ' ', ' ', 'r', ' ', ' ', 'k', ' '},
+	// 	{' ', ' ', ' ', ' ', 'q', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', 'p', ' '},
+	// 	{' ', ' ', ' ', 'b', ' ', ' ', 'N', ' '},
+	// 	{' ', ' ', ' ', ' ', 'B', ' ', ' ', 'Q'},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', 'P', 'P'},
+	// 	{' ', ' ', ' ', ' ', ' ', 'R', 'K', ' '},
+	// };
+	// std::cout << "hi";
 
-	Bitboard bitboard(board, WHITE);
+	// char board[8][8] = {
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', 'P', ' ', 'P', ' ', 'P', ' '},
+	// 	{' ', ' ', ' ', 'P', 'k', 'P', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', 'K', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	// };
+
+
+	// //Bitboard bitboard(board, WHITE);
+	Bitboard bitboard;
 	Search search(bitboard);
-	search.bitboard.Print();
+	// search.bitboard.Print();
+	search.Minimax(5);
 
-	uint64_t UNIT0, UNIT1;
-	uint8_t id0, id1;
-	while (1){
-		search.Minimax(5);
-		UNIT0 = search.BEST0;
-		UNIT1 = search.BEST1;
-		id0 = search.ID0;
-		id1 = search.ID1;
-		if (UNIT0 == 0x0UL) break;
-		search.bitboard.Move(UNIT0, UNIT1, id0, id1);
-		search.bitboard.Print();
-	}
+	// uint64_t UNIT0, UNIT1;
+	// uint8_t id0, id1;
+	// while (1){
+	// 	search.Minimax(5);
+	// 	UNIT0 = search.BEST0;
+	// 	UNIT1 = search.BEST1;
+	// 	id0 = search.ID0;
+	// 	id1 = search.ID1;
+	// 	if (UNIT0 == 0x0UL) break;
+	// 	search.bitboard.Move(UNIT0, UNIT1, id0, id1);
+	// 	search.bitboard.Print();
+	// }
 	// // // Test_Move();
 	// // //std::cout << "this message \f weeee" << std::endl;
 	// Game game(board, BLACK);

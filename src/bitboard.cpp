@@ -41,19 +41,22 @@ Bitboard::Bitboard()
 
 //==============================================
 // LS1B
-// this function extracts the least significant 1 bit
-// from a 64-bit unsigned int.
+// This function extracts the least significant 1 bit
+// from a 64-bit unsigned integer.
 //==============================================
-void Bitboard::LS1B(uint64_t U64, uint64_t & LS1B, uint8_t & i)
+uint64_t Bitboard::LS1B(uint64_t U64, uint8_t & i)
 {
-	LS1B = U64 & (~U64 + 1);
-	for (i = 0; i < 64; i++){
-		if (LS1B & (0x1UL << i)) return;
+	uint64_t LS1B = U64 & (~U64 + 1);		// extract least significant 1 bit
+	for (i = 0; i < 64; i++){		
+		if (LS1B & (0x1UL << i)) break;		// get the index of this bit
 	}
+	return LS1B;
 } 
 
 //==============================================
 // Reverse
+// This fuction reverses the bits in a 64-bit
+// unsigned integer.
 //==============================================
 uint64_t Bitboard::Reverse(uint64_t U64) 
 {
@@ -247,14 +250,14 @@ void Bitboard::PrintBitboard(uint64_t U64)
 //==============================================
 uint64_t Bitboard::MovesWN(uint64_t UNIT)
 {	
-	uint64_t MOVE0 = (UNIT << 10) & ~FILE_A & ~FILE_B;
-	uint64_t MOVE1 = (UNIT << 17) & ~FILE_A;
-	uint64_t MOVE2 = (UNIT << 15) & ~FILE_H;
-	uint64_t MOVE3 = (UNIT << 6) & ~FILE_G & ~FILE_H;
-	uint64_t MOVE4 = (UNIT >> 10) & ~FILE_G & ~FILE_H;
-	uint64_t MOVE5 = (UNIT >> 17) & ~FILE_H;
-	uint64_t MOVE6 = (UNIT >> 15) & ~FILE_A;
-	uint64_t MOVE7 = (UNIT >> 6) & ~FILE_A & ~FILE_B;
+	uint64_t MOVE0 = (UNIT << 10) & ~FILE_A & ~FILE_B;		// move up 1, right 2
+	uint64_t MOVE1 = (UNIT << 17) & ~FILE_A;				// move up 2, right 1
+	uint64_t MOVE2 = (UNIT << 15) & ~FILE_H;				// move up 2, left 1
+	uint64_t MOVE3 = (UNIT << 6) & ~FILE_G & ~FILE_H;		// move up 1, left 2
+	uint64_t MOVE4 = (UNIT >> 10) & ~FILE_G & ~FILE_H;		// move down 1, left 2
+	uint64_t MOVE5 = (UNIT >> 17) & ~FILE_H;				// move down 2, left 1
+	uint64_t MOVE6 = (UNIT >> 15) & ~FILE_A;				// move down 2, right 1
+	uint64_t MOVE7 = (UNIT >> 6) & ~FILE_A & ~FILE_B;		// move down q, right 2
 	uint64_t MOVES = (MOVE0 | MOVE1 | MOVE2 | MOVE3 | MOVE4 | MOVE5 | MOVE6 | MOVE7) & ~WHITE_UNITS;
 	return MOVES;
 }
@@ -264,14 +267,14 @@ uint64_t Bitboard::MovesWN(uint64_t UNIT)
 //==============================================
 uint64_t Bitboard::MovesBN(uint64_t UNIT)
 {	
-	uint64_t MOVE0 = (UNIT << 10) & ~FILE_A & ~FILE_B;
-	uint64_t MOVE1 = (UNIT << 17) & ~FILE_A;
-	uint64_t MOVE2 = (UNIT << 15) & ~FILE_H;
-	uint64_t MOVE3 = (UNIT << 6) & ~FILE_G & ~FILE_H;
-	uint64_t MOVE4 = (UNIT >> 10) & ~FILE_G & ~FILE_H;
-	uint64_t MOVE5 = (UNIT >> 17) & ~FILE_H;
-	uint64_t MOVE6 = (UNIT >> 15) & ~FILE_A;
-	uint64_t MOVE7 = (UNIT >> 6) & ~FILE_A & ~FILE_B;
+	uint64_t MOVE0 = (UNIT << 10) & ~FILE_A & ~FILE_B;		// move up 1, right 2
+	uint64_t MOVE1 = (UNIT << 17) & ~FILE_A;				// move up 2, right 1
+	uint64_t MOVE2 = (UNIT << 15) & ~FILE_H;				// move up 2, left 1
+	uint64_t MOVE3 = (UNIT << 6) & ~FILE_G & ~FILE_H;		// move up 1, left 2
+	uint64_t MOVE4 = (UNIT >> 10) & ~FILE_G & ~FILE_H;		// move down 1, left 2
+	uint64_t MOVE5 = (UNIT >> 17) & ~FILE_H;				// move down 2, left 1
+	uint64_t MOVE6 = (UNIT >> 15) & ~FILE_A;				// move down 2, right 1
+	uint64_t MOVE7 = (UNIT >> 6) & ~FILE_A & ~FILE_B;		// move down q, right 2
 	uint64_t MOVES = (MOVE0 | MOVE1 | MOVE2 | MOVE3 | MOVE4 | MOVE5 | MOVE6 | MOVE7) & ~BLACK_UNITS;
 	return MOVES;	
 }
@@ -349,18 +352,18 @@ uint64_t Bitboard::MovesBQ(uint64_t UNIT, uint8_t i)
 //==============================================
 uint64_t Bitboard::MovesWK(uint64_t UNIT)
 {	
-	uint64_t MOVE0 = (UNIT << 1) & ~FILE_A;
-	uint64_t MOVE1 = (UNIT << 9) & ~FILE_A;
-	uint64_t MOVE2 = UNIT << 8;
-	uint64_t MOVE3 = (UNIT << 7) & ~FILE_H;
-	uint64_t MOVE4 = (UNIT >> 1) & ~FILE_H;
-	uint64_t MOVE5 = (UNIT >> 9) & ~FILE_H;
-	uint64_t MOVE6 = UNIT >> 8;
-	uint64_t MOVE7 = (UNIT >> 7) & ~FILE_A;
-	uint64_t KINGSIDE_CASTLE = 0x0UL;
-	uint64_t QUEENSIDE_CASTLE = 0x0UL;
-	if (wkc && ((UNIT & 0x0000000000000010UL) != 0) && ((WR & 0x0000000000000080UL) != 0) && ((~EMPTY & 0x0000000000000060UL) == 0) && ((BLACK_ATTACKS & 0x0000000000000070UL) == 0)) KINGSIDE_CASTLE = 0x0000000000000040UL;
-	if (wqc && ((UNIT & 0x0000000000000010UL) != 0) && ((WR & 0x0000000000000001UL) != 0) && ((~EMPTY & 0x000000000000000EUL) == 0) && ((BLACK_ATTACKS & 0x000000000000001CUL) == 0)) QUEENSIDE_CASTLE = 0x0000000000000004UL;
+	uint64_t MOVE0 = (UNIT << 1) & ~FILE_A;		// move right
+	uint64_t MOVE1 = (UNIT << 9) & ~FILE_A;		// move up and right
+	uint64_t MOVE2 = UNIT << 8;					// move up
+	uint64_t MOVE3 = (UNIT << 7) & ~FILE_H;		// move up and left
+	uint64_t MOVE4 = (UNIT >> 1) & ~FILE_H;		// move left
+	uint64_t MOVE5 = (UNIT >> 9) & ~FILE_H;		// move down and left
+	uint64_t MOVE6 = UNIT >> 8;					// move down
+	uint64_t MOVE7 = (UNIT >> 7) & ~FILE_A;		// move down and right
+	uint64_t KINGSIDE_CASTLE = 0x0UL;			// kingside castle
+	uint64_t QUEENSIDE_CASTLE = 0x0UL;			// queenside castle
+	if (wkc && ((UNIT & 0x0000000000000010UL) != 0) && ((WR & 0x0000000000000080UL) != 0) && ((~EMPTY & 0x0000000000000060UL) == 0) && ((BLACK_ATTACKS & 0x0000000000000070UL) == 0)) KINGSIDE_CASTLE = 0x0000000000000040UL;	
+	if (wqc && ((UNIT & 0x0000000000000010UL) != 0) && ((WR & 0x0000000000000001UL) != 0) && ((~EMPTY & 0x000000000000000EUL) == 0) && ((BLACK_ATTACKS & 0x000000000000001CUL) == 0)) QUEENSIDE_CASTLE = 0x0000000000000004UL;	
 	uint64_t MOVES = (MOVE0 | MOVE1 | MOVE2 | MOVE3 | MOVE4 | MOVE5 | MOVE6 | MOVE7 | KINGSIDE_CASTLE | QUEENSIDE_CASTLE) & ~WHITE_UNITS;
 	return MOVES;
 }
@@ -370,18 +373,18 @@ uint64_t Bitboard::MovesWK(uint64_t UNIT)
 //==============================================
 uint64_t Bitboard::MovesBK(uint64_t UNIT)
 {	
-	uint64_t MOVE0 = (UNIT << 1) & ~FILE_A;
-	uint64_t MOVE1 = (UNIT << 9) & ~FILE_A;
-	uint64_t MOVE2 = UNIT << 8;
-	uint64_t MOVE3 = (UNIT << 7) & ~FILE_H;
-	uint64_t MOVE4 = (UNIT >> 1) & ~FILE_H;
-	uint64_t MOVE5 = (UNIT >> 9) & ~FILE_H;
-	uint64_t MOVE6 = UNIT >> 8;
-	uint64_t MOVE7 = (UNIT >> 7) & ~FILE_A;
-	uint64_t KINGSIDE_CASTLE = 0x0UL;
-	uint64_t QUEENSIDE_CASTLE = 0x0UL;
-	if (bkc && ((UNIT & 0x1000000000000000UL) != 0) && ((BR & 0x8000000000000000UL) != 0) && ((~EMPTY & 0x6000000000000000UL) == 0) && ((WHITE_ATTACKS & 0x7000000000000000UL) == 0)) KINGSIDE_CASTLE = 0x4000000000000000UL;
-	if (bqc && ((UNIT & 0x1000000000000000UL) != 0) && ((BR & 0x0100000000000000UL) != 0) && ((~EMPTY & 0x0E00000000000000UL) == 0) && ((WHITE_ATTACKS & 0x1C00000000000000UL) == 0)) QUEENSIDE_CASTLE = 0x0400000000000000UL;
+	uint64_t MOVE0 = (UNIT << 1) & ~FILE_A;		// move right
+	uint64_t MOVE1 = (UNIT << 9) & ~FILE_A;		// move up and right
+	uint64_t MOVE2 = UNIT << 8;					// move up
+	uint64_t MOVE3 = (UNIT << 7) & ~FILE_H;		// move up and left
+	uint64_t MOVE4 = (UNIT >> 1) & ~FILE_H;		// move left
+	uint64_t MOVE5 = (UNIT >> 9) & ~FILE_H;		// move down and left
+	uint64_t MOVE6 = UNIT >> 8;					// move down
+	uint64_t MOVE7 = (UNIT >> 7) & ~FILE_A;		// move down and right
+	uint64_t KINGSIDE_CASTLE = 0x0UL;			// kingside castle
+	uint64_t QUEENSIDE_CASTLE = 0x0UL;			// queenside castle
+	if (bkc && ((UNIT & 0x1000000000000000UL) != 0) && ((BR & 0x8000000000000000UL) != 0) && ((~EMPTY & 0x6000000000000000UL) == 0) && ((WHITE_ATTACKS & 0x7000000000000000UL) == 0)) KINGSIDE_CASTLE = 0x4000000000000000UL;	
+	if (bqc && ((UNIT & 0x1000000000000000UL) != 0) && ((BR & 0x0100000000000000UL) != 0) && ((~EMPTY & 0x0E00000000000000UL) == 0) && ((WHITE_ATTACKS & 0x1C00000000000000UL) == 0)) QUEENSIDE_CASTLE = 0x0400000000000000UL;	
 	uint64_t MOVES = (MOVE0 | MOVE1 | MOVE2 | MOVE3 | MOVE4 | MOVE5 | MOVE6 | MOVE7 | KINGSIDE_CASTLE | QUEENSIDE_CASTLE) & ~BLACK_UNITS;
 	return MOVES;
 }
@@ -391,13 +394,11 @@ uint64_t Bitboard::MovesBK(uint64_t UNIT)
 //==============================================
 uint64_t Bitboard::MovesWP(uint64_t UNIT)
 {	
-	uint64_t MOVE_RIGHT = (UNIT << 9) & BLACK_UNITS & ~FILE_A; 						// capture right
-	uint64_t MOVE_LEFT = (UNIT << 7) & BLACK_UNITS & ~FILE_H; 						// capture left
-	uint64_t MOVE_FORWARD_1 = (UNIT << 8) & EMPTY; 									// move forward 1
-	uint64_t MOVE_FORWARD_2 = (UNIT << 16) & EMPTY & (EMPTY << 8) & RANK_4; 		// move forward 2
-	uint64_t MOVE_RIGHT_EP = (UNIT << 9) & (BP << 8) & RANK_6 & ~FILE_A & FILE_EP; 	// en passant right
-	uint64_t MOVE_LEFT_EP = (UNIT << 7) & (BP << 8) & RANK_6 & ~FILE_H & FILE_EP; 	// en passant left
-	uint64_t MOVES = MOVE_RIGHT | MOVE_LEFT | MOVE_FORWARD_1 | MOVE_FORWARD_2 | MOVE_RIGHT_EP | MOVE_LEFT_EP;
+	uint64_t MOVE_FORWARD_1 = (UNIT << 8) & EMPTY; 										// move forward 1
+	uint64_t MOVE_FORWARD_2 = (UNIT << 16) & EMPTY & (EMPTY << 8) & RANK_4; 			// move forward 2
+	uint64_t MOVE_RIGHT = (UNIT << 9) & (BLACK_UNITS | (FILE_EP & RANK_6)) & ~FILE_A; 	// move right (including en passant)
+	uint64_t MOVE_LEFT = (UNIT << 7) & (BLACK_UNITS | (FILE_EP & RANK_6)) & ~FILE_H; 	// move left (including en passant)
+	uint64_t MOVES = MOVE_FORWARD_1 | MOVE_FORWARD_2 | MOVE_RIGHT | MOVE_LEFT;
 	return MOVES;
 }
 
@@ -406,13 +407,11 @@ uint64_t Bitboard::MovesWP(uint64_t UNIT)
 //==============================================
 uint64_t Bitboard::MovesBP(uint64_t UNIT)
 {	
-	uint64_t MOVE_RIGHT = (UNIT >> 7) & WHITE_UNITS & ~FILE_A; 						// capture right
-	uint64_t MOVE_LEFT = (UNIT >> 9) & WHITE_UNITS & ~FILE_H; 						// capture left
-	uint64_t MOVE_FORWARD_1 = (UNIT >> 8) & EMPTY; 									// move forward 1
-	uint64_t MOVE_FORWARD_2 = (UNIT >> 16) & EMPTY & (EMPTY >> 8) & RANK_5; 		// move forward 2
-	uint64_t MOVE_RIGHT_EP = (UNIT >> 7) & (WP >> 8) & RANK_3 & ~FILE_A & FILE_EP; 	// en passant right
-	uint64_t MOVE_LEFT_EP = (UNIT >> 9) & (WP >> 8) & RANK_3 & ~FILE_H & FILE_EP; 	// en passant left
-	uint64_t MOVES = MOVE_RIGHT | MOVE_LEFT | MOVE_FORWARD_1 | MOVE_FORWARD_2 | MOVE_RIGHT_EP | MOVE_LEFT_EP;
+	uint64_t MOVE_FORWARD_1 = (UNIT >> 8) & EMPTY; 										// move forward 1
+	uint64_t MOVE_FORWARD_2 = (UNIT >> 16) & EMPTY & (EMPTY >> 8) & RANK_5; 			// move forward 2
+	uint64_t MOVE_RIGHT = (UNIT >> 7) & (WHITE_UNITS | (FILE_EP & RANK_3)) & ~FILE_A; 	// move right (including en passant)
+	uint64_t MOVE_LEFT = (UNIT >> 9) & (WHITE_UNITS | (FILE_EP & RANK_3)) & ~FILE_H; 	// move left (including en passant)
+	uint64_t MOVES = MOVE_FORWARD_1 | MOVE_FORWARD_2 | MOVE_RIGHT | MOVE_LEFT;
 	return MOVES;
 }
 
@@ -429,17 +428,17 @@ uint64_t Bitboard::AttacksW()
 	uint64_t WQ = this->WQ;		// make copy of WQ
 
 	while (WR != 0x0UL){
-		LS1B(WR, UNIT, i);
+		UNIT = LS1B(WR, i);
 		ATTACKS |= MovesWR(UNIT, i);
 		WR ^= UNIT;
 	}
 	while (WB != 0x0UL){
-		LS1B(WB, UNIT, i);
+		UNIT = LS1B(WB, i);
 		ATTACKS |= MovesWB(UNIT, i);
 		WB ^= UNIT;
 	}
 	while (WQ != 0x0UL){
-		LS1B(WQ, UNIT, i);
+		UNIT = LS1B(WQ, i);
 		ATTACKS |= MovesWQ(UNIT, i);
 		WQ ^= UNIT;
 	}
@@ -462,17 +461,17 @@ uint64_t Bitboard::AttacksB()
 	uint64_t BQ = this->BQ;		// make copy of WQ
 
 	while (BR != 0x0UL){
-		LS1B(BR, UNIT, i);
+		UNIT = LS1B(BR, i);
 		ATTACKS |= MovesBR(UNIT, i);
 		BR ^= UNIT;
 	}
 	while (BB != 0x0UL){
-		LS1B(BB, UNIT, i);
+		UNIT = LS1B(BB, i);
 		ATTACKS |= MovesBB(UNIT, i);
 		BB ^= UNIT;
 	}
 	while (BQ != 0x0UL){
-		LS1B(BQ, UNIT, i);
+		UNIT = LS1B(BQ, i);
 		ATTACKS |= MovesBQ(UNIT, i);
 		BQ ^= UNIT;
 	}

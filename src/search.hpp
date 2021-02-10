@@ -39,7 +39,7 @@ public:
 	bool player;
 	int value;
 	int best;
-	uint64_t BEST0, BEST1, BEST2;
+	uint64_t BEST0, BEST1;
 	uint8_t ID0, ID1;
 	uint64_t mem[MAX_DEPTH][38];
 public:

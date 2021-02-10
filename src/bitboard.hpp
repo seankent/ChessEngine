@@ -10,15 +10,8 @@
 //==============================================
 // define
 //==============================================
-#define WHITE 0
-#define BLACK 1
-#define NONE 0
-#define ROOK 1
-#define KNIGHT 2
-#define BISHOP 3
-#define QUEEN 4
-#define KING 5
-#define PAWN 6
+#define WHITE false
+#define BLACK true
 #define FILE_A 0x0101010101010101UL 		// bitboard for the a-file
 #define FILE_B 0x0202020202020202UL 		// bitboard for the b-file
 #define FILE_C 0x0404040404040404UL		// bitboard for the c-file
@@ -66,6 +59,20 @@
 #define DIAGONAL_G8H7 0x4080000000000000UL	// bitboard for the g8-h7 diagonal
 #define DIAGONAL_H8H8 0x8000000000000000UL	// bitboard for the h8-h8 diagonal
 
+
+//==============================================
+// enum
+//==============================================
+enum
+{
+	ROOK,
+	KNIGHT,
+	BISHOP,
+	QUEEN,
+	KING,
+	PAWN
+};
+
 //==============================================
 // const
 //==============================================
@@ -81,38 +88,36 @@ const uint64_t DIAGONALS_DOWN[] = {DIAGONAL_A1A1, DIAGONAL_A2B1, DIAGONAL_A3C1, 
 class Bitboard
 {
 public:
-	uint64_t WR;			// bitboard for the white rooks
-	uint64_t WN; 			// bitboard for the white knights
-	uint64_t WB; 			// bitboard for the white bishops
-	uint64_t WQ; 			// bitboard for the white queens
-	uint64_t WK; 			// bitboard for the white king
-	uint64_t WP; 			// bitboard for the white pawns
-	uint64_t BR; 			// bitboard for the black rooks
-	uint64_t BN; 			// bitboard for the black knights
-	uint64_t BB; 			// bitboard for the black bishops
-	uint64_t BQ; 			// bitboard for the black queens
-	uint64_t BK; 			// bitboard for the black king
-	uint64_t BP;			// bitboard for the black pawns			
-	uint64_t WHITE_UNITS; 	// bitboard for all the white units
-	uint64_t BLACK_UNITS; 	// bitboard for all the black units
-	uint64_t EMPTY;		  	// bitboard for all the empty squares on the board
-	uint64_t WHITE_ATTACKS;
-	uint64_t BLACK_ATTACKS;
-	uint64_t FILE_EP;		// bitboard for en passant file
+	uint64_t WR;				// bitboard for the white rooks
+	uint64_t WN; 				// bitboard for the white knights
+	uint64_t WB; 				// bitboard for the white bishops
+	uint64_t WQ; 				// bitboard for the white queens
+	uint64_t WK; 				// bitboard for the white king
+	uint64_t WP; 				// bitboard for the white pawns
+	uint64_t BR; 				// bitboard for the black rooks
+	uint64_t BN; 				// bitboard for the black knights
+	uint64_t BB; 				// bitboard for the black bishops
+	uint64_t BQ; 				// bitboard for the black queens
+	uint64_t BK; 				// bitboard for the black king
+	uint64_t BP;				// bitboard for the black pawns			
+	uint64_t WHITE_UNITS; 		// bitboard for all the white units
+	uint64_t BLACK_UNITS; 		// bitboard for all the black units
+	uint64_t EMPTY;		  		// bitboard for all the empty squares on the board (bits are set if the square is empty)
+	uint64_t WHITE_ATTACKS; 	// bitboard for all the squares white is attacking
+	uint64_t BLACK_ATTACKS;		// bitboard for all the squares black is attacking
+	uint64_t FILE_EP;			// bitboard for the en passant file
 public:
-	bool turn;
-	bool wkc, wqc, bkc, bqc;	// castling rights
-	bool wc, bc;				// check indicators
-	// uint64_t moves[256][11];	// [i0, i1, i2, unit0 type, unit1 type, unit2 type, wkc, wqc, bkc, bqc, ep]
-	// int n;
+	bool turn;					// WHITE or BLACK
+	bool wkc, wqc, bkc, bqc;	// these variables keep track of castling rights
+	bool wc, bc;				// these variables indicate if white or black is in check
 
 public:
-	Bitboard(char board[8][8], bool turn);		// bitboard constructor
-	Bitboard();									// bitboard constructor
+	Bitboard(char board[8][8], bool turn);		// Bitboard constructor
+	Bitboard();									// Bitboard constructor
 	void BoardToBitboard(char board[8][8]);
 	void BitboardToBoard(char board[8][8]);
 	void Update();
-	void LS1B(uint64_t U64, uint64_t & LS1B, uint8_t & i);
+	uint64_t LS1B(uint64_t U64, uint8_t & i);
 	uint64_t Reverse(uint64_t U64);
 	void Print(char board[8][8]);
 	void Print();

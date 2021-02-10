@@ -34,53 +34,53 @@ int EvaluateMaterial(Bitboard bitboard)
 	uint64_t BP = bitboard.BP;
 
 	while (WR != 0x0UL){
-		bitboard.LS1B(WR, UNIT, i);
+		UNIT = bitboard.LS1B(WR, i);
 		WR ^= UNIT;
 		value += 5;
 	}
 	while (WN != 0x0UL){
-		bitboard.LS1B(WN, UNIT, i);
+		UNIT = bitboard.LS1B(WN, i);
 		WN ^= UNIT;
 		value += 3;
 	}
 	while (WB != 0x0UL){
-		bitboard.LS1B(WB, UNIT, i);
+		UNIT = bitboard.LS1B(WB, i);
 		WB ^= UNIT;
 		value += 3;
 	}
 	while (WQ != 0x0UL){
-		bitboard.LS1B(WQ, UNIT, i);
+		UNIT = bitboard.LS1B(WQ, i);
 		WQ ^= UNIT;
 		value += 9;
 	}
 	while (WP != 0x0UL){
-		bitboard.LS1B(WP, UNIT, i);
+		UNIT = bitboard.LS1B(WP, i);
 		WP ^= UNIT;
 		value += 1;
 	}
 
 	while (BR != 0x0UL){
-		bitboard.LS1B(BR, UNIT, i);
+		UNIT = bitboard.LS1B(BR, i);
 		BR ^= UNIT;
 		value -= 5;
 	}
 	while (BN != 0x0UL){
-		bitboard.LS1B(BN, UNIT, i);
+		UNIT = bitboard.LS1B(BN, i);
 		BN ^= UNIT;
 		value -= 3;
 	}
 	while (BB != 0x0UL){
-		bitboard.LS1B(BB, UNIT, i);
+		UNIT = bitboard.LS1B(BB, i);
 		BB ^= UNIT;
 		value -= 3;
 	}
 	while (BQ != 0x0UL){
-		bitboard.LS1B(BQ, UNIT, i);
+		UNIT = bitboard.LS1B(BQ, i);
 		BQ ^= UNIT;
 		value -= 9;
 	}
 	while (BP != 0x0UL){
-		bitboard.LS1B(BP, UNIT, i);
+		UNIT = bitboard.LS1B(BP, i);
 		BP ^= UNIT;
 		value -= 1;
 	}
