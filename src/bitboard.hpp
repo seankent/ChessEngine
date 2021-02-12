@@ -14,12 +14,12 @@
 #define BLACK true
 #define FILE_A 0x0101010101010101UL 		// bitboard for the a-file
 #define FILE_B 0x0202020202020202UL 		// bitboard for the b-file
-#define FILE_C 0x0404040404040404UL		// bitboard for the c-file
-#define FILE_D 0x0808080808080808UL		// bitboard for the d-file
+#define FILE_C 0x0404040404040404UL			// bitboard for the c-file
+#define FILE_D 0x0808080808080808UL			// bitboard for the d-file
 #define FILE_E 0x1010101010101010UL 		// bitboard for the e-file
 #define FILE_F 0x2020202020202020UL 		// bitboard for the f-file
 #define FILE_G 0x4040404040404040UL 		// bitboard for the g-file
-#define FILE_H 0x8080808080808080UL		// bitboard for the h-file
+#define FILE_H 0x8080808080808080UL			// bitboard for the h-file
 #define RANK_1 0x00000000000000ffUL 		// bitboard for the 1st rank
 #define RANK_2 0x000000000000ff00UL 		// bitboard for the 2nd rank
 #define RANK_3 0x0000000000ff0000UL 		// bitboard for the 3rd rank
@@ -27,9 +27,9 @@
 #define RANK_5 0x000000ff00000000UL 		// bitboard for the 5th rank
 #define RANK_6 0x0000ff0000000000UL 		// bitboard for the 6th rank
 #define RANK_7 0x00ff000000000000UL 		// bitboard for the 7th rank
-#define RANK_8 0xff00000000000000UL		// bitboard for the 8th rank
+#define RANK_8 0xff00000000000000UL			// bitboard for the 8th rank
 #define DIAGONAL_A8A8 0x0100000000000000UL	// bitboard for the a8-a8 diagonal
-#define DIAGONAL_A7B8 0x0201000000000000UL // bitboard for the a7-b8 diagonal
+#define DIAGONAL_A7B8 0x0201000000000000UL 	// bitboard for the a7-b8 diagonal
 #define DIAGONAL_A6C8 0x0402010000000000UL	// bitboard for the a6-c8 diagonal
 #define DIAGONAL_A5D8 0x0804020100000000UL	// bitboard for the a5-d8 diagonal
 #define DIAGONAL_A4E8 0x1008040201000000UL	// bitboard for the a4-e8 diagonal
@@ -44,7 +44,7 @@
 #define DIAGONAL_G1H2 0x0000000000008040UL	// bitboard for the g1-h8 diagonal
 #define DIAGONAL_H1H1 0x0000000000000080UL	// bitboard for the h1-h8 diagonal
 #define DIAGONAL_A1A1 0x0000000000000001UL	// bitboard for the a1-a1 diagonal
-#define DIAGONAL_A2B1 0x0000000000000102UL // bitboard for the a2-b1 diagonal
+#define DIAGONAL_A2B1 0x0000000000000102UL 	// bitboard for the a2-b1 diagonal
 #define DIAGONAL_A3C1 0x0000000000010204UL	// bitboard for the a3-c1 diagonal
 #define DIAGONAL_A4D1 0x0000000001020408UL	// bitboard for the a4-d1 diagonal
 #define DIAGONAL_A5E1 0x0000000102040810UL	// bitboard for the a5-e1 diagonal
@@ -122,7 +122,7 @@ public:
 	void Print(char board[8][8]);
 	void Print();
 	void PrintBitboard(uint64_t U64);
-	void PrintMovess(uint64_t MOVES);
+	void PrintMoves(uint64_t MOVES);
 	uint64_t MovesWN(uint64_t UNIT);
 	uint64_t MovesBN(uint64_t UNIT);
 	uint64_t MovesWR(uint64_t UNIT, uint8_t i);

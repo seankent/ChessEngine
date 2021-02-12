@@ -1,0 +1,10 @@
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+Running Simulation...
+1. passed!
+2. passed!
+3. passed!
+4. passed!
+5. passed!
+6. passed!
+$finish called at time : 90 ns : File "C:/Users/seanj/OneDrive/Documents/ChessEngine/chess/chess.srcs/sim_1/new/gen_moves_bk_tb.sv" Line 126

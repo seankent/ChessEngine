@@ -212,7 +212,7 @@ void Bitboard::Print()
 //==============================================
 // PrintMoves
 //==============================================
-void Bitboard::PrintMovess(uint64_t MOVES)
+void Bitboard::PrintMoves(uint64_t MOVES)
 {
 	char board[8][8];
  	BitboardToBoard(board);
@@ -284,10 +284,10 @@ uint64_t Bitboard::MovesBN(uint64_t UNIT)
 //==============================================
 uint64_t Bitboard::MovesWR(uint64_t UNIT, uint8_t i)
 {	
-	uint64_t RANK = RANKS[i >> 3];
-	uint64_t FILE = FILES[i & 0x7];
-	uint64_t MOVES_RANK = ((((~EMPTY & RANK) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & RANK) - (Reverse(UNIT) << 1))) & RANK);
-	uint64_t MOVES_FILE = ((((~EMPTY & FILE) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & FILE) - (Reverse(UNIT) << 1))) & FILE);
+	uint64_t RANK = RANKS[i >> 3];			// get rank mask
+	uint64_t FILE = FILES[i & 0x7];			// get file mask
+	uint64_t MOVES_RANK = ((((~EMPTY & RANK) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & RANK) - (Reverse(UNIT) << 1))) & RANK);	// rank moves
+	uint64_t MOVES_FILE = ((((~EMPTY & FILE) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & FILE) - (Reverse(UNIT) << 1))) & FILE);	// file moves
 	uint64_t MOVES = (MOVES_RANK | MOVES_FILE) & ~WHITE_UNITS;
 	return MOVES;	 
 }
@@ -297,10 +297,10 @@ uint64_t Bitboard::MovesWR(uint64_t UNIT, uint8_t i)
 //==============================================
 uint64_t Bitboard::MovesBR(uint64_t UNIT, uint8_t i)
 {	
-	uint64_t RANK = RANKS[i >> 3];
-	uint64_t FILE = FILES[i & 0x7];
-	uint64_t MOVES_RANK = (((~EMPTY & RANK) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & RANK) - (Reverse(UNIT) << 1))) & RANK;
-	uint64_t MOVES_FILE = (((~EMPTY & FILE) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & FILE) - (Reverse(UNIT) << 1))) & FILE;
+	uint64_t RANK = RANKS[i >> 3];			// get rank mask
+	uint64_t FILE = FILES[i & 0x7];			// get file mask
+	uint64_t MOVES_RANK = (((~EMPTY & RANK) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & RANK) - (Reverse(UNIT) << 1))) & RANK;	// rank moves
+	uint64_t MOVES_FILE = (((~EMPTY & FILE) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & FILE) - (Reverse(UNIT) << 1))) & FILE;	// file moves
 	uint64_t MOVES = (MOVES_RANK | MOVES_FILE) & ~BLACK_UNITS;
 	return MOVES;	
 }
@@ -310,10 +310,10 @@ uint64_t Bitboard::MovesBR(uint64_t UNIT, uint8_t i)
 //==============================================
 uint64_t Bitboard::MovesWB(uint64_t UNIT, uint8_t i)
 {	
-	uint64_t DIAGONAL_UP = DIAGONALS_UP[7 - (i >> 3) + (i & 0x7)];
-	uint64_t DIAGONAL_DOWN = DIAGONALS_DOWN[(i >> 3) + (i & 0x7)];
-	uint64_t MOVES_DIAGONAL_UP = (((~EMPTY & DIAGONAL_UP) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & DIAGONAL_UP) - (Reverse(UNIT) << 1))) & DIAGONAL_UP;
-	uint64_t MOVES_DIAGONAL_DOWN = (((~EMPTY & DIAGONAL_DOWN) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & DIAGONAL_DOWN) - (Reverse(UNIT) << 1))) & DIAGONAL_DOWN;
+	uint64_t DIAGONAL_UP = DIAGONALS_UP[7 - (i >> 3) + (i & 0x7)];		// get mask for the upper right diagonal
+	uint64_t DIAGONAL_DOWN = DIAGONALS_DOWN[(i >> 3) + (i & 0x7)];		// get mask for the downward right diagnonal
+	uint64_t MOVES_DIAGONAL_UP = (((~EMPTY & DIAGONAL_UP) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & DIAGONAL_UP) - (Reverse(UNIT) << 1))) & DIAGONAL_UP;			// moves along the upper right diagonal
+	uint64_t MOVES_DIAGONAL_DOWN = (((~EMPTY & DIAGONAL_DOWN) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & DIAGONAL_DOWN) - (Reverse(UNIT) << 1))) & DIAGONAL_DOWN;	// moves along the downward right diagonal
 	uint64_t MOVES = (MOVES_DIAGONAL_UP | MOVES_DIAGONAL_DOWN) & ~WHITE_UNITS;
 	return MOVES;
 }
@@ -323,10 +323,10 @@ uint64_t Bitboard::MovesWB(uint64_t UNIT, uint8_t i)
 //==============================================
 uint64_t Bitboard::MovesBB(uint64_t UNIT, uint8_t i)
 {	
-	uint64_t DIAGONAL_UP = DIAGONALS_UP[7 - (i >> 3) + (i & 0x7)];
-	uint64_t DIAGONAL_DOWN = DIAGONALS_DOWN[(i >> 3) + (i & 0x7)];
-	uint64_t MOVES_DIAGONAL_UP = (((~EMPTY & DIAGONAL_UP) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & DIAGONAL_UP) - (Reverse(UNIT) << 1))) & DIAGONAL_UP;
-	uint64_t MOVES_DIAGONAL_DOWN = (((~EMPTY & DIAGONAL_DOWN) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & DIAGONAL_DOWN) - (Reverse(UNIT) << 1))) & DIAGONAL_DOWN;
+	uint64_t DIAGONAL_UP = DIAGONALS_UP[7 - (i >> 3) + (i & 0x7)];		// get mask for the upper right diagonal
+	uint64_t DIAGONAL_DOWN = DIAGONALS_DOWN[(i >> 3) + (i & 0x7)];		// get mask for the downward right diagnonal
+	uint64_t MOVES_DIAGONAL_UP = (((~EMPTY & DIAGONAL_UP) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & DIAGONAL_UP) - (Reverse(UNIT) << 1))) & DIAGONAL_UP;			// moves along the upper right diagonal
+	uint64_t MOVES_DIAGONAL_DOWN = (((~EMPTY & DIAGONAL_DOWN) - (UNIT << 1)) ^ Reverse(Reverse(~EMPTY & DIAGONAL_DOWN) - (Reverse(UNIT) << 1))) & DIAGONAL_DOWN;	// moves along the downward right diagonal
 	uint64_t MOVES = (MOVES_DIAGONAL_UP | MOVES_DIAGONAL_DOWN) & ~BLACK_UNITS;
 	return MOVES;
 }

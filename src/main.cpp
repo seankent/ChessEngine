@@ -15,14 +15,14 @@ int main(void)
 	// Test_MovesBN();
 	// Test_MovesWR();
 	// Test_MovesBR();
-	// Test_MovesWB();
+	//Test_MovesWB();
 	// Test_MovesBB();
 	// Test_MovesWQ();
-	// Test_MovesBQ();
+	Test_MovesBQ();
 	// Test_MovesWK();
 	// Test_MovesBK();
-	// Test_MoveWP();
-	// Test_MoveBP();
+	// Test_MovesWP();
+	// Test_MovesBP();
 	// Test_MovesW();
 	// char board[8][8] = {
 	// 	{' ', ' ', ' ', ' ', 'r', ' ', 'k', ' '},
@@ -90,9 +90,9 @@ int main(void)
 
 	// //Bitboard bitboard(board, WHITE);
 	Bitboard bitboard;
-	Search search(bitboard);
+	//Search search(bitboard);
 	// search.bitboard.Print();
-	search.Minimax(5);
+	//search.Minimax(5);
 
 	// uint64_t UNIT0, UNIT1;
 	// uint8_t id0, id1;

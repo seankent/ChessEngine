@@ -1,0 +1,10 @@
+# compile verilog/system verilog design source files
+sv xil_defaultlib  \
+"../../../../chess.srcs/sources_1/new/gen_moves_bk.sv" \
+"../../../../chess.srcs/sim_1/new/gen_moves_bk_tb.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
